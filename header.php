@@ -31,15 +31,18 @@
         <aside>
             <ul>
                 <li><a href="#">Socios</a></li>
-                <li><a href="#">Finanzas</a></li>
+                <li><a href="#">Inventario</a></li>
                 <li><a href="#">Reservar</a> </li>
+                <li><a href="#">Contabilidad</a> </li>
+                <li><a href="#">Agenda</a> </li>
+
 
 <?php      // if($_SESSION['usuario'] == 'Moncloa' ){ ?>
-                <li><a href="gestionCarta_Clientes.php">Gestion de carta y clientes</a></li>
+                <!-- <li><a href="gestionCarta_Clientes.php">Gestion de carta y clientes</a></li> -->
 <?php      // } 
 
             // else{ ?>
-                <li>Gestion de socios</a></li>
+                <!-- <li>Gestion de socios</a></li> -->
 <?php       //}?>
             </ul>
 
