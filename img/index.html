@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Runa Blanca</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        #loginIMG {
+            width: 200px;
+            padding-bottom: 40px;
+        }
+        body{
+            background-color:#04448c ;
+        }
+        /* body {
+            background-image: url('./img/camiseta.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        } */
+
+        #h1Login{
+            color: whitesmoke;
+            padding-bottom: 5px;
+            font-family: "Viking";
+        }
+       
+        #centrador{
+            display: flex;
+            justify-content: center;
+        }
+       
+    </style>
+</head>
+
+<body class="text-center" id="bodyLogin">
+    
+    <div class="container-fluid pt-5">
+        <h1 class="h1 pb-3 " id="h1Login">Asociación Runa Blanca</h1>
+        <img id="loginIMG" src="./img/iconoRuna5.png" />
+        <h4 class="h4" id="h1Login">Login</h4>
+        <form method="post" action="algo.php">
+
+            <div class="row" id="centrador">
+                <div class="col-md-3 col-sm-2  ">                       
+                    <input class="form-control text-center" type="email" id="correo" placeholder="Correo" required/>
+                </div>
+            </div><br>
+
+            <div class="row " id="centrador">
+                <div class="col-md-3 col-sm-2">                       
+                    <input class="form-control text-center" type="password" id="contra" placeholder="Contraseña" required/>
+                </div>
+            </div><br>
+            
+            <button class="btn btn-outline-dark" type="button" id="bLogin">Entrar</button>
+        </form><br>
+        <p id="h1Login">Si no tiene acceso, póngase en contacto con el administrador</p>
+    </div>
+    
+   <!-- <?php include(footer.php) ?> -->
+
+
+</body>
+</html>

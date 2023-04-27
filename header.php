@@ -11,7 +11,7 @@
         <meta name="TFG Daniel Agustín Arroyo " content="TFG 2023">
         <title>Asociación Runa Blanca</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" href="color.css"/>
+        <link rel="stylesheet" href="TFGcolor.css"/>
 
     </head>
 
@@ -19,7 +19,7 @@
         <header class="cabecera">
             <table>
                 <form method="get" action="INDEX.php">
-                <td><a href="INDEX.php"><img class="imagenCabecera" src="./UT2recursos/logo.jpg" /></a></td>
+                <td><a href="#"><img class="imagenCabecera" src="./img/iconoRuna2.png" /></a></td>
                 
                 <td><h1><b>Asociación Runa Blanca</b></h1></td>
                 <td>
@@ -29,22 +29,20 @@
         </header>
 
         <aside>
+            <ul>
+                <li><a href="#">Socios</a></li>
+                <li><a href="#">Finanzas</a></li>
+                <li><a href="#">Reservar</a> </li>
 
-        
-                    <ul>
-                        <li><a href="index.php">Inicio</a></li>
-                        <li><a href="perfilV2.php">Perfil</a></li>
-                        <li><a href="generarPedidoV2.php">Generar Pedido</a> </li>
+<?php      // if($_SESSION['usuario'] == 'Moncloa' ){ ?>
+                <li><a href="gestionCarta_Clientes.php">Gestion de carta y clientes</a></li>
+<?php      // } 
 
-        <?php      // if($_SESSION['usuario'] == 'Moncloa' ){ ?>
-                        <li><a href="gestionCarta_Clientes.php">Gestion de carta y clientes</a></li>
-        <?php      // } 
+            // else{ ?>
+                <li>Gestion de socios</a></li>
+<?php       //}?>
+            </ul>
 
-                   // else{ ?>
-                        <li>Gestion de carta y clientes (Sin usuario)</a></li>
-        <?php       //}?>
-                    </ul>
- 
                
           
         </aside> </br>
