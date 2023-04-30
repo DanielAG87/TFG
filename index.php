@@ -40,13 +40,13 @@ if (empty($_REQUEST)) { ?>
         <form >
 
             <div class="row" id="centrador">
-                <div class="col-md-6 col-sm-6 col-lg-4 col-xs-6">                       
+                <div class=" col-lg-4 col-md-6 col-sm-6  col-xs-4">                       
                     <input class="form-control text-center" type="text" id="correo" name="correo" placeholder="Correo" required/>
                 </div>
             </div><br>
 
             <div class="row " id="centrador">
-                <div class="col-md-6 col-sm-6 col-lg-4 col-xs-6">                       
+                <div class="col-md-6 col-sm-6 col-lg-4 col-xs-4">                       
                     <input class="form-control text-center" type="password" id="contra" name="contra" placeholder="Contraseña" required/>
                 </div>
             </div><br>
