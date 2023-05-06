@@ -1,24 +1,24 @@
 <?php
 include_once "../conectarBBDD.php";
-function selPais(){
+function consulSocio(){
 
     $con = conectarBD();
     $comprobar = false;
 
-    if (!empty($_GET['nombreSel']) && !empty($_GET['apellidoSel'])) {
-        $nombre = ucwords($_GET['nombreSel']); 
-        $apellido = ucwords($_GET['apellidoSel']);
+    if (!empty($_REQUEST['nombreSel']) && !empty($_REQUEST['apellidoSel'])) {
+        $nombre = ucwords($_REQUEST['nombreSel']); 
+        $apellido = ucwords($_REQUEST['apellidoSel']);
         $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}' and apellido1 = '{$apellido}' ";
         $comprobar = true;
         
     }
-    elseif (!empty($_GET['nombreSel'])) {
-        $nombre = ucwords($_GET['nombreSel']);
+    elseif (!empty($_REQUEST['nombreSel'])) {
+        $nombre = ucwords($_REQUEST['nombreSel']);
         $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}'";
         $comprobar = true;
     }
-    elseif (!empty($_GET['apellidoSel'])) {
-        $apellido = ucwords($_GET['apellidoSel']);
+    elseif (!empty($_REQUEST['apellidoSel'])) {
+        $apellido = ucwords($_REQUEST['apellidoSel']);
         $statement = "SELECT * FROM socios WHERE apellido1 = '{$apellido}'";
         $comprobar = true;
     }
@@ -84,4 +84,4 @@ function selPais(){
     
     }
 
-selPais(); ?>
+consulSocio(); ?>

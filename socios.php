@@ -15,6 +15,11 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 <input type="text" id="nomBusqueda" class="form-control w-25" placeholder="Nombre"/>
 <input type="text" id="apeBusqueda" class="form-control w-25" placeholder="Apellido"/>
 <button id="btnTabla" onclick="consulSocio()">Buscar</button>
+    <div>
+        <form method="post" action="nuevoSocio.php">
+            <button type="submit" name="nuevoSocio">Añadir socio</button>
+        </form>
+    </div>
     <!-- <form method="get" action="socios.php"> -->
         <table class="table table-striped table-hover table-bordered text-center">
             <tr>
@@ -71,32 +76,12 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                 document.getElementById('resulBusqueda').innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel + "&apellidoSel="+ apellidoSel, true); // falla con dos parametros
-        // xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel, true);
+        xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel + "&apellidoSel="+ apellidoSel, true);
         xhttp.send();
     }
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 <script src="./jquery.js"></script>
-
-
-<!-- // if (isset($_POST["selec"])) {
-//     $filaSeleccionada = $_POST["selec"];
-//     $idSeleccionado = $_POST["socioID"];
-//     // buscar el registro correspondiente en la base de datos
-//    // $socioModi = mysqli_query($con, "SELECT * FROM socios WHERE id_socio = $idSeleccionado");
-//     // hacer algo con la fila seleccionada
-
-//     echo $filaSeleccionada;
-//     echo $idSeleccionado;
-
-//   } -->
-  
-
-
-
-
 
 <!-- // include("footer.php") ?> -->
