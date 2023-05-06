@@ -10,9 +10,6 @@ if (empty($_REQUEST)) {
 ?>
 
 
-
-
-
 <div class="container-fluid" id="tablaPrincipal">
 
 <input type="text" id="nomBusqueda" class="form-control w-25" placeholder="Nombre"/>
@@ -64,7 +61,7 @@ if (empty($_REQUEST)) {
 <script>
     function consulSocio() {
         var nombreSel = document.getElementById("nomBusqueda").value;
-        // var apellidoSel = document.getElementById(" apeBusqueda").value;
+        var apellidoSel = document.getElementById("apeBusqueda").value;
 
        
 
@@ -74,8 +71,8 @@ if (empty($_REQUEST)) {
                 document.getElementById('resulBusqueda').innerHTML = this.responseText;
             }
         };
-        // xhttp.open("GET", "consulSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true); // falla con dos parametros
-        xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel, true);
+        xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel + "&apellidoSel="+ apellidoSel, true); // falla con dos parametros
+        // xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel, true);
         xhttp.send();
     }
 

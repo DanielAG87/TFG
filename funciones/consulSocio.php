@@ -4,18 +4,19 @@ function selPais(){
 
     $con = conectarBD();
     $nombre = ucwords($_GET['nombreSel']); 
-    // $apellido = ucwords($_GET['apellidoSel']);
+    $apellido = ucwords($_GET['apellidoSel']);
         
     
-    // $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}' and apellido1 = {$apellido} ";
-    $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}'";
+    $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}' and apellido1 = '{$apellido}' ";
+    // $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}'";
 
     $query = mysqli_query($con,$statement);
     $devolver = mysqli_fetch_all($query);
 
     $afectadas = mysqli_affected_rows($con);
+    echo $afectadas;
 
-    if ($afectadas == 0) { // si el pais no existe nos salta el error.
+    if ($afectadas == 0) { // si el socio no existe nos salta el error.
         echo "<strong>Socio no encontrado</strong>";
     }
     else{ ?>
