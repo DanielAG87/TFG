@@ -6,7 +6,7 @@ $con = conectarBD();
 
 $socios = mysqli_query($con, 'SELECT * FROM socios');
 // desconectarBD($conexion);
-if (empty($_REQUEST)) {
+if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 ?>
 
 
