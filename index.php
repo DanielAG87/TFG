@@ -63,11 +63,15 @@ if (empty($_REQUEST)) { ?>
 </body>
 </html>
 <?php } 
-
+ // pagina de inicio
 if (!empty($_REQUEST['bLogin'])) {
-    include "header.php";
+    include "headerV2.php";
+
+    echo "<h3>Bienvenido  Fulano de runa blanca</h3>";
 
 
+
+    
     // $to = "danielagustin87@gmail.com";
     // $subject = "Prueba PHP";
     // $message = "Hola majete, esto es una prueba";
