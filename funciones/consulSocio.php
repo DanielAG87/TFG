@@ -25,7 +25,7 @@ function consulSocio(){
     else{
         echo "<strong>Introduce algún dato para realizar la busqueda</strong>";?>
         <form method="post" action="socios.php">
-            <input type="submit" name="vovler1" value="Volver"/>
+            <input class="btn btn-outline-primary" type="submit" name="vovler1" value="Volver"/>
         </form>
     <?php 
     }
@@ -38,6 +38,7 @@ function consulSocio(){
         $query = mysqli_query($con,$statement);
         $devolver = mysqli_fetch_all($query);
         $afectadas = mysqli_affected_rows($con);
+        // desconectarBD($con);
 
         if ($afectadas == 0) { // si el socio no existe nos salta el error.
             echo "<strong>Socio no encontrado</strong>";
@@ -74,7 +75,7 @@ function consulSocio(){
             </table> 
         </div>
         <form method="post" action="socios.php">
-            <input type="submit" name="vovler1" value="Volver"/>
+            <input class="btn btn-outline-primary" type="submit" name="vovler1" value="Volver"/>
         </form>
         <?php }
     }

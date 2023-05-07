@@ -16,7 +16,7 @@ function conectarBD(){
 
 
 // function desconectarBD(){}
-//     $cerraBD = mysqli_close($conexion);
+//     $cerraBD = mysqli_close($con);
 //     if (!$cerraBD) {
 //         echo 'No se puede cerrar la conexión';
 //     }

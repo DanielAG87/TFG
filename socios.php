@@ -5,7 +5,7 @@ include_once "conectarBBDD.php";
 $con = conectarBD();
 
 $socios = mysqli_query($con, 'SELECT * FROM socios');
-// desconectarBD($conexion);
+// desconectarBD($con);
 if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 ?>
 
@@ -14,10 +14,10 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 
 <input type="text" id="nomBusqueda" class="form-control w-25" placeholder="Nombre"/>
 <input type="text" id="apeBusqueda" class="form-control w-25" placeholder="Apellido"/>
-<button id="btnTabla" onclick="consulSocio()">Buscar</button>
+<button class="btn btn-outline-primary" id="btnTabla" onclick="consulSocio()">Buscar</button>
     <div>
         <form method="post" action="nuevoSocio.php">
-            <button type="submit" name="nuevoSocio">Añadir socio</button>
+            <button class="btn btn-outline-primary" type="submit" name="nuevoSocio">Añadir socio</button>
         </form>
     </div>
     <!-- <form method="get" action="socios.php"> -->
