@@ -160,20 +160,26 @@ CREATE TABLE movimientos (
     id_socio INT(11) NOT NULL,
     cantidad DECIMAL NOT NULL,
     concepto VARCHAR(100) NOT NULL,
-    fecha_reserva DATE NOT NULL,
+    fecha_movimiento DATE NOT NULL,
+    tipo_gasto VARCHAR(10) NOT NULL,
     PRIMARY KEY(id_movimiento),
     Foreign Key (id_socio) REFERENCES socios (id_socio)
 ) engine=innodb;
 
+INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_movimiento, tipo_gasto) VALUES 
+ (2,37,"Banner", "2023-01-03", "gasto"), (1,70,"Gaia Proyect", "2023-04-27", "gasto")
+, (14,30,"Torneo 40K", "2023-02-13", "ingreso"), (1,80.50,"Caja Magic", "2023-01-10", "gasto"), (2,468,"Subvencion año 2023", "2023-05-10", "ingreso"), 
+    (1,45.73,"Tapetes x-wing", "2023-01-14", "gasto")
+, (1,100,"Armario para juegos", "2023-04-01", "gasto"), (14,110,"Torneo x-wing", "2023-01-03", "ingreso"), (1,0,"Junk art", "2023-02-02", "donación"),
+(1,80.50,"Caja Magic2", "2023-01-10", "gasto"), (1,82.73,"Tapetes x-wing neopreno", "2023-01-14", "gasto");
+-- INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_reserva) 
+-- VALUES (2, 200, "Apertura Asociacion", NOW());
+-- INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_reserva) 
+-- VALUES (2, -20, "Compra tapete", NOW());
 
-INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_reserva) 
-VALUES (2, 200, "Apertura Asociacion", NOW());
-INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_reserva) 
-VALUES (2, -20, "Compra tapete", NOW());
+-- DELETE FROM movimientos WHERE cantidad = -20;
 
-DELETE FROM movimientos WHERE cantidad = -20;
-
-SELECT * FROM movimientos;
+-- SELECT * FROM movimientos;
 
 
 
@@ -233,3 +239,18 @@ VALUES
 ("escenografia bosque grande","", "40x27", 1,0,"wargames", "no","", 2, "Fabricada por los socios"),
 ("escenografia bosque pequeño","", "20x25", 5,0,"wargames", "si","", 2, "Fabricada por los socios"),
 ("escenografia charrco","", "12x12", 4,0,"wargames", "si","", 2, "Fabricada por los socios");
+
+
+
+
+-- UPDATE movimientos set cantidad = 20 WHERE id_movimiento = 3;
+
+
+-- ALTER TABLE movimientos MODIFY cantidad FLOAT NOT null;
+
+
+
+
+SELECT SUM(cantidad) From movimientos WHERE tipo_gasto = "ingreso";
+SELECT SUM(cantidad) From movimientos WHERE tipo_gasto = "gasto";
+

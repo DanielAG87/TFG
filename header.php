@@ -19,7 +19,7 @@
         <header class="cabecera">
             <table>
                 <form method="get" action="INDEX.php">
-                <td><a href="#"><img class="imagenCabecera" src="./img/iconoRuna2.png" /></a></td>
+                <td><a href="index.php"><img class="imagenCabecera" src="./img/iconoRuna2.png" /></a></td>
                 
                 <td><h1><b>Asociación Runa Blanca</b></h1></td>
                 <td>
@@ -30,10 +30,10 @@
 
         <aside>
             <ul>
-                <li><a href="#">Socios</a></li>
+                <li><a href="socios.php">Socios</a></li>
                 <li><a href="#">Inventario</a></li>
                 <li><a href="#">Reservar</a> </li>
-                <li><a href="#">Contabilidad</a> </li>
+                <li><a href="contabilidad.php">Contabilidad</a> </li>
                 <li><a href="#">Agenda</a> </li>
 
 

@@ -44,7 +44,7 @@
                         <a class="nav-link " href="pag2.html">Inventario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="pag3.html">Contabilidad</a>
+                        <a class="nav-link " href="contabilidad.php">Contabilidad</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="pag3.html">Agenda</a>
