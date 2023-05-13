@@ -23,4 +23,3 @@ function conectarBD(){
 //     else{
 //         return $cerraBD;
 //     }
-    ?>

@@ -1,69 +1,72 @@
 <?php // session_start();
 
 if (empty($_REQUEST)) { ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Runa Blanca</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <style>
-        #loginIMG {
-            width: 200px;
-            padding-bottom: 40px;
-        }
-        body{
-            background-color:#04448c ;
-        }
-        #h1Login{
-            color: whitesmoke;
-            padding-bottom: 5px;
-            font-family: "Viking";
-        }
-       
-        #centrador{
-            display: flex;
-            justify-content: center;
-        }
-       
-    </style>
-</head>
+    <!DOCTYPE html>
+    <html lang="es">
 
-<body class="text-center" id="bodyLogin">
-    
-    <div class="container-fluid pt-5">
-        <h1 class="h1 pb-3 " id="h1Login">Asociación Runa Blanca</h1>
-        <img id="loginIMG" src="./img/iconoRuna5.png" />
-        <h4 class="h4" id="h1Login">Login</h4>
-        <form >
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Runa Blanca</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            #loginIMG {
+                width: 200px;
+                padding-bottom: 40px;
+            }
 
-            <div class="row" id="centrador">
-                <div class=" col-lg-4 col-md-6 col-sm-6  col-xs-4">                       
-                    <input class="form-control text-center" type="text" id="correo" name="correo" placeholder="Correo" required/>
-                </div>
-            </div><br>
+            body {
+                background-color: #04448c;
+            }
 
-            <div class="row " id="centrador">
-                <div class="col-md-6 col-sm-6 col-lg-4 col-xs-4">                       
-                    <input class="form-control text-center" type="password" id="contra" name="contra" placeholder="Contraseña" required/>
-                </div>
-            </div><br>
-            
-            <!-- <button class="btn btn-outline-dark" type="submit" id="bLogin">Entrar</button> -->
-            <input type="submit" value="Entrar" class="btn btn-outline-dark" id="bLogin" name="bLogin"/>
-        </form><br>
-        <p id="h1Login">Si no tiene acceso, póngase en contacto con el administrador</p>
-    </div>
-    
-   <!-- <?php include("footer.php") ?> -->
+            #h1Login {
+                color: whitesmoke;
+                padding-bottom: 5px;
+                font-family: "Viking";
+            }
+
+            #centrador {
+                display: flex;
+                justify-content: center;
+            }
+        </style>
+    </head>
+
+    <body class="text-center" id="bodyLogin">
+
+        <div class="container-fluid pt-5">
+            <h1 class="h1 pb-3 " id="h1Login">Asociación Runa Blanca</h1>
+            <img id="loginIMG" src="./img/iconoRuna5.png" />
+            <h4 class="h4" id="h1Login">Login</h4>
+            <form>
+
+                <div class="row" id="centrador">
+                    <div class=" col-lg-4 col-md-6 col-sm-6  col-xs-4">
+                        <input class="form-control text-center" type="text" id="correo" name="correo" placeholder="Correo" required />
+                    </div>
+                </div><br>
+
+                <div class="row " id="centrador">
+                    <div class="col-md-6 col-sm-6 col-lg-4 col-xs-4">
+                        <input class="form-control text-center" type="password" id="contra" name="contra" placeholder="Contraseña" required />
+                    </div>
+                </div><br>
+
+                <!-- <button class="btn btn-outline-dark" type="submit" id="bLogin">Entrar</button> -->
+                <input type="submit" value="Entrar" class="btn btn-outline-dark" id="bLogin" name="bLogin" />
+            </form><br>
+            <p id="h1Login">Si no tiene acceso, póngase en contacto con el administrador</p>
+        </div>
+
+        <!-- <?php include("footer.php") ?> -->
 
 
-</body>
-</html>
-<?php } 
- // pagina de inicio
+    </body>
+
+    </html>
+<?php }
+// pagina de inicio
 if (!empty($_REQUEST['bLogin'])) {
     include "headerV2.php";
 
@@ -71,7 +74,7 @@ if (!empty($_REQUEST['bLogin'])) {
 
 
 
-    
+
     // $to = "danielagustin87@gmail.com";
     // $subject = "Prueba PHP";
     // $message = "Hola majete, esto es una prueba";

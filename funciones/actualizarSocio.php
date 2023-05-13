@@ -4,41 +4,21 @@ include_once "../conectarBBDD.php";
 
 
 function addNuevoSocio(){
-
-    $nombre = ucwords($_REQUEST['nombre']);
-    $ape1 = ucwords($_REQUEST['ape1']); 
-    $ape2 = ucwords($_REQUEST['ape2']); 
-    $correo = $_REQUEST['correo']; 
-    $tel = $_REQUEST['tel']; 
-    $loca = ucwords($_REQUEST['loca']); 
-    $fechaNac = $_REQUEST['fechaNac']; 
-    $contra = $_REQUEST['contra']; 
-    $permiso = $_REQUEST['permiso'];
+    $id = $_REQUEST['idSocio'];
+    $nombre = ucwords($_REQUEST['nomSoci']);
+    $ape1 = ucwords($_REQUEST['ape1Soci']); 
+    $ape2 = ucwords($_REQUEST['ape2Soci']); 
+    $correo = $_REQUEST['correoSoci']; 
+    $tel = $_REQUEST['telSoci']; 
+    $loca = ucwords($_REQUEST['localidadSoci']); 
+    $fechaNac = $_REQUEST['fechaSoci']; 
+    $contra = $_REQUEST['contraSoci']; 
+    $permiso = $_REQUEST['premisoSoci'];
 
     $contador = 0;
-    // comprobamos que los campos no estén vacíos.
+    
     if (empty($nombre)) {
         echo "<p class='text-danger font-weight-bold'>Introduzca nombre</p>";
-        // echo '<script>
-        //         Swal.fire({
-        //           icon: "success",
-        //           title: "¡Error!",
-        //           text: "El campo nombre no se ha rellenado.",
-        //           confirmButtonText: "Aceptar"
-        //         });
-        //     </script>';
-        // echo "<script>alert('script');</script>";
-
-
-
-        // echo "<script> Swal.fire({
-        //     title: 'Error!',
-        //     text: 'Do you want to continue',
-        //     icon: 'error',
-        //     confirmButtonText: 'Cool'
-        //   }); </script>"; 
-
-        // echo"<script>alerta()</script>";
     }
     else {
         $contador ++;
@@ -121,7 +101,7 @@ function addNuevoSocio(){
             echo "Falla telefono";
         }
         // controla la localidad
-        if (preg_match('/^[a-zA-Z\s-]+$/', $loca) ) {
+        if (preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $loca) ) {
             $contador2++;
         }
         else {
@@ -142,19 +122,22 @@ function addNuevoSocio(){
             }
            
             $hash = sha1($contra);
-            $nuevoFulano = "INSERT INTO socios (nombre, apellido1, apellido2, correo, telefono, localidad, fecha_nacimiento, contrasenia, permiso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $actualizarSocio = "UPDATE socios SET 
+                    nombre = ?, apellido1 = ?, apellido2 = ?, correo = ?, telefono = ?, localidad = ?, fecha_nacimiento = ?, contrasenia = ?, permiso = ? 
+                    WHERE id_socio = ?";
+
             $stmt = mysqli_stmt_init($con);
 
-            if (mysqli_stmt_prepare($stmt, $nuevoFulano)){
+            if (mysqli_stmt_prepare($stmt, $actualizarSocio)){
 
-                if(mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso)){
+                if(mysqli_stmt_bind_param($stmt, "ssssssssii", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso,$id)){
 
                     if(mysqli_stmt_execute($stmt)){
                         // echo mysqli_affected_rows($con). " " . "Socio añadido"; 
                         // echo '<script>alert("Socio Añadido");</script>';
                         
                         echo '<div class="container-fluid">
-                                <p class="text-success font-weight-bold">Socio añadido</p>
+                                <p class="text-success font-weight-bold">Socio Actualizado</p>
                             </div>';
                     }
                     else{
@@ -173,27 +156,6 @@ function addNuevoSocio(){
 
 addNuevoSocio(); ?>
 
-<script>
-    function alerta(){
-    
-    
-    Swal.fire({
-        title: 'Error!',
-        text: 'El campo no puede estar vacío',
-        icon: 'error',
-        confirmButtonText: 'Po vale'
-    })
 
-// else{
-//     Swal.fire({
-//     title: 'Bien!',
-//     text: 'Campo Relleno',
-//     icon: 'success',
-//     confirmButtonText: 'Aceptar'
-//     })
-// }
-} 
-
-</script>
 
 
