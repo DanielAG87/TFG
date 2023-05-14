@@ -1,7 +1,34 @@
+#loginIMG {
+    width: 200px;
+    padding-bottom: 40px;
+}
+
+#bodyLogin {
+    background-color: #04448c;
+}
+
+#h1Login {
+    color: whitesmoke;
+    padding-bottom: 5px;
+    font-family: "Viking";
+}
+
+#centrador {
+    display: flex;
+    justify-content: center;
+}
 .navbar {
     margin: 0 auto;
     display: table !important;
     text-align: center;
+    
+    
+}
+#blanco{
+    color: white;
+}
+#azul{
+    background-color: #04448c;
 }
 
 #logoHeader{ 
@@ -16,8 +43,9 @@
 }
 
 footer{
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     left: 0;
     width: 100%;
+    color: white;
 }

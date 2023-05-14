@@ -3,21 +3,24 @@
 include_once "../conectarBBDD.php";
 
 
-function addNuevoSocio(){
+function addNuevoSocio()
+{
 
     $nombre = ucwords($_REQUEST['nombre']);
-    $ape1 = ucwords($_REQUEST['ape1']); 
-    $ape2 = ucwords($_REQUEST['ape2']); 
-    $correo = $_REQUEST['correo']; 
-    $tel = $_REQUEST['tel']; 
-    $loca = ucwords($_REQUEST['loca']); 
-    $fechaNac = $_REQUEST['fechaNac']; 
-    $contra = $_REQUEST['contra']; 
+    $ape1 = ucwords($_REQUEST['ape1']);
+    $ape2 = ucwords($_REQUEST['ape2']);
+    $correo = $_REQUEST['correo'];
+    $tel = $_REQUEST['tel'];
+    $loca = ucwords($_REQUEST['loca']);
+    $fechaNac = $_REQUEST['fechaNac'];
+    $contra = $_REQUEST['contra'];
     $permiso = $_REQUEST['permiso'];
 
     $contador = 0;
-    // comprobamos que los campos no estén vacíos.
-    if (empty($nombre)) {
+    // coontrolamos el nombre
+    if (!empty($nombre) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $nombre)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca nombre</p>";
         // echo '<script>
         //         Swal.fire({
@@ -40,160 +43,113 @@ function addNuevoSocio(){
 
         // echo"<script>alerta()</script>";
     }
-    else {
-        $contador ++;
-    }
-    if (empty($ape1)) {
+    // controlamos el apellido1
+    if (!empty($ape1) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape1)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca Primer apellido</p>";
     }
-    else {
-        $contador ++;
-    }
-    if (empty($ape2)) {
+    //controlamos el apellido2
+    if (!empty($ape2) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape2)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca Segundo apellido</p>";
     }
-    else {
-        $contador ++;
-    }
-    if (empty($correo)) {
+    // control correo
+    if (!empty($correo) && filter_var($correo, FILTER_VALIDATE_EMAIL)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>ntroduzca correo</p>";
     }
-    else {
-        $contador ++;
+    // control telefono
+    if (!empty($tel) && preg_match('/^(?:\+34|0034)?[6789]\d{8}$/', $tel)) {
+        $contador++;
+    } else {
+        echo "<p class='text-danger font-weight-bold'>Introduzca teléfono</p>";
     }
-    if (empty($tel)) {
-     echo "<p class='text-danger font-weight-bold'>Introduzca teléfono</p>";
-    }
-    else {
-        $contador ++;
-    }
-    if (empty($loca)) {
+    // control localidad
+    if (!empty($loca) && preg_match('/^[a-zA-Z\s-]+$/', $loca)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca localidad</p>";
     }
-    else {
-        $contador ++;
-    }
-    if (empty($fechaNac)) {
+
+    $fecha_actual = date("Y-m-d");
+    if (!empty($fechaNac) && strtotime($fechaNac) < strtotime($fecha_actual)) {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca fecha de nacimiento</p>";
-    }
-    else {
-        $contador ++;
     }
     if (empty($contra)) {
         echo "<p class='text-danger font-weight-bold'>Introduzca contraseña</p>";
+    } else {
+        $contador++;
     }
-    else {
-        $contador ++;
-    }
-    if (empty($permiso)) {
+    if (!empty($permiso) && $permiso != "Selecciona una opción") {
+        $contador++;
+    } else {
         echo "<p class='text-danger font-weight-bold'>Introduzca permiso</p>";
     }
-    else {
-        $contador ++;
-    }
 
-
+    // si todo está correcto hacemos el insert.
     if ($contador == 9) {
-      
-        $contador2 = 0;
-        
-        // control del nombre y apellidos
-        if (preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $nombre) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape1) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape2)) {
-            $contador2++;
-        }
-        else {
-            echo "Falla nombre, o apellido1 o apellido2";
-        }
-       
-        // controla el correo
-        if (filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-            $contador2++;
-        }
-        else {
-            echo "Falla correo";
+
+        $con = conectarBD();
+
+        if ($permiso == "Si") {
+            $permiso = 1;
+        } else {
+            $permiso = 0;
         }
 
-        // controla el telefono
-        if (preg_match('/^(?:\+34|0034)?[6789]\d{8}$/', $tel) ) {
-            $contador2++;
-        }
-        else {
-            echo "Falla telefono";
-        }
-        // controla la localidad
-        if (preg_match('/^[a-zA-Z\s-]+$/', $loca) ) {
-            $contador2++;
-        }
-        else {
-            echo "Falla localidad";
-        }
-      
+        $hash = sha1($contra);
+        $nuevoFulano = "INSERT INTO socios (nombre, apellido1, apellido2, correo, telefono, localidad, fecha_nacimiento, contrasenia, permiso) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        // si todo está correcto hacemos el insert.
-        if ($contador2 == 4) {
+        $stmt = mysqli_stmt_init($con);
 
-            $con = conectarBD();
+        if (mysqli_stmt_prepare($stmt, $nuevoFulano)) {
 
-            if ($permiso == "Si") {
-                $permiso = 1;
-            }
-            else {
-                $permiso = 0;
-            }
-           
-            $hash = sha1($contra);
-            $nuevoFulano = "INSERT INTO socios (nombre, apellido1, apellido2, correo, telefono, localidad, fecha_nacimiento, contrasenia, permiso) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            $stmt = mysqli_stmt_init($con);
+            if (mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso)) {
 
-            if (mysqli_stmt_prepare($stmt, $nuevoFulano)){
+                if (mysqli_stmt_execute($stmt)) {
+                    // echo mysqli_affected_rows($con). " " . "Socio añadido"; 
+                    // echo '<script>alert("Socio Añadido");</script>';
 
-                if(mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso)){
-
-                    if(mysqli_stmt_execute($stmt)){
-                        // echo mysqli_affected_rows($con). " " . "Socio añadido"; 
-                        // echo '<script>alert("Socio Añadido");</script>';
-                        
-                        echo '<div class="container-fluid">
+                    echo '<div class="container-fluid">
                                 <p class="text-success font-weight-bold">Socio añadido</p>
                             </div>';
-                    }
-                    else{
-                        echo "Error de introducción";
-                    }
-                mysqli_stmt_close($stmt);
+                } else {
+                    echo "Error de introducción";
                 }
             }
-            else{
+        } else {
             echo "No se ha podido completar la accion, Prueba más tarde";
-            }
         }
-       
+        mysqli_stmt_close($stmt);
     }
 }
 
 addNuevoSocio(); ?>
 
 <script>
-    function alerta(){
-    
-    
-    Swal.fire({
-        title: 'Error!',
-        text: 'El campo no puede estar vacío',
-        icon: 'error',
-        confirmButtonText: 'Po vale'
-    })
+    function alerta() {
 
-// else{
-//     Swal.fire({
-//     title: 'Bien!',
-//     text: 'Campo Relleno',
-//     icon: 'success',
-//     confirmButtonText: 'Aceptar'
-//     })
-// }
-} 
 
+        Swal.fire({
+            title: 'Error!',
+            text: 'El campo no puede estar vacío',
+            icon: 'error',
+            confirmButtonText: 'Po vale'
+        })
+
+        // else{
+        //     Swal.fire({
+        //     title: 'Bien!',
+        //     text: 'Campo Relleno',
+        //     icon: 'success',
+        //     confirmButtonText: 'Aceptar'
+        //     })
+        // }
+    }
 </script>
-
-

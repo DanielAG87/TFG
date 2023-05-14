@@ -55,7 +55,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
             <tr>
                 <?php $i = 0;
                 while ($row = mysqli_fetch_assoc($socios)) { ?>
-                    <td><input type="text" readonly id="pruSocio<?=$i?>" value="<?= $row['id_socio']?>"/></td>
+                    <td><input type="text" readonly id="pruSocio<?= $i ?>" value="<?= $row['id_socio'] ?>" /></td>
                     <td><?= $row["nombre"] ?></td>
                     <td><?= $row["apellido1"] ?></td>
                     <td><?= $row["apellido2"] ?></td>
@@ -66,14 +66,14 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                     <td><?= $row["contrasenia"] ?></td>
                     <td><?= $row["permiso"] ?></td>
                     <td>
-                        <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $row['id_socio']?>'); window.scrollTo({ top: 0, behavior: 'smooth' });"/>
+                        <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
                     </td>
             </tr>
         <?php $i++;
                 } ?>
         </table>
     </div>
-    
+
 
 <?php } ?>
 <!-- funcion para la busqueda de los socios -->
@@ -127,7 +127,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 
 
 
-    function actualizar(){
+    function actualizar() {
         var idSocio = document.getElementById("idSoci1").value;
         var nomSoci = document.getElementById("nomSoci").value;
         var ape1Soci = document.getElementById("ape1Soci").value;
@@ -146,9 +146,9 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                 document.getElementById('funBorrar').innerHTML = this.responseText;
             }
         };
-        xhttp.open("POST", "funciones/actualizarSocio.php?idSocio=" + idSocio + "&nomSoci=" + nomSoci + "&ape1Soci=" + ape1Soci + 
-                "&ape2Soci=" + ape2Soci + "&correoSoci=" + correoSoci + "&telSoci=" + telSoci + "&localidadSoci=" + localidadSoci + 
-                "&fechaSoci=" + fechaSoci + "&contraSoci=" + contraSoci + "&premisoSoci=" + premisoSoci, true);
+        xhttp.open("POST", "funciones/actualizarSocio.php?idSocio=" + idSocio + "&nomSoci=" + nomSoci + "&ape1Soci=" + ape1Soci +
+            "&ape2Soci=" + ape2Soci + "&correoSoci=" + correoSoci + "&telSoci=" + telSoci + "&localidadSoci=" + localidadSoci +
+            "&fechaSoci=" + fechaSoci + "&contraSoci=" + contraSoci + "&premisoSoci=" + premisoSoci, true);
         xhttp.send();
     }
 </script>
@@ -163,12 +163,13 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-    $("#btnTabla").click(function() {
-        $('#tablaPrincipal').hide(); 
-	});
+        $("#btnTabla").click(function() {
+            $('#tablaPrincipal').hide();
+        });
 
-});
+    });
 </script>
 
 
-<?php // include("footer.php") ?>
+<?php  include("footer.php"); ?>
+

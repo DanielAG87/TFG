@@ -251,6 +251,24 @@ VALUES
 
 
 
-SELECT SUM(cantidad) From movimientos WHERE tipo_gasto = "ingreso";
-SELECT SUM(cantidad) From movimientos WHERE tipo_gasto = "gasto";
+SELECT SUM(cantidad) as ingresos From movimientos WHERE tipo_gasto = "ingreso";
+SELECT SUM(cantidad) as gastos From movimientos WHERE tipo_gasto = "gasto";
 
+
+
+INSERT INTO movimientos (id_socio, cantidad, concepto, fecha_movimiento, tipo_gasto) VALUES (2,2600,"Banner", "2023-01-03", "ingreso");
+
+
+
+
+
+SELECT SUM(cantidad) -  (SELECT SUM(cantidad) as ingresos From movimientos WHERE tipo_gasto = "ingreso") as total
+From movimientos WHERE tipo_gasto = "gasto";
+
+
+
+SELECT COUNT(id_movimiento) as donaciones from movimientos where tipo_gasto = "donacion";
+
+select * from movimientos WHERE cantidad;
+
+SELECT id_socio as id FROM socios WHERE nombre = "Daniel" AND apellido1 = "Agustín";

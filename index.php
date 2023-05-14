@@ -10,8 +10,9 @@ if (empty($_REQUEST)) { ?>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Runa Blanca</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="TFGcolor.css" />
         <style>
-            #loginIMG {
+            /* #loginIMG {
                 width: 200px;
                 padding-bottom: 40px;
             }
@@ -29,7 +30,7 @@ if (empty($_REQUEST)) { ?>
             #centrador {
                 display: flex;
                 justify-content: center;
-            }
+            } */
         </style>
     </head>
 

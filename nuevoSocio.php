@@ -38,13 +38,13 @@ include "headerV2.php";
         </div>
         <div class="col-md-4 mb-3">
             <label for="nombre" class="form-label">Contraseña</label>
-            <input type="text" id="contra" class="form-control" placeholder="Contraseña">
+            <input type="password" id="contra" class="form-control" placeholder="Contraseña">
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 mb-3">
             <label for="nombre" class="form-label">Permiso</label>
-            <select id="permiso" class="form-control">
+            <select id="permiso" class="form-select ">
                 <option disabled selected>Selecciona una opción</option>
                 <option>Si</option>
                 <option>No</option>
@@ -55,7 +55,9 @@ include "headerV2.php";
     </div>
     <div class="row">
         <div class="col-md-2 ">
-         <button type="submit" id="formSocio" onclick="addSocio()" class="btn btn-outline-primary">Añadir Socio</button>
+            <button type="submit" id="formSocio" onclick="addSocio()" class="btn btn-outline-primary">Añadir Socio</button>
+            <button type="submit" id="limpiar" class="btn btn-outline-primary">Limpiar campos</button>
+
         </div>
         <div class="col-md-1">
             <form method="post" action="socios.php">
@@ -96,14 +98,11 @@ include "headerV2.php";
     }
 </script>
 
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-
+<!-- codigo para limpiar los campos de los imput -->
 <script>
     $(document).ready(function() {
-
-        // codigo para limpiar los campos de los imput
         $(document).ready(function() {
-            $("#formSocio").click(function() {
+            $("#limpiar").click(function() {
                 $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
                 $("#permiso").prop("selectedIndex", 0);
 
