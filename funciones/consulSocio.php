@@ -68,8 +68,10 @@ function consulSocio()
                             <td><?php echo $j[6] ?></td>
                             <td><?php echo $j[7] ?></td>
                             <td><?php echo $j[8] ?></td>
+                            <td><?php echo $j[9] ?></td>
+
                             <td>
-                                <input type="submit" class="btn btn-outline-warning" name="selec" value="Seleccionar" onclick="addDel('<?= $j[0]?>'); window.scrollTo({ top: 0, behavior: 'smooth' });"/>
+                                <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $j[0]?>'); window.scrollTo({ top: 0, behavior: 'smooth' });"/>
                             </td>
                         <?php } ?>
                         </tr>

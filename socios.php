@@ -10,7 +10,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 ?>
 
 
-    <div class="container-fluid" id="tablaPrincipal">
+    <div class="container-fluid" id="tablaPrincipal1">
         <div class="row">
             <div class="col-md-3">
                 <input type="text" id="nomBusqueda" class="form-control" placeholder="Nombre" />
@@ -35,9 +35,9 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
     <div id="resulBusqueda"></div>
     <div id="resulBorrar"></div>
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="tablaPrincipal2">
         <!-- <form method="get" action="socios.php"> -->
-        <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
+        <table class="table table-striped table-hover table-bordered text-center" >
             <tr>
                 <th>ID Socio</th>
                 <th>Nombre</th>
@@ -101,6 +101,10 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 <script>
     function addDel(idSocio) {
         // var idSocio = document.getElementById("pruSocio").value;
+        $(document).ready(function() {
+            // $("#tablaPrincipal1").hide();
+            // $("#tablaPrincipal2").hide();
+        });
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {

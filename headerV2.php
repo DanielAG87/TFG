@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="TFGcolor.css" />
     <script src="js.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- uldimo -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./fontawesome-free-6.4.0-web/css/all.css">
+    
+
 
     <!-- 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

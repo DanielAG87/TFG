@@ -45,6 +45,9 @@ function caca(){
         <div class="btn-group" role="group" aria-label="Basic example">
             <input type="submit" class="btn btn-outline-success" onclick="actualizar()" value="Actualizar"/>
             <input type="submit" class="btn btn-outline-danger" onclick="borrar()" value="Borrar">
+            <form method="post" action="socios.php" class="btn-group">
+                <input type="submit" class="btn btn-outline-primary" name="vovler1"  value="Volver">
+            </form>
         </div>
         <div id="funBorrar"></div>
     </div>

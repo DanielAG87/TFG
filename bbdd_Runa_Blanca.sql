@@ -37,7 +37,9 @@ VALUES
 ("Lucía", "Hernández", "González", "luciahg@gmail.com", "688777444", "Pamplona", "1994-09-23", "1"),
 ("Manuel", "Martínez", "Sánchez", "manuelms@gmail.com", "677111333", "Cádiz", "1987-05-16", "1"),
 ("Sara", "González", "Martínez", "saragm@gmail.com", "666444111", "Guadalajara", "1986-01-08", "1");
-
+-- INSERT INTO socios (nombre, apellido1, apellido2, correo, telefono, localidad, fecha_nacimiento, contrasenia)
+-- VALUES 
+-- ("Daniel", "Juarez", "Arroyo", "danielagustin87@gmail.com", "698552211", "Guadalajara", "87-09-16", "1");
 
 SELECT * FROM socios;
 
@@ -272,3 +274,16 @@ SELECT COUNT(id_movimiento) as donaciones from movimientos where tipo_gasto = "d
 select * from movimientos WHERE cantidad;
 
 SELECT id_socio as id FROM socios WHERE nombre = "Daniel" AND apellido1 = "Agustín";
+
+
+
+
+
+SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+FROM movimientos m JOIN socios s WHERE m.id_socio = s.id_socio; 
+
+
+
+SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+    FROM movimientos m 
+    JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre ;
