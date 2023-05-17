@@ -287,3 +287,17 @@ FROM movimientos m JOIN socios s WHERE m.id_socio = s.id_socio;
 SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
     FROM movimientos m 
     JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre ;
+
+
+
+SELECT MAX(fecha) FROM torneos;
+
+SELECT fecha
+FROM torneos
+WHERE fecha > CURDATE()
+ORDER BY ABS(DATEDIFF(fecha, CURDATE()))
+LIMIT 1;
+
+INSERT INTO torneos (organizador1, actividad, num_participantes, fecha, coste_entrada, recaudacion_total) 
+VALUES 
+(5, "Torneo Warhammer",12, "2023.06.14",0, 0);

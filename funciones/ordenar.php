@@ -6,100 +6,116 @@ function ordenarTabla()
     $con = conectarBD();
     $btn = $_REQUEST['btn'];
 
+    if ($btn == "btnMoviA") {
+        $orden = mysqli_query(
+            $con,
+            'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.id_movimiento;'
+        );
+    }
+    if ($btn == "btnMoviZ") {
+        $orden = mysqli_query(
+            $con,
+            'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.id_movimiento DESC;'
+        );
+    }
     if ($btn == "btnNombreA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre ;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre ;'
         );
     }
     if ($btn == "btnNombreZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre DESC;'
         );
     }
     if ($btn == "btnApeA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 ;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 ;'
         );
     }
     if ($btn == "btnApeZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 DESC;'
         );
     }
     if ($btn == "btnCantA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad;'
         );
     }
     if ($btn == "btnCantZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad DESC;'
         );
     }
     if ($btn == "btnConceptoA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto;'
         );
     }
     if ($btn == "btnConceptoZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto DESC;'
         );
     }
     if ($btn == "btnFechaA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.fecha_movimiento;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.fecha_movimiento;'
         );
     }
     if ($btn == "btnFechaZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.fecha_movimiento DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.fecha_movimiento DESC;'
         );
     }
     if ($btn == "btnGastoA") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.tipo_gasto;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.tipo_gasto;'
         );
     }
     if ($btn == "btnGastoZ") {
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m 
-            JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.tipo_gasto DESC;'
+                FROM movimientos m 
+                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.tipo_gasto DESC;'
         );
     }
 
@@ -111,7 +127,13 @@ function ordenarTabla()
 
         <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
             <tr>
-                <th>ID Movimiento</th>
+                <th>
+                    <span class="sortable-header">
+                        ID Movimiento
+                        <button style="border: none;" onclick="ordenar('btnMoviA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnMoviZ')"><i class="fa-solid fa-arrow-up-9-1"></i></button>
+                    </span>
+                </th>
                 <th>
                     <span class="sortable-header">
                         Nombre
@@ -129,8 +151,8 @@ function ordenarTabla()
                 <th>
                     <span class="sortable-header">
                         Cantidad
-                        <button style="border: none;" onclick="ordenar('btnCantA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnCantA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="fa-solid fa-arrow-down-9-1"></i></button>
                     </span>
                 </th>
 
@@ -144,8 +166,8 @@ function ordenarTabla()
                 <th>
                     <span class="sortable-header">
                         Fecha Movimiento
-                        <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="fa-solid fa-arrow-up-z-a"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="fa-solid fa-arrow-up-9-1"></i></button>
                     </span>
                 </th>
                 <th>

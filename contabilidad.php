@@ -9,11 +9,19 @@ $cuentas = mysqli_query(
     'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
     FROM movimientos m 
     JOIN socios s WHERE m.id_socio = s.id_socio;'
-); ?>
+); 
+
+
+?>
 
 <form method="post" action="nuevoMovimiento.php">
     <input type="submit" class="btn btn-outline-primary mb-5" value="Nuevo movimiento" />
 </form>
+
+<select>
+    <option></option>
+</select>
+<button type="button" class="btn btn-outline-primary" onclick="">Filtrar</button>
 
 <div class="container-fluid" id="ordenTabla"></div>
 
@@ -21,7 +29,13 @@ $cuentas = mysqli_query(
 
     <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
         <tr>
-            <th>ID Movimiento</th>
+            <th>
+                <span class="sortable-header">
+                    ID Movimiento
+                    <button style="border: none;" onclick="ordenar('btnMoviA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                    <button style="border: none;" onclick="ordenar('btnMoviZ')"><i class="fa-solid fa-arrow-up-9-1 "></i></button>
+                </span>
+            </th>
             <th>
                 <span class="sortable-header">
                     Nombre
@@ -39,8 +53,8 @@ $cuentas = mysqli_query(
             <th>
                 <span class="sortable-header">
                     Cantidad
-                    <button style="border: none;" onclick="ordenar('btnCantA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                    <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="fa-solid fa-arrow-down-a-z"></i></button>
+                    <button style="border: none;" onclick="ordenar('btnCantA')"><i class="fa-solid fa-arrow-down-1-9 "></i></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                    <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="fa-solid fa-arrow-up-9-1 "></i></button>
                 </span>
             </th>
 
@@ -54,8 +68,8 @@ $cuentas = mysqli_query(
             <th>
                 <span class="sortable-header">
                     Fecha Movimiento
-                    <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                    <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="fa-solid fa-arrow-up-z-a"></i></button>
+                    <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                    <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="fa-solid fa-arrow-up-9-1"></i></button>
                 </span>
             </th>
             <th>
@@ -82,12 +96,13 @@ $cuentas = mysqli_query(
     </table>
 </div>
 
+<?php  include("footer.php"); ?>
+
 <script>
     function ordenar(btn) {
         $(document).ready(function() {
             $("#tablaFull").hide();
         });
-
 
 
         var xhttp = new XMLHttpRequest();

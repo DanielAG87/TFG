@@ -12,6 +12,7 @@
 
     <title>Asociación Runa Blanca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="TFGcolor.css" />
     <script src="js.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- uldimo -->
@@ -53,7 +54,7 @@
                             <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="pag3.html">Agenda</a>
+                            <a class="nav-link" id="blanco" href="torneos.php">Torneos</a>
                         </li>
                     </ul>
                 </div>

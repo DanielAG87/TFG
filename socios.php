@@ -37,41 +37,43 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 
     <div class="container-fluid" id="tablaPrincipal2">
         <!-- <form method="get" action="socios.php"> -->
-        <table class="table table-striped table-hover table-bordered text-center" >
-            <tr>
-                <th>ID Socio</th>
-                <th>Nombre</th>
-                <th>Primer apellido</th>
-                <th>Segundo apellido</th>
-                <th>Correo</th>
-                <th>Teléfono</th>
-                <th>Localidad</th>
-                <th>Fecha de Nacimiento</th>
-                <th>Contraseña</th>
-                <th>Permiso</th>
-                <th></th>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-center" >
+                <tr>
+                    <th>ID Socio</th>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Segundo apellido</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Localidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Contraseña</th>
+                    <th>Permiso</th>
+                    <th></th>
 
-            </tr>
-            <tr>
-                <?php $i = 0;
-                while ($row = mysqli_fetch_assoc($socios)) { ?>
-                    <td><input type="text" readonly id="pruSocio<?= $i ?>" value="<?= $row['id_socio'] ?>" /></td>
-                    <td><?= $row["nombre"] ?></td>
-                    <td><?= $row["apellido1"] ?></td>
-                    <td><?= $row["apellido2"] ?></td>
-                    <td><?= $row["correo"] ?></td>
-                    <td><?= $row["telefono"] ?></td>
-                    <td><?= $row["localidad"] ?></td>
-                    <td><?= $row["fecha_nacimiento"] ?></td>
-                    <td><?= $row["contrasenia"] ?></td>
-                    <td><?= $row["permiso"] ?></td>
-                    <td>
-                        <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
-                    </td>
-            </tr>
-        <?php $i++;
-                } ?>
-        </table>
+                </tr>
+                <tr>
+                    <?php $i = 0;
+                    while ($row = mysqli_fetch_assoc($socios)) { ?>
+                        <td><input type="text" readonly id="pruSocio<?= $i ?>" value="<?= $row['id_socio'] ?>" /></td>
+                        <td><?= $row["nombre"] ?></td>
+                        <td><?= $row["apellido1"] ?></td>
+                        <td><?= $row["apellido2"] ?></td>
+                        <td><?= $row["correo"] ?></td>
+                        <td><?= $row["telefono"] ?></td>
+                        <td><?= $row["localidad"] ?></td>
+                        <td><?= $row["fecha_nacimiento"] ?></td>
+                        <td><?= $row["contrasenia"] ?></td>
+                        <td><?= $row["permiso"] ?></td>
+                        <td>
+                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                        </td>
+                </tr>
+                <?php $i++;
+                    } ?>
+            </table>
+        </div>
     </div>
 
 
