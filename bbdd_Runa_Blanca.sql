@@ -132,12 +132,18 @@ edad, coste, reservado, cambio_socio) VALUES
 
 select cambio_socio FROM juegos WHERE nombre = "Agrícola";
  
-UPDATE juegos
-SET cambio_socio = cambio_socio + 1
-WHERE nombre = "Agrícola";
+UPDATE juegos SET cambio_socio = cambio_socio + 1 WHERE nombre = "Agrícola";
 
 SELECT * FROM juegos;
 
+
+ALTER TABLE juegos ADD COLUMN ruta_foto VARCHAR(100);
+
+update juegos set ruta_foto = "./img/juegos/Crokinole.jpg"  
+ where nombre = "Crokinole";
+
+update juegos set mecanica = "Colocación de trabajadores" 
+ where nombre = "Tzolk'in";
 
 
 CREATE TABLE reserva (
@@ -204,7 +210,7 @@ CREATE TABLE torneos (
 ) engine=innodb;
 
 
--- todo
+
 INSERT INTO torneos (organizador1, organizador2, organizador3, actividad, num_participantes, fecha, coste_entrada, recaudacion_total) 
 VALUES 
 (5,1, 1, "Torneo xwing",12, "2023.09.14",5, 0);
@@ -250,7 +256,8 @@ VALUES
 
 -- ALTER TABLE movimientos MODIFY cantidad FLOAT NOT null;
 
-
+ALTER TABLE juegos ADD COLUMN ruta_foto VARCHAR(100);
+update juegos set ruta_foto = "./img/juegos/bloodRage.jpg" where nombre = "Blood Rage";
 
 
 SELECT SUM(cantidad) as ingresos From movimientos WHERE tipo_gasto = "ingreso";
@@ -301,3 +308,7 @@ LIMIT 1;
 INSERT INTO torneos (organizador1, actividad, num_participantes, fecha, coste_entrada, recaudacion_total) 
 VALUES 
 (5, "Torneo Warhammer",12, "2023.06.14",0, 0);
+
+
+SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado
+    FROM juegos;

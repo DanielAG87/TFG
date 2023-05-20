@@ -48,7 +48,7 @@
                             <a class="nav-link" id="blanco" href="socios.php">Socios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="pag2.html">Inventario</a>
+                            <a class="nav-link" id="blanco" href="juegos.php">Inventario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>

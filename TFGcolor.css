@@ -49,3 +49,65 @@ footer{
     width: 100%;
     color: white;
 }
+
+
+
+
+/* Region Cronometro */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  #bodyCrono{
+    display: grid;
+    place-items: end;
+    align-content: space-between;
+}
+  #sectionCrono {
+    width: 507px;
+    /* min-height: 100vh; */
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    /* flex-direction: column; */
+    background-color: #333;
+    border-radius: 40px;
+  }
+
+  .countdown {
+    display: flex;
+    justify-content: space-evenly;
+    /* width: 50%; */
+    flex-wrap: wrap;
+  }
+
+  .countdown div {
+    display: grid;
+    place-items: center;
+    padding: 10px;
+  }
+
+  .pCrono {
+    display: grid;
+    place-items: center;
+    border: solid 1px #fff;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #357ccc;
+  }
+
+  .spanCrono {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    color: #dff0ed;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+/* Fin region cronometro */
