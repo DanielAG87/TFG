@@ -26,7 +26,11 @@
                 <li class="nav-item"><a href="contabilidad.php" class="nav-link px-2 text-white">Contabilidad</a></li>
                 <li class="nav-item"><a href="torneos.php" class="nav-link px-2 text-white">Torneos</a></li>
             </ul>
-            <p class="text-center text-white">© 2023-2025 Daniel Agustín Arroyo</p>
+            <div class="text-center">
+                <span class="text-white">© 2023-2025 Asociación Runa Blanca</span>
+                <span><i class="fa-brands fa-facebook"></i></span>
+                <span><i class="fa-brands fa-instagram"></i></span>
+            </div>
         </footer>
     </div>
 </div>

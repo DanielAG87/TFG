@@ -56,7 +56,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                 <tr>
                     <?php $i = 0;
                     while ($row = mysqli_fetch_assoc($socios)) { ?>
-                        <td><input type="text" readonly id="pruSocio<?= $i ?>" value="<?= $row['id_socio'] ?>" /></td>
+                        <td><?= $row['id_socio'] ?></td>
                         <td><?= $row["nombre"] ?></td>
                         <td><?= $row["apellido1"] ?></td>
                         <td><?= $row["apellido2"] ?></td>

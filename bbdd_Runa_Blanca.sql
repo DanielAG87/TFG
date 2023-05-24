@@ -312,3 +312,8 @@ VALUES
 
 SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado
     FROM juegos;
+
+
+
+SELECT s.nombre, s.apellido1, s.correo, s.telefono FROM socios s 
+JOIN reserva r on s.id_socio = r.id_socio WHERE r.id_socio = 2;
