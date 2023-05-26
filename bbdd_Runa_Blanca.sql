@@ -316,4 +316,17 @@ SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado
 
 
 SELECT s.nombre, s.apellido1, s.correo, s.telefono FROM socios s 
-JOIN reserva r on s.id_socio = r.id_socio WHERE r.id_socio = 2;
+JOIN reserva r ON s.id_socio = r.id_socio WHERE r.id_socio = 2;
+
+
+SELECT nombre, cambio_socio FROM juegos ORDER BY cambio_socio DESC LIMIT 10;
+
+
+SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+    FROM movimientos m 
+    JOIN socios s  on m.id_socio = s.id_socio WHERE s.nombre LIKE "%Da%";
+
+
+    SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+    FROM movimientos m 
+    JOIN socios s  on m.id_socio = s.id_socio WHERE m.cantidad = 10;

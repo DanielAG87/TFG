@@ -15,17 +15,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="TFGcolor.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
 
     <!-- <script src="js.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- uldimo -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="./fontawesome-free-6.4.0-web/css/all.css">
     
-
-   
-
-
+    
     <!-- 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
@@ -52,7 +47,7 @@
                             <a class="nav-link" id="blanco" href="socios.php">Socios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="juegos.php">Inventario</a>
+                            <a class="nav-link" id="blanco" href="inventario.php">Inventario</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>

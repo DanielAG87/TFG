@@ -1,35 +1,53 @@
-<?php
-include "headerV2.php";
-include_once "conectarBBDD.php";
+<?php 
+include_once "../conectarBBDD.php";
 
-$con = conectarBD();
+function filtrarDatos(){
+    $selBuscador = $_REQUEST['selBuscador'];
+    $selInput =  $_REQUEST['selInput'];
+    $con = conectarBD();
 
-$cuentas = mysqli_query(
-    $con,
-    'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-    FROM movimientos m 
-    JOIN socios s WHERE m.id_socio = s.id_socio;'
-); 
+    if ($selBuscador == "Nombre" && $selInput != "") {
+        $contener = '%' . $selInput . '%';
 
+        try{
+        $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+        FROM movimientos m 
+        JOIN socios s  on m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
+        $filtrar->bind_param("s", $contener);
+        $filtrar->execute();
+        $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+        } catch (Exception $e) {
+            echo "Error al filtrar: " . $e->getMessage();
+        }
+    }
 
+    if ($selBuscador == "Cantidad" && $selInput != "") {
+        try{
+        $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+        FROM movimientos m JOIN socios s on m.id_socio = s.id_socio WHERE m.cantidad = ?");
+        $filtrar->bind_param("i", $selInput);
+        $filtrar->execute();
+        $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+        } catch (Exception $e) {
+            echo "Error al filtrar: " . $e->getMessage();
+        }
+    }
+    if ($selBuscador == "Fecha" && $selInput != "") {
+        try{
+            $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+            FROM movimientos m JOIN socios s on m.id_socio = s.id_socio  WHERE m.fecha_movimiento = ?");
+            $filtrar->bind_param("s", $selInput);
+            $filtrar->execute();
+            $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+        } catch (Exception $e) {
+            echo "Error al filtrar: " . $e->getMessage();
+        }
+    }
 ?>
 
-<form method="post" action="nuevoMovimiento.php">
-    <input type="submit" class="btn btn-outline-primary mb-5" value="Nuevo movimiento" />
-</form>
 
-<select id="selBuscador">
-    <option disabled selected>Selecciona una opción</option>
-    <option>Nombre</option>
-    <option>Cantidad</option>
-    <option>Fecha</option>
-</select>
-<input type="text" id="buscador" name="buscador" placeholder="Introduce dato"/>
-<button type="button" class="btn btn-outline-primary" onclick="filtrar()">Filtrar</button>
 
-<div class="container-fluid" id="ordenTabla"></div>
-
-<div class="container-fluid" id="tablaFull">
+    <div class="container-fluid" id="tablaFull">
 
     <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
         <tr>
@@ -86,7 +104,9 @@ $cuentas = mysqli_query(
         </tr>
         <tr>
             <?php $i = 0;
-            while ($row = mysqli_fetch_assoc($cuentas)) { ?>
+            mysqli_close($con);
+
+            while ($row = $resultFiltrar->fetch_assoc()) { ?>
                 <td><?= $row["id_movimiento"] ?></td>
                 <td><?= $row["nombre"] ?></td>
                 <td><?= $row["apellido1"] ?></td>
@@ -94,46 +114,13 @@ $cuentas = mysqli_query(
                 <td><?= $row["concepto"] ?></td>
                 <td><?= $row["fecha_movimiento"] ?></td>
                 <td><?= $row["tipo_gasto"] ?></td>
-        </tr>
+            </tr>
+           <?php } ?>
+       
     <?php $i++;
             } ?>
     </table>
 </div>
+<?php
 
-<?php  include("footer.php"); ?>
-
-<script>
-    function ordenar(btn) {
-        $(document).ready(function() {
-            $("#tablaFull").hide();
-        });
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('ordenTabla').innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "funciones/ordenar.php?btn=" + btn, true);
-        xhttp.send();
-    }
-
-
-    function filtrar() {
-        $(document).ready(function() {
-            $("#tablaFull").hide();
-        });
-        var selBuscador = document.getElementById("selBuscador").value;
-        var selInput = document.getElementById("buscador").value;
-        
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('ordenTabla').innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "funciones/filtrar.php?selBuscador=" + selBuscador + "&selInput=" + selInput, true);
-        xhttp.send();
-    }
-</script>
+filtrarDatos(); ?>

@@ -27,6 +27,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
             <div class="col-md-2">
                 <form method="post" action="nuevoSocio.php">
                     <button class="btn btn-outline-primary" type="submit" name="nuevoSocio">Añadir socio</button>
+                    <!-- <button class="btn btn-outline-primary" type="submit" name="nuevoSocio" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir socio</button> -->
                 </form>
             </div>
         </div>
@@ -75,6 +76,78 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
             </table>
         </div>
     </div>
+
+
+
+    <!-- Modal -->
+    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <h5 class="modal-title mx-auto" id="exampleModalLabel">Título del modal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body mx-auto">
+
+                <div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Primer Apellido</label>
+            <input type="text" id="ape1" class="form-control" placeholder="Primer Apellido">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Segundo Apellido</label>
+            <input type="text" id="ape2" class="form-control" placeholder="Segundo Apellido">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="nombre" class="form-label">Correo</label>
+            <input type="mail" id="correo" class="form-control" placeholder="asociacionRunaBlanca@gmail.com">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="nombre" class="form-label">Teléfono</label>
+            <input type="text" id="tel" class="form-control" placeholder="Teléfono">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Localidad</label>
+            <input type="text" id="loca" class="form-control" placeholder="Localidad">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Fecha de nacimiento</label>
+            <input type="date" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
+        </div>
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Contraseña</label>
+            <input type="password" id="contra" class="form-control" placeholder="Contraseña">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <label for="nombre" class="form-label">Permiso</label>
+            <select id="permiso" class="form-select ">
+                <option disabled selected>Selecciona una opción</option>
+                <option>Si</option>
+                <option>No</option>
+            </select>
+        </div>
+                </div>
+                <div class="modal-footer mx-auto">
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="prueba()">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+
+
 
 
 <?php } ?>

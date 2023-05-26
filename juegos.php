@@ -42,7 +42,7 @@ mysqli_close($con);
                 <?php
                 }
                 ?>
-                <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[7] ?>', '<?= $j[5] ?>', 'devolver', '<?= $j[8] ?>')">Devolver</button>
+                <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[7] ?>', '<?= $j[5] ?>', 'devolver', '<?= $j[8] ?>')" >Devolver</button>
             </div>
         <?php } ?>
 
@@ -68,4 +68,4 @@ mysqli_close($con);
     }
 </script>
 
-<?php include "footer.php";
+<?php include "footer.php"; ?>
