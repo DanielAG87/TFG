@@ -6,12 +6,13 @@ include_once "conectarBBDD.php";
 
 $fecha = mysqli_query(
     $con,
-    'SELECT fecha FROM torneos WHERE fecha > CURDATE()
+    'SELECT fecha, actividad FROM torneos WHERE fecha > CURDATE()
     ORDER BY ABS(DATEDIFF(fecha, CURDATE())) LIMIT 1;'
 );
 
 $resultadofecha = mysqli_fetch_assoc($fecha);
 $fechaProxima = $resultadofecha['fecha'];
+$proximaActividad = $resultadofecha['actividad'];
 mysqli_close($con);
 
 
@@ -20,14 +21,9 @@ $objetoFecha = date_create($fechaProxima);
 $fechaModificada = date_format($objetoFecha, 'm/d/Y');
 
 ?>
+<h2 class="text-center">Proximo evento: <?=$proximaActividad?></h2>
 
     <!-- Contador regresivo -->
-    <!-- <section>
-        <p>
-            <span id="dias"></span> días / <span id="horas"></span> horas / <span id="minutos"></span> minutos / <span id="segundos"></span> segundos
-        </p>
-    </section>  -->
-    <!-- Fin contador regresivo -->
     <div id="bodyCrono">
         <section class="container" id="sectionCrono">
         <div class="countdown">
@@ -50,7 +46,8 @@ $fechaModificada = date_format($objetoFecha, 'm/d/Y');
         </div>
         </section>
     </div>
-
+    <!-- Fin contador regresivo -->
+    
 
     <?php  include("footer.php"); ?>
 

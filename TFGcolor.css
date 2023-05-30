@@ -1,3 +1,4 @@
+/* region index */
 #loginIMG {
     width: 200px;
     padding-bottom: 40px;
@@ -17,6 +18,8 @@
     display: flex;
     justify-content: center;
 }
+/* fin region index */
+
 .navbar {
     margin: 0 auto;
     display: table !important;
@@ -50,6 +53,47 @@ footer{
     color: white;
 }
 
+/* #descon{
+  float: right;
+} */
+
+
+
+/* region Carousel */
+.carousel-inner img {
+  max-height: 600px; /* establece la altura máxima en 500px */
+}
+
+.carousel-item{
+  height: 32rem; /*512px*/
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+}
+
+.carousel-item img{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+/* fin region Carousel */
+
+
+/* Mapa y datos aso */
+#datoAso{
+  height: 350px;
+  font-size: 1.1em;
+}
+
+#mapaDatos{
+  background-image: url("./img/joven50.png");
+  background-repeat: no-repeat; 
+  background-size: cover;
+  /* color: #074e9e; */
+  /* color: #e029e6; */
+
+}
+/* fin Mapa y datos aso */
 
 
 
@@ -66,7 +110,7 @@ footer{
     align-content: space-between;
 }
   #sectionCrono {
-    width: 507px;
+    width: 557px;
     /* min-height: 100vh; */
     display: flex;
     align-items: end;

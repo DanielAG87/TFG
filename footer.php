@@ -28,8 +28,8 @@
             </ul>
             <div class="text-center">
                 <span class="text-white">© 2023-2025 Asociación Runa Blanca</span>
-                <span><i class="fa-brands fa-facebook"></i></span>
-                <span><i class="fa-brands fa-instagram"></i></span>
+                <a class="text-muted" href="https://www.facebook.com/asociacionrunablanca"><i class="bi bi-facebook"></i></a>
+                <a class="text-muted" href="https://www.instagram.com/asociacion_runa_blanca/"><i class="bi bi-instagram"></i></a>
             </div>
         </footer>
     </div>

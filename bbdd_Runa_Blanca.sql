@@ -42,6 +42,7 @@ VALUES
 -- ("Daniel", "Juarez", "Arroyo", "danielagustin87@gmail.com", "698552211", "Guadalajara", "87-09-16", "1");
 
 SELECT * FROM socios;
+UPDATE socios SET contrasenia = SHA1(123) WHERE id_socio = 17;
 
 
 CREATE TABLE juegos (
