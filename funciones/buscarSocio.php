@@ -9,22 +9,18 @@ function consulSocio()
     if (!empty($_REQUEST['nombreSel']) && !empty($_REQUEST['apellidoSel'])) {
         $nombre = ucwords($_REQUEST['nombreSel']);
         $apellido = ucwords($_REQUEST['apellidoSel']);
-        $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}' and apellido1 = '{$apellido}' ";
+        $statement = "SELECT * FROM socios WHERE nombre LIKE '%{$nombre}%' and apellido1 LIKE '%{$apellido}%' ";
         $comprobar = true;
     } elseif (!empty($_REQUEST['nombreSel'])) {
         $nombre = ucwords($_REQUEST['nombreSel']);
-        $statement = "SELECT * FROM socios WHERE nombre = '{$nombre}'";
+        $statement = "SELECT * FROM socios WHERE nombre LIKE '%{$nombre}%'";
         $comprobar = true;
     } elseif (!empty($_REQUEST['apellidoSel'])) {
         $apellido = ucwords($_REQUEST['apellidoSel']);
-        $statement = "SELECT * FROM socios WHERE apellido1 = '{$apellido}'";
+        $statement = "SELECT * FROM socios WHERE apellido1 LIKE '%{$apellido}%'";
         $comprobar = true;
     } else {
-        echo "<strong>Introduce algún dato para realizar la busqueda</strong>"; ?>
-        <!-- <form method="post" action="socios.php">
-            <input class="btn btn-outline-primary" type="submit" name="vovler1" value="Volver" />
-        </form> -->
-        <?php
+        echo "<strong style='color: red;'>Introduce algún dato para realizar la busqueda</strong>"; 
     }
 
 
@@ -38,13 +34,13 @@ function consulSocio()
         // desconectarBD($con);
 
         if ($afectadas == 0) { // si el socio no existe nos salta el error.
-            echo "<strong>Socio no encontrado</strong>";
+            echo "<strong style='color: red;'>Socio no encontrado</strong>";
         } 
         else { ?>
             <div class="container-fluid ml-5">
                 <table class="table table-bordered table-striped border-primary">
                     <tr>
-                        <th>ID Socio</th>
+                        <th >ID Socio</th>
                         <th>Nombre</th>
                         <th>Primer apellido</th>
                         <th>Segundo apellido</th>
@@ -71,7 +67,7 @@ function consulSocio()
                             <td><?php echo $j[9] ?></td>
 
                             <td>
-                                <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $j[0]?>'); window.scrollTo({ top: 0, behavior: 'smooth' });"/>
+                                <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $j[0]?>'); window.scrollTo({ top: 0, behavior: 'smooth' });"/>
                             </td>
                         <?php } ?>
                         </tr>
