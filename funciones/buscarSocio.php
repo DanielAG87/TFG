@@ -5,6 +5,15 @@ function consulSocio()
 
     $con = conectarBD();
     $comprobar = false;
+    $comprobarModal = false;
+    $modal = '<div class="modal fade" id="modalBuscarSocio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                <h5 class="modal-title mx-auto" id="exampleModalLabel">Buscar socio/a</h5>
+                            </div>
+                            <div class="modal-body mx-auto">
+                                <span>';
 
     if (!empty($_REQUEST['nombreSel']) && !empty($_REQUEST['apellidoSel'])) {
         $nombre = ucwords($_REQUEST['nombreSel']);
@@ -20,11 +29,18 @@ function consulSocio()
         $statement = "SELECT * FROM socios WHERE apellido1 LIKE '%{$apellido}%'";
         $comprobar = true;
     } else {
-        echo "<strong style='color: red;'>Introduce algún dato para realizar la busqueda</strong>"; 
+        // echo "<strong style='color: red;'>Introduce algún dato para realizar la busqueda</strong>";
+        $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg> ';
+        $modal .= 'Introduce algún dato para realizar la busqueda';
+        $comprobarModal = true;
     }
 
+    
 
-
+    
 
     if ($comprobar == true) {
 
@@ -34,7 +50,13 @@ function consulSocio()
         // desconectarBD($con);
 
         if ($afectadas == 0) { // si el socio no existe nos salta el error.
-            echo "<strong style='color: red;'>Socio no encontrado</strong>";
+            //echo "<strong style='color: red;'>Socio no encontrado</strong>";
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg> ';
+            $modal .= 'Socio no encontrado';
+            $comprobarModal = true;
         } 
         else { ?>
             <div class="container-fluid ml-5">
@@ -78,6 +100,20 @@ function consulSocio()
             </form>
 <?php }
     }
+
+    $modal .= '                 </span>
+                            </div>
+                            <div class="modal-footer mx-auto">
+                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+        
+                            </div>
+                        </div>
+                    </div>
+                </div>';
+    if ($comprobarModal) {
+        echo $modal;
+    }
+
 }
 
 consulSocio(); ?>
