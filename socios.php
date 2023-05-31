@@ -22,24 +22,26 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 
         <div class="row mb-4">
             <div class="col-md-2">
-                <button class="btn btn-outline-primary" id="btnTabla" onclick="consulSocio()">Buscar socio</button>
+                <button class="btn btn-outline-primary" id="btnTabla" onclick="buscarSocio()">Buscar socio</button>
             </div>
             <div class="col-md-2">
-                <form method="post" action="nuevoSocio.php">
+                <!-- <form method="post" action="nuevoSocio.php">
                     <button class="btn btn-outline-primary" type="submit" name="nuevoSocio">Añadir socio</button>
-                    <!-- <button class="btn btn-outline-primary" type="submit" name="nuevoSocio" data-bs-toggle="modal" data-bs-target="#exampleModal">Añadir socio</button> -->
-                </form>
+                </form> -->
+                <button class="btn btn-outline-primary" type="submit" name="nuevoSocio" id="nuevoSocio2" data-bs-toggle="modal" data-bs-target="#nuevoSocio">Nuevo socio</button>
+                
             </div>
         </div>
     </div>
 
     <div id="resulBusqueda"></div>
     <div id="resulBorrar"></div>
+    <div id="result"></div>
 
     <div class="container-fluid" id="tablaPrincipal2">
         <!-- <form method="get" action="socios.php"> -->
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered text-center" >
+            <table class="table table-striped table-hover table-bordered text-center">
                 <tr>
                     <th>ID Socio</th>
                     <th>Nombre</th>
@@ -55,7 +57,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 
                 </tr>
                 <tr>
-                    <?php $i = 0;
+                    <?php //$i = 0;
                     while ($row = mysqli_fetch_assoc($socios)) { ?>
                         <td><?= $row['id_socio'] ?></td>
                         <td><?= $row["nombre"] ?></td>
@@ -68,92 +70,161 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                         <td><?= $row["contrasenia"] ?></td>
                         <td><?= $row["permiso"] ?></td>
                         <td>
-                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="addDel('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
                         </td>
                 </tr>
-                <?php $i++;
+            <?php //$i++;
                     } ?>
             </table>
         </div>
     </div>
+<?php } ?>
 
 
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <h5 class="modal-title mx-auto" id="exampleModalLabel">Título del modal</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body mx-auto">
 
-                <div class="container-fluid p-5">
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" id="nombre" class="form-control" placeholder="Nombre">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Primer Apellido</label>
-            <input type="text" id="ape1" class="form-control" placeholder="Primer Apellido">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Segundo Apellido</label>
-            <input type="text" id="ape2" class="form-control" placeholder="Segundo Apellido">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="nombre" class="form-label">Correo</label>
-            <input type="mail" id="correo" class="form-control" placeholder="asociacionRunaBlanca@gmail.com">
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="nombre" class="form-label">Teléfono</label>
-            <input type="text" id="tel" class="form-control" placeholder="Teléfono">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Localidad</label>
-            <input type="text" id="loca" class="form-control" placeholder="Localidad">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Fecha de nacimiento</label>
-            <input type="date" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
-        </div>
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Contraseña</label>
-            <input type="password" id="contra" class="form-control" placeholder="Contraseña">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mb-3">
-            <label for="nombre" class="form-label">Permiso</label>
-            <select id="permiso" class="form-select ">
-                <option disabled selected>Selecciona una opción</option>
-                <option>Si</option>
-                <option>No</option>
-            </select>
-        </div>
-                </div>
-                <div class="modal-footer mx-auto">
-                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="prueba()">Guardar cambios</button>
+
+<div class="modal fade" id="nuevoSocio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h5 class="modal-title mx-auto" id="exampleModalLabel">Nuevo Socio/a</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body mx-auto">
+                <div class="row">
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Nombre</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Primer Apellido</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" id="ape1" class="form-control" placeholder="Primer Apellido">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Segundo Apellido</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" id="ape2" class="form-control" placeholder="Segundo Apellido">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Correo</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="mail" id="correo" class="form-control" placeholder="asociacionRunaBlanca@gmail.com">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Teléfono</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" id="tel" class="form-control" placeholder="Teléfono">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Localidad</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="text" id="loca" class="form-control" placeholder="Localidad">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Fecha de nacimiento</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="date" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Contraseña</label>
+                    </div>
+                    <div class="col-md-7">
+                        <input type="password" id="contra" class="form-control" placeholder="Contraseña">
+                    </div>
+                    <div class="col-md-5 text-center">
+                        <label for="nombre" class="form-label">Permiso</label>
+                    </div>
+                    <div class="col-md-7">
+                        <select id="permiso" class="form-select ">
+                            <option disabled selected>Selecciona una opción</option>
+                            <option>Si</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer mx-auto">
+                    <button type="button" id="formSocio" onclick="addSocio()" class="btn btn-outline-primary" data-bs-dismiss="modal">Añadir Socio</button> 
+                    <button type="submit" id="limpiar" class="btn btn-outline-primary">Limpiar campos</button>
+                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
+</div>
+
+<script>
+    function addSocio() {
+
+        var nombre = document.getElementById("nombre").value;
+        var ape1 = document.getElementById("ape1").value;
+        var ape2 = document.getElementById("ape2").value;
+        var correo = document.getElementById("correo").value;
+        var tel = document.getElementById("tel").value;
+        var loca = document.getElementById("loca").value;
+        var fechaNac = document.getElementById("fechaNac").value;
+        var contra = document.getElementById("contra").value;
+        var permiso = document.getElementById("permiso").value;
+
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('result').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#modalNuevoSocio").modal("show");
+                });
+            }
+        };
+        xhttp.open("POST", "funciones/funNuevoSocio.php?nombre=" + nombre + "&ape1=" + ape1 + "&ape2=" + ape2 + "&correo=" + correo + "&tel=" + tel +
+            "&loca=" + loca + "&fechaNac=" + fechaNac + "&contra=" + contra + "&permiso=" + permiso, true);
+        xhttp.send();
+    }
+
+    // codigo para limpiar los campos de los imput 
+    $(document).ready(function() {
+        $(document).ready(function() {
+            $("#limpiar, #nuevoSocio2").click(function() {
+                $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
+                $("#permiso").prop("selectedIndex", 0);
+
+            });
+        });
+    });
+</script>
 
 
 
 
 
-<?php } ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- funcion para la busqueda de los socios -->
 <script>
-    function consulSocio() {
+    function buscarSocio() {
         var nombreSel = document.getElementById("nomBusqueda").value;
         var apellidoSel = document.getElementById("apeBusqueda").value;
 
@@ -165,16 +236,16 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                 document.getElementById('resulBusqueda').innerHTML = this.responseText;
             }
         };
-        xhttp.open("GET", "funciones/consulSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true);
+        xhttp.open("GET", "funciones/buscarSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true);
         xhttp.send();
     }
-</script>
 
 
 
-<!-- funcion para la modificacion o eliminacion de los socios -->
-<script>
-    function addDel(idSocio) {
+
+    // funcion para la modificacion o eliminacion de los socios 
+
+    function selSocio(idSocio) {
         // var idSocio = document.getElementById("pruSocio").value;
         $(document).ready(function() {
             // $("#tablaPrincipal1").hide();
@@ -185,24 +256,16 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById('resulBusqueda').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#actualizarSocio").modal("show");
+                });
             }
         };
-        xhttp.open("POST", "funciones/modificarEliminar.php?idSocio=" + idSocio, true);
+        xhttp.open("POST", "funciones/seleccionarSocioV2.php?idSocio=" + idSocio, true);
         xhttp.send();
     }
 
-    function borrar() {
-        var idSocio = document.getElementById("id_socio").value;
 
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('funBorrar').innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("POST", "funciones/borrar.php?idSocio=" + idSocio, true);
-        xhttp.send();
-    }
 
 
 
@@ -230,6 +293,19 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
             "&fechaSoci=" + fechaSoci + "&contraSoci=" + contraSoci + "&premisoSoci=" + premisoSoci, true);
         xhttp.send();
     }
+
+    function borrar() {
+        var idSocio = document.getElementById("idSoci1").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('funBorrar').innerHTML = this.responseText;
+            }
+        };
+        xhttp.open("POST", "funciones/borrar.php?idSocio=" + idSocio, true);
+        xhttp.send();
+    }
 </script>
 
 
@@ -250,5 +326,4 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
 </script>
 
 
-<?php  include("footer.php"); ?>
-
+<?php include("footer.php"); ?>

@@ -331,3 +331,9 @@ SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_m
     SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
     FROM movimientos m 
     JOIN socios s  on m.id_socio = s.id_socio WHERE m.cantidad = 10;
+
+
+
+ALTER TABLE socios DROP COLUMN permiso;
+ALter TABLE socios ADD COLUMN permiso VARCHAR(1);
+ALTER table socios modify permiso VARCHAR(5);

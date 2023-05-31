@@ -3,33 +3,25 @@ include "../conectarBBDD.php";
 function reservaJuegos()
 {
     $id_juego = $_REQUEST['idJuego'];
-    $disponible = $_REQUEST['dispopnible'];
+    // $disponible = $_REQUEST['dispopnible'];
     $estado = $_REQUEST['estado'];
     $cambioSocio = $_REQUEST['camSocio'];
     $id_socio = 2; // cambiar cuando se pueda entrar registrado
 
     $acceso = false;
-    // $modal = true;
-
     $con = conectarBD();
-
-    $modal = ' <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-        <div class="modal-header ">
-            <h5 class="modal-title mx-auto" id="exampleModalLabel">Título del modal</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body mx-auto">
-
-            <span>';
-
-
-
 
 
     if ($estado == "devolver") {
         $con->begin_transaction();
+        $modal = ' <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                <h5 class="modal-title mx-auto" id="exampleModalLabel">Devolución</h5>
+                            </div>
+                            <div class="modal-body mx-auto">
+                                <span>';
 
         try {
             // Consulta 1: Actualizar juego a disponible
@@ -46,14 +38,24 @@ function reservaJuegos()
 
             // Si todas las consultas se ejecutaron correctamente, confirmar la transacción
             $con->commit();
-            echo "Devolucion exitosa";
+            // echo "Devolucion exitosa";
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
+                            class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                        </svg> ';
+            $modal .= 'Devolución realizada';
             $acceso = true;
         } catch (Exception $e) {
             // En caso de error, deshacer la transacción
             $con->rollback();
-            echo "Error en la transacción: " . $e->getMessage();
+            // echo "Error en la transacción: " . $e->getMessage();
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg> ';
         }
-
+        
         // Cerrar la conexión
         //$con->close();
     }
@@ -61,6 +63,14 @@ function reservaJuegos()
 
     //Reservar juego
     if ($estado == "reservar") {
+        $modal = ' <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                <h5 class="modal-title mx-auto" id="exampleModalLabel">Reserva</h5>
+                            </div>
+                            <div class="modal-body mx-auto">
+                                <span>';
         $socioUP = $cambioSocio + 1;
 
         $con->begin_transaction();
@@ -80,20 +90,36 @@ function reservaJuegos()
 
             // Si todas las consultas se ejecutaron correctamente, confirmar la transacción
             $con->commit();
-            echo "Reserva exitosa";
+            // echo "Reserva exitosa";
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
+                            class="bi bi-check-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                        </svg> ';
+            $modal .= 'Reserva realizada';
             $acceso = true;
         } catch (Exception $e) {
             // En caso de error, deshacer la transacción
             $con->rollback();
-            echo "Error en la transacción: " . $e->getMessage();
+            // echo "Error en la transacción: " . $e->getMessage();
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg> ';
+            $modal .= 'Error en la solicitud:' .  $e->getMessage();
         }
-
-        // Cerrar la conexión
-        //$con->close();
     }
 
     // mostrar informacion del poseedor del juego
     if ($estado == "solicitar") {
+        $modal = ' <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header ">
+                                <h5 class="modal-title mx-auto" id="exampleModalLabel">Datos poseedor</h5>
+                            </div>
+                            <div class="modal-body mx-auto">
+                                <span>';
         $con->begin_transaction();
 
         try {
@@ -112,22 +138,23 @@ function reservaJuegos()
             }
             // Hacer algo con los datos, como imprimirlos
 
-            $modal .= 'Nombre:' .  $nombre . '<br>' . 'Apellido:' . $apellido1 . '<br>' . 'Correo:' . $correo . '<br>' . 'Teléfono:' . $telefono . '<br>';
-
-
+            $modal .= 'Nombre:' .  $nombre . '<br>' . 'Apellido:' . $apellido1 . '<br>' . 
+                      'Correo:' . $correo . '<br>' . 'Teléfono:' . $telefono . '<br>';
 
             //     echo "Nombre: $nombre<br>";
             //     echo "Apellido: $apellido1<br>";
             //     echo "Correo: $correo<br>";
             //     echo "Teléfono: $telefono<br>"; 
             $acceso = true;
-            // $array =  json_encode(array("nombre: " . $nombre,  "apellido:" . $apellido1, "correo:" .  $correo, "telefono:" .  $telefono));
-            // echo $array;
+            
 
         } catch (Exception $e) {
             // En caso de error, deshacer la transacción
             $con->rollback();
-
+            $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+            </svg> ';
             $modal .= 'Error en la solicitud:' .  $e->getMessage();
             // echo "Error en la transacción: " . $e->getMessage();
         }
@@ -191,8 +218,8 @@ function reservaJuegos()
     $modal .= '</span>
         </div>
         <div class="modal-footer mx-auto">
-            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="prueba()">Guardar cambios</button>
+            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Cerrar</button>
+            
         </div>
     </div>
 </div>

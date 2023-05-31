@@ -3,7 +3,7 @@
 include_once "../conectarBBDD.php";
 
 
-function addNuevoSocio()
+function actualizar()
 {
     $id = $_REQUEST['idSocio'];
     $nombre = ucwords($_REQUEST['nomSoci']);
@@ -67,10 +67,10 @@ function addNuevoSocio()
         echo "<p class='text-danger font-weight-bold'>Introduzca contraseña</p>";
     }
     //control permiso
-    if (!empty($permiso) && ($permiso == "Si" || $permiso == "No")) {
+    if (empty($permiso) || ($permiso == "Si" || $permiso == "No")) {
         $contador++;
     } else {
-        echo "<p class='text-danger font-weight-bold'>Introduzca permiso</p>";
+        echo "<p class='text-danger font-weight-bold'>Permiso invalido</p>";
     }
 
 
@@ -78,12 +78,6 @@ function addNuevoSocio()
     if ($contador == 9) {
 
         $con = conectarBD();
-
-        if ($permiso == "Si") {
-            $permiso = 1;
-        } else {
-            $permiso = 0;
-        }
 
         $hash = sha1($contra);
         $actualizarSocio = "UPDATE socios SET 
@@ -94,7 +88,7 @@ function addNuevoSocio()
 
         if (mysqli_stmt_prepare($stmt, $actualizarSocio)) {
 
-            if (mysqli_stmt_bind_param($stmt, "ssssssssii", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso, $id)) {
+            if (mysqli_stmt_bind_param($stmt, "sssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso, $id)) {
 
                 if (mysqli_stmt_execute($stmt)) {
                     // echo mysqli_affected_rows($con). " " . "Socio añadido"; ?>
@@ -114,4 +108,4 @@ function addNuevoSocio()
     }
 }
 
-addNuevoSocio();
+actualizar();

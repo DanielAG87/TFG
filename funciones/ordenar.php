@@ -130,51 +130,51 @@ function ordenarTabla()
                 <th>
                     <span class="sortable-header">
                         ID Movimiento
-                        <button style="border: none;" onclick="ordenar('btnMoviA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnMoviZ')"><i class="fa-solid fa-arrow-up-9-1"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnMoviA')"><i class="bi bi-sort-numeric-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnMoviZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
                     </span>
                 </th>
                 <th>
                     <span class="sortable-header">
                         Nombre
-                        <button style="border: none;" onclick="ordenar('btnNombreA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnNombreZ')"><i class="fa-solid fa-arrow-up-z-a"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnNombreA')"><i class="bi bi-sort-alpha-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnNombreZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
                     </span>
                 </th>
                 <th>
                     <span class="sortable-header">
                         Primer Apellido
-                        <button style="border: none;" onclick="ordenar('btnApeA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnApeZ')"> <i class="fa-solid fa-arrow-up-z-a"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnApeA')"><i class="bi bi-sort-alpha-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnApeZ')"> <i class="bi bi-sort-alpha-up-alt"></i></button>
                     </span>
                 </th>
                 <th>
                     <span class="sortable-header">
                         Cantidad
-                        <button style="border: none;" onclick="ordenar('btnCantA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="fa-solid fa-arrow-down-9-1"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnCantA')"><i class="bi bi-sort-numeric-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
                     </span>
                 </th>
 
                 <th>
                     <span class="sortable-header">
                         Concepto
-                        <button style="border: none;" onclick="ordenar('btnConceptoA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnConceptoZ')"><i class="fa-solid fa-arrow-up-z-a"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnConceptoA')"><i class="bi bi-sort-alpha-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnConceptoZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
                     </span>
                 </th>
                 <th>
                     <span class="sortable-header">
                         Fecha Movimiento
-                        <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="fa-solid fa-arrow-down-1-9"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="fa-solid fa-arrow-up-9-1"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="bi bi-sort-numeric-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
                     </span>
                 </th>
                 <th>
                     <span class="sortable-header">
                         Tipo Gasto
-                        <button style="border: none;" onclick="ordenar('btnGastoA')"><i class="fa-solid fa-arrow-down-a-z"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
-                        <button style="border: none;" onclick="ordenar('btnGastoZ')"><i class="fa-solid fa-arrow-up-z-a"></i></button>
+                        <button style="border: none;" onclick="ordenar('btnGastoA')"><i class="bi bi-sort-alpha-down"></i></button> <!-- Me quedo aquí buscando los iconos adecuados -->
+                        <button style="border: none;" onclick="ordenar('btnGastoZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
                     </span>
                 </th>
             </tr>
