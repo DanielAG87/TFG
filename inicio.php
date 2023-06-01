@@ -1,42 +1,8 @@
-<?php session_start();
-
+<?php 
+include "headerV2.php";
 include_once "./conectarBBDD.php";
-$pase = false;
-
-if (!empty($_REQUEST['bLogin']) && !empty($_REQUEST['correo']) && !empty($_REQUEST['contra'])) {
-
-  $correo = $_REQUEST['correo'];
-  $contra = sha1($_REQUEST['contra']);
-
-
-  // echo "<h3>Bienvenido  Fulano de runa blanca</h3>";
-
-  try {
-    $con = conectarBD();
-    $filtrar = $con->prepare("SELECT * 
-        FROM socios  WHERE correo = ? AND contrasenia = ?");
-    $filtrar->bind_param("ss", $correo, $contra);
-    $filtrar->execute();
-    $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-  } catch (Exception $e) {
-    echo "Error : " . $e->getMessage();
-  }
-
-  mysqli_close($con);
-  if ($resultFiltrar->num_rows === 1) {
-
-    while ($row = $resultFiltrar->fetch_assoc()) {
-      $_SESSION['id'] = $row["id_socio"];
-      $_SESSION['nombre'] = $row["nombre"];
-      $_SESSION['apellido1'] = $row["apellido1"];
-      $_SESSION['correo'] = $row["correo"];
-      $_SESSION['permiso'] = $row["permiso"];
-    }
-    $pase = true;
-  }
-}
-if ($pase || !empty($_SESSION['id'])) {
-  include "headerV2.php"; ?>
+ 
+$pase = false; ?>
 
   <!-- Carousel -->
   <div class="container-fluid">
@@ -118,26 +84,11 @@ if ($pase || !empty($_SESSION['id'])) {
 
 
 
-
-
-
-
-
-
-<?php
-
-  include "footer.php";
-} 
-else { 
-  header("Location: index.php");
-  exit;
-} 
-
-?>
+<?php include "footer.php"; ?>
 
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header ">
@@ -159,22 +110,16 @@ else {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
 
-        <script>
-// $(document).ready(function() {
-//     $("#exampleModal").modal("show");
-    
-// });
-</script>
-
+ 
 <script>
-          function vovler(){ <?php
-            header("Location: index.php");
-            exit; ?>
-          }
-        </script>
+          // function vovler(){ <?php
+          //   header("Location: index.php");
+          //   exit; ?>
+          // }
+        </script> 
 
    
 

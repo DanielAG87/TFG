@@ -1,12 +1,7 @@
-<?php
-if (!session_start()) {
-    session_start();
-}
-?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 
 <html lang="es">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content=" Daniel Agustín Arroyo ">
@@ -38,14 +33,13 @@ if (!session_start()) {
                     <img src="./img/iconoRuna5.png" class="d-block w-10 " id="logoHeader" alt="..."> <!--Logo -->
                 </a>
 
-                
+
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <
-                    <span>
+                    < <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-filter" viewBox="0 0 16 16">
                             <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                         </svg>
-                    </span>
+                        </span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -53,28 +47,36 @@ if (!session_start()) {
                             <a class="nav-link active" id="blanco" aria-current="page" href="inicio.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="socios.php">Socios</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" id="blanco" href="inventario.php">Inventario</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="blanco" href="torneos.php">Torneos</a>
                         </li>
+                        <?php
+                        if ($_SESSION['permiso'] == "Si") { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" id="blanco" href="socios.php">Socios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
+                            </li> <?php
+                                } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" id="blanco" href=""><del>Socios</del></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="blanco" href=""><del>Contabilidad</del></a>
+                            </li>
+                        <?php } ?>
+
                     </ul>
-                    
+
                 </div>
             </div>
-            <form method="post" action="index.php" >
-                        <button type="submit" id="descon" class="btn btn-outline-warning">Desconectar</button>
-                    </form>
-            
-        </nav>
-        
+            <form method="post" action="index.php">
+                <button type="submit" id="descon" name="descon" value="descon" class="btn btn-outline-warning">Desconectar</button>
+            </form>
 
-    </div> 
-    
+        </nav>
+    </div>
 </div>

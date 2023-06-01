@@ -337,3 +337,27 @@ SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_m
 ALTER TABLE socios DROP COLUMN permiso;
 ALter TABLE socios ADD COLUMN permiso VARCHAR(1);
 ALTER table socios modify permiso VARCHAR(5);
+
+
+
+
+
+SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado, ruta_foto, id_juego, cambio_socio
+    FROM juegos order by nombre;
+
+SELECT id_socio FROM reserva ;
+SELECT id_socio FROM juegos;
+
+
+
+
+
+SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.* 
+FROM  juegos j
+LEFT JOIN reserva r ON r.id_juego = j.id_juego;
+
+
+
+SELECT s.nombre, s.apellido1, s.correo, s.telefono FROM socios s 
+            JOIN reserva r on s.id_socio = r.id_socio WHERE r.id_socio = 2 AND r.id_juego = 42 ;
+

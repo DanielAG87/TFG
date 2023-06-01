@@ -1,8 +1,6 @@
-
-<?php 
-include "headerV2.php";
+<?php include "headerV2.php";
 include_once "conectarBBDD.php";
- $con = conectarBD();
+$con = conectarBD();
 
 $fecha = mysqli_query(
     $con,
@@ -49,7 +47,7 @@ $fechaModificada = date_format($objetoFecha, 'm/d/Y');
     <!-- Fin contador regresivo -->
     
 
-    <?php  include("footer.php"); ?>
+    <?php  // include("footer.php"); ?>
 
     <script>
         var fechaContador = "<?php echo $fechaModificada?>";

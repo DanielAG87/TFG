@@ -15,8 +15,15 @@ $cuentas = mysqli_query(
 ?>
 
 <form method="post" action="nuevoMovimiento.php">
-    <input type="submit" class="btn btn-outline-primary mb-5" value="Nuevo movimiento" />
+    <input type="submit" class="btn btn-outline-primary mb-5" value="Nuevo movimiento"/>
 </form>
+
+<form method="post" action="graficaDinero.php">
+    <button type="submit" class="btn btn-outline-primary" id="btnGrafica" >Ver gráfica</button> 
+</form>
+
+
+
 
 <select id="selBuscador">
     <option disabled selected>Selecciona una opción</option>
@@ -101,6 +108,8 @@ $cuentas = mysqli_query(
 </div>
 
 <?php  include("footer.php"); ?>
+
+
 
 <script>
     function ordenar(btn) {

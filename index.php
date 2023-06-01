@@ -1,12 +1,52 @@
-<?php //
-//session_destroy();
-// if (empty($_REQUEST['descon'])) {
-    
-// }
+<?php
+session_start();
+
+if (!empty($_REQUEST['bLogin']) && !empty($_REQUEST['correo']) && !empty($_REQUEST['contra'])) {
+
+    include_once "./conectarBBDD.php";
+    $pase = false;
+
+    if (!empty($_REQUEST['bLogin']) && !empty($_REQUEST['correo']) && !empty($_REQUEST['contra'])) {
+
+        $correo = $_REQUEST['correo'];
+        $contra = sha1($_REQUEST['contra']);
 
 
-if (empty($_REQUEST) || !empty($_REQUEST['descon'])) { ?>
+        try {
+            $con = conectarBD();
+            $filtrar = $con->prepare("SELECT * FROM socios  WHERE correo = ? AND contrasenia = ?");
+            $filtrar->bind_param("ss", $correo, $contra);
+            $filtrar->execute();
+            $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+        } catch (Exception $e) {
+            echo "Error : " . $e->getMessage(); // poner modal
+        }
 
+        mysqli_close($con);
+        if ($resultFiltrar->num_rows === 1) {
+
+            while ($row = $resultFiltrar->fetch_assoc()) {
+                $_SESSION['id'] = $row["id_socio"];
+                $_SESSION['nombre'] = $row["nombre"];
+                $_SESSION['apellido1'] = $row["apellido1"];
+                $_SESSION['correo'] = $row["correo"];
+                $_SESSION['permiso'] = $row["permiso"];
+            }
+            $pase = true;
+            header("Location: inicio.php");
+            exit;
+        }
+    }
+    else{
+        header("Location: index.php");
+        exit;
+    }
+}
+
+
+
+if (!empty($_REQUEST['descon']) || empty($_REQUEST) || empty($_SESSION)) { 
+    session_destroy();?>
     <!DOCTYPE html>
     <html lang="es">
 
@@ -15,7 +55,6 @@ if (empty($_REQUEST) || !empty($_REQUEST['descon'])) { ?>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Runa Blanca</title>
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="TFGcolor.css" />
     </head>
@@ -26,7 +65,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['descon'])) { ?>
             <h1 class="h1 pb-3 " id="h1Login">Asociación Runa Blanca</h1>
             <img id="loginIMG" src="./img/iconoRuna5.png" />
             <h4 class="h4" id="h1Login">Login</h4>
-            <form method="post" action="inicio.php">
+            <form method="post" action="index.php">
 
                 <div class="row" id="centrador">
                     <div class=" col-lg-4 col-md-6 col-sm-6  col-xs-4">
@@ -45,46 +84,5 @@ if (empty($_REQUEST) || !empty($_REQUEST['descon'])) { ?>
             </form><br>
             <p id="h1Login">Si no tiene acceso, póngase en contacto con el administrador</p>
         </div>
-
-<?php }
-// pagina de inicio
-// if (!empty($_REQUEST['bLogin']) && !empty($_REQUEST['correo']) && !empty($_REQUEST['contra'])) {
-//     include "headerV2.php";
-//     include_once "./conectarBBDD.php";
-
-//     echo "<h3>Bienvenido  Fulano de runa blanca</h3>";
-
-//     try{
-//         $filtrar = $con->prepare("SELECT id_socio, nombre, apellido1 
-//         FROM socios  WHERE s.nombre LIKE ?");
-//         $filtrar->bind_param("s", $contener);
-//         $filtrar->execute();
-//         $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-//         } catch (Exception $e) {
-//             echo "Error al filtrar: " . $e->getMessage();
-//         }
-
-
-    
-
-
-
-
-// }
-
-?>
-<?php  // include("footer.php"); ?>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
-
-
-
-
-
-
-<!-- $to = "danielagustin87@gmail.com";
-$subject = "Prueba PHP";
-$message = "Hola majete, esto es una prueba";
-
-mail($to,$subject,$message); -->
+    <?php
+}

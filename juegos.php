@@ -4,15 +4,23 @@ include_once "conectarBBDD.php";
 
 $con = conectarBD();
 
+// $juegos = mysqli_query(
+//     $con,
+//     'SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado, ruta_foto, id_juego, cambio_socio
+//     FROM juegos order by nombre'
+// );
+
+
 $juegos = mysqli_query(
     $con,
-    'SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado, ruta_foto, id_juego, cambio_socio
-    FROM juegos order by nombre'
-);
+    'SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
+        FROM  juegos j
+        LEFT JOIN reserva r ON r.id_juego = j.id_juego');
+
+
 
 $devolverJuegos = mysqli_fetch_all($juegos);
 mysqli_close($con);
-
 
 ?>
 <div id="reserva"></div>
@@ -25,24 +33,27 @@ mysqli_close($con);
         ?>
 
             <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3">
-                <span style="text-align: center;"><strong><?= $j[0] ?></strong></span><br />
-                <img style="width: 200px; height: 200px;" src="<?= $j[6] ?>" /><br />
-                <span>Jugadores: <?= $j[1] ?>-<?= $j[2] ?></span><br />
-                <span><?= $j[3] ?></span><br />
-                <span>Edad mínima:<?= $j[4] ?></span><br />
+                <span style="text-align: center;"><strong><?= $j[3] ?></strong></span><br />
+                <img style="width: 200px; height: 200px;" src="<?= $j[14] ?>" /><br />
+                <span>Jugadores: <?= $j[5] ?>-<?= $j[6] ?></span><br />
+                <span><?= $j[9] ?></span><br />
+                <span>Edad mínima:<?= $j[10] ?></span><br />
                 <?php
-                if ($j[5] == 1) { ?>
-                    <!-- <span style="color:red;"><strong>Reservado</strong></span> -->
-                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[7] ?>', '<?= $j[5] ?>', 'solicitar', '<?= $j[8] ?>')">Solicitar</button>
+                if ($j[12] == 1 && $j[0] == $_SESSION['id']) { ?> <!-- si está reservado -->
+                    <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'devolver', '<?= $j[12] ?>')" >Devolver</button>
+                <?php
+                } 
+                elseif ($j[12] == 1 && $j[0] != $_SESSION['id']) { ?>
+                   
+                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'solicitar', '<?= $j[12] ?>')">Solicitar</button>
 
                 <?php
-                } else { ?>
-                    <!-- <span style="color:green;"><strong>Disponible</strong></span> -->
-                    <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[7] ?>', '<?= $j[5] ?>', 'reservar', '<?= $j[8] ?>')">Reservar</button>
-                <?php
                 }
+                elseif ($j[12] == 0){ ?>
+                     <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'reservar', '<?= $j[12] ?>')">Reservar</button>
+
+                     <?php }
                 ?>
-                <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[7] ?>', '<?= $j[5] ?>', 'devolver', '<?= $j[8] ?>')" >Devolver</button>
             </div>
         <?php } ?>
 

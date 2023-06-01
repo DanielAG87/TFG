@@ -3,7 +3,6 @@ include "headerV2.php";
 include_once "conectarBBDD.php";
 
 $con = conectarBD();
-
 $juegos = mysqli_query(
     $con,'SELECT nombre, cambio_socio FROM juegos ORDER BY cambio_socio DESC LIMIT 10'
 );

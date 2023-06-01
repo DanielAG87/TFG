@@ -6,9 +6,7 @@ $con = conectarBD();
 
 $socios = mysqli_query($con, 'SELECT * FROM socios');
 // desconectarBD($con);
-if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
-?>
-
+if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
     <div class="container-fluid" id="tablaPrincipal1">
         <div class="row">
@@ -37,7 +35,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) {
                 <tr>
                     <th>ID Socio</th>
                     <th>Nombre</th>
-                    <th>Primer apellido</th>
+                    <th>Primer Apellido</th>
                     <th>Segundo apellido</th>
                     <th>Correo</th>
                     <th>Teléfono</th>
@@ -152,6 +150,7 @@ include("footer.php"); ?>
         </div>
     </div>
 </div> 
+<!-- fin Modal -->
 
 
     <script>
@@ -185,13 +184,19 @@ include("footer.php"); ?>
         }
 
         // codigo para limpiar los campos de los imput 
-        $(document).ready(function() {
-            $(document).ready(function() {
-                $("#limpiar, #nuevoSocio2").click(function() {
-                    $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
-                    $("#permiso").prop("selectedIndex", 0);
+        // $(document).ready(function() {
+        //     $(document).ready(function() {
+        //         $("#limpiar, #nuevoSocio2").click(function() {
+        //             $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
+        //             $("#permiso").prop("selectedIndex", 0);
 
-                });
+        //         });
+        //     });
+        // });
+        $(document).ready(function() {
+            $("#limpiar, #nuevoSocio2").click(function() {
+                $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
+                $("#permiso").prop("selectedIndex", 0);
             });
         });
 
@@ -208,6 +213,9 @@ include("footer.php"); ?>
                     $(document).ready(function() {
                         $("#modalBuscarSocio").modal("show");
                     });
+                    $("#modBuscarSocio").click(function() {
+                        $("#nomBusqueda, #apeBusqueda").val("");
+                });
                 }
             };
             xhttp.open("GET", "funciones/buscarSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true);
