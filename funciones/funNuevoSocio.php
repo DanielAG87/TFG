@@ -5,6 +5,7 @@ include_once "../conectarBBDD.php";
 
 function addNuevoSocio()
 {
+    $con = conectarBD();
 
     $nombre = ucwords($_REQUEST['nombre']);
     $ape1 = ucwords($_REQUEST['ape1']);
@@ -93,7 +94,7 @@ function addNuevoSocio()
     // si todo está correcto hacemos el insert.
     if ($contador == 9) {
         
-        $con = conectarBD();
+        
 
         $hash = sha1($contra);
         $nuevoFulano = "INSERT INTO socios (nombre, apellido1, apellido2, correo, telefono, localidad, fecha_nacimiento, contrasenia, permiso) 
@@ -114,52 +115,6 @@ function addNuevoSocio()
                                     <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
                                 </svg> ';
                     $modal .= 'Socio añadido';
-
-                    $socios = mysqli_query($con, 'SELECT * FROM socios'); ?>
-            
-                    <div class="container-fluid" id="tablaPrincipal3">
-                    
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered text-center">
-                            <tr>
-                                <th>ID Socio</th>
-                                <th>Nombre</th>
-                                <th>Primer apellido</th>
-                                <th>Segundo apellido</th>
-                                <th>Correo</th>
-                                <th>Teléfono</th>
-                                <th>Localidad</th>
-                                <th>Fecha de Nacimiento</th>
-                                <th>Contraseña</th>
-                                <th>Permiso</th>
-                                <th></th>
-            
-                            </tr>
-                            <tr>
-                                <?php
-                                while ($row = mysqli_fetch_assoc($socios)) { ?>
-                                    <td><?= $row['id_socio'] ?></td>
-                                    <td><?= $row["nombre"] ?></td>
-                                    <td><?= $row["apellido1"] ?></td>
-                                    <td><?= $row["apellido2"] ?></td>
-                                    <td><?= $row["correo"] ?></td>
-                                    <td><?= $row["telefono"] ?></td>
-                                    <td><?= $row["localidad"] ?></td>
-                                    <td><?= $row["fecha_nacimiento"] ?></td>
-                                    <td><?= $row["contrasenia"] ?></td>
-                                    <td><?= $row["permiso"] ?></td>
-                                    <td>
-                                        <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
-                                    </td>
-                            </tr>
-                        <?php 
-                                } ?>
-                        </table>
-                    </div>
-                </div> <?php
-      
-                    
-
 
                 } else {
                     // echo "Error de introducción";
@@ -194,6 +149,58 @@ function addNuevoSocio()
                         </div>
                     </div>';
     }
+
+    $socios = mysqli_query($con, 'SELECT * FROM socios'); 
+    mysqli_close($con); ?>
+            
+    <div class="container-fluid" id="tablaPrincipal3">
+        
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered text-center">
+                <tr>
+                    <th>ID Socio</th>
+                    <th>Nombre</th>
+                    <th>Primer apellido</th>
+                    <th>Segundo apellido</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Localidad</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Contraseña</th>
+                    <th>Permiso</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <?php
+                    while ($row = mysqli_fetch_assoc($socios)) { ?>
+                        <td><?= $row['id_socio'] ?></td>
+                        <td><?= $row["nombre"] ?></td>
+                        <td><?= $row["apellido1"] ?></td>
+                        <td><?= $row["apellido2"] ?></td>
+                        <td><?= $row["correo"] ?></td>
+                        <td><?= $row["telefono"] ?></td>
+                        <td><?= $row["localidad"] ?></td>
+                        <td><?= $row["fecha_nacimiento"] ?></td>
+                        <td><?= $row["contrasenia"] ?></td>
+                        <td><?= $row["permiso"] ?></td>
+                        <td>
+                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                        </td>
+                </tr>
+                <?php 
+                    } ?>
+            </table>
+        </div>
+    </div> <?php
+
+
+
+
+
+
+
+
+
     $modal .= '             </span>
                                 </div>
                                 <div class="modal-footer mx-auto">

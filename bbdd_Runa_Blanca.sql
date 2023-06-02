@@ -361,6 +361,11 @@ LEFT JOIN reserva r ON r.id_juego = j.id_juego;
 SELECT s.nombre, s.apellido1, s.correo, s.telefono FROM socios s 
             JOIN reserva r on s.id_socio = r.id_socio WHERE r.id_socio = 2 AND r.id_juego = 42 ;
             
-       
-  // ALTER TABLE nombre_tabla AUTO_INCREMENT=1000;
 
+
+SELECT s.nombre, s.apellido1, t.actividad, t.num_participantes, t.fecha, t.coste_entrada, t.cartel, s.telefono
+FROM torneos t JOIN socios s ON t.organizador1 = s.id_socio ORDER BY t.fecha; 
+
+ALTER Table torneos ADD COLUMN cartel VARCHAR(50);
+
+UPDATE torneos SET coste_entrada = 0 WHERE id_torneo = 2;

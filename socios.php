@@ -23,10 +23,10 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
         </div>
     </div>
 
-    <div id="resulBusqueda"></div>
-    <div id="resulBorrar"></div>
-    <div id="result"></div>
-    <div id="funBorrar"></div>
+    <div id="resulBusqueda"></div> <br>
+    <!-- <div id="resulBorrar"></div> -->
+    <!-- <div id="result"></div> -->
+    <div id="funBorrar"></div><br>
 
     <div class="container-fluid" id="tablaPrincipal2">
         <!-- <form method="get" action="socios.php"> -->
