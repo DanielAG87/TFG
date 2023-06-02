@@ -23,7 +23,6 @@ $saldo = $ingresoTotal - $gastoTotal;
 
 ?>
 
-
 <div class="row">
     <div class="col-md-6 d-flex align-items-center justify-content-center">
 
@@ -45,43 +44,21 @@ $saldo = $ingresoTotal - $gastoTotal;
                                         }
                                         ?></strong> €</h3>
         </div>
-
     </div>
 </div>
-
-<form method="post" action="contabilidad.php">
-    <input type="submit" class="btn btn-outline-primary" value="Volver"/>
-</form>
-
-
-
-
-<!-- <div class="container-fluid" id="saldo">
-    <div class="row"> 
-        <p>Los ingresos totales de la asociación en 2023 son de : <span style="color: green;"><?= $ingresoTotal ?></span> €</p>
-        <p>El gasto total de la asociación en 2023 es: <span style="color: red;"><?= $gastoTotal ?></span> €</p>
-        <p>Las donaciones que se han realizado a la asociación en 2023 han sido de: <?= $donacionesTotales ?></p>
-        <p>EL saldo actual de la asociacion es de: <strong> <?php
-                                                            if ($saldo < 0) {
-                                                                echo '<span style="color: red;">' . $saldo . '</span>';
-                                                            } else {
-                                                                echo '<span style="color: green;">' . $saldo . '</span>';
-                                                            }
-                                                            ?></strong> €</p>
-    </div>
-</div> -->
-
-
+<div class="d-flex justify-content-center">
+    <form method="post" action="contabilidad.php">
+        <input type="submit" class="btn btn-outline-primary" value="Volver" />
+    </form>
+</div>
 
 
 <!-- GRAFICA REDONDA -->
-
 
 <script>
     var ingresoTotal = "<?php echo $ingresoTotal; ?>";
     var gastoTotal = "<?php echo $gastoTotal; ?>";
     var donacionesTotales = "<?php echo $donacionesTotales; ?>";
-
 
     // Obtener una referencia al elemento canvas del DOM
     const $grafica = document.querySelector("#grafica");
@@ -91,17 +68,19 @@ $saldo = $ingresoTotal - $gastoTotal;
     const datosIngresos = {
         data: [ingresoTotal, gastoTotal], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
         // Ahora debería haber tantos background colors como datos, es decir, para este ejemplo, 4
+
+        // Color de fondo
         backgroundColor: [
-            'rgba(0, 255, 0, 1)',
-            'rgba(240, 128, 128, 1)',
+            'rgba(25, 229, 35, 0.7)', // verde  
+            'rgba(240, 128, 128, 1)', // rojo
 
-
-        ], // Color de fondo
-        borderColor: [
-            'rgba(50, 205, 50, 1)',
-            'rgba(255, 0, 0, 1)',
 
         ], // Color del borde
+        borderColor: [
+            'rgba(28, 149, 32, 1)',
+            'rgba(255, 0, 0, 1)',
+
+        ],
         borderWidth: 2, // Ancho del borde
     };
     new Chart($grafica, {
@@ -110,7 +89,6 @@ $saldo = $ingresoTotal - $gastoTotal;
             labels: etiquetas,
             datasets: [
                 datosIngresos,
-                // Aquí más datos...
             ]
         },
     });
