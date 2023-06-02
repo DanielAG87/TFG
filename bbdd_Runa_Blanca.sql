@@ -360,4 +360,7 @@ LEFT JOIN reserva r ON r.id_juego = j.id_juego;
 
 SELECT s.nombre, s.apellido1, s.correo, s.telefono FROM socios s 
             JOIN reserva r on s.id_socio = r.id_socio WHERE r.id_socio = 2 AND r.id_juego = 42 ;
+            
+       
+  // ALTER TABLE nombre_tabla AUTO_INCREMENT=1000;
 
