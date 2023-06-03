@@ -12,9 +12,11 @@ mysqli_close($con);
 
 ?>
 <div class="container-fluid">
-    <h1>Juegos más reservados</h1>
-    <div style="width: 600px;">
-        <canvas id="grafica"></canvas>
+    <h1 class="text-center">Juegos más reservados</h1>
+    <div class="d-flex justify-content-center">
+        <div style="width: 700px;">
+            <canvas id="grafica"></canvas>
+        </div>
     </div>
 </div>
 

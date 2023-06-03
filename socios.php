@@ -8,17 +8,20 @@ $socios = mysqli_query($con, 'SELECT * FROM socios');
 // desconectarBD($con);
 if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
-    <div class="container-fluid" id="tablaPrincipal1">
+<h3 class="text-center h3">SOCIOS</h3>
+
+    <div class="container-fluid mb-3" id="tablaPrincipal1">
         <div class="row">
-            <div class="col-md-10">
-                <div class="col-md-4">
-                    <input type="text" id="nomBusqueda" class="form-control col-4" placeholder="Nombre" />
-                    <input type="text" id="apeBusqueda" class="form-control mt-2 mb-2" placeholder="Apellido" />
-                    <button class="btn btn-outline-primary mb-4" type="button" name="modBuscarSocio" id="modBuscarSocio" onclick="buscarSocio()" >Buscar socio</button>
-                </div>  
+            <div class="col-md-8">
+                <div class="d-flex justify-content-center">
+                    <input type="text" id="nomBusqueda" class="form-control" placeholder="Nombre" />
+                    <input type="text" id="apeBusqueda" class="form-control" placeholder="Apellido" />
+                    <button class="btn btn-outline-primary" type="button" name="modBuscarSocio" id="modBuscarSocio" onclick="buscarSocio()" >Buscar socio</button>
+                </div> 
+
             </div>
-            <div class="col-md-2 d-flex align-items-center justify-content-center">
-                <button class="btn btn-outline-primary mb-2 " type="button" name="nuevoSocio" id="nuevoSocio2" data-bs-toggle="modal" data-bs-target="#nuevoSocio">Nuevo socio</button>
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <button class="btn btn-outline-primary mb-2 mt-3" type="button" name="nuevoSocio" id="nuevoSocio2" data-bs-toggle="modal" data-bs-target="#nuevoSocio">Nuevo socio</button>
             </div>
         </div>
     </div>
@@ -89,49 +92,49 @@ include("footer.php"); ?>
                         <input type="text" id="nombre" class="form-control" placeholder="Nombre">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Primer Apellido</label>
+                        <label for="ape1" class="form-label">Primer Apellido</label>
                     </div>
                     <div class="col-md-7">
                         <input type="text" id="ape1" class="form-control" placeholder="Primer Apellido">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Segundo Apellido</label>
+                        <label for="ape2" class="form-label">Segundo Apellido</label>
                     </div>
                     <div class="col-md-7">
                         <input type="text" id="ape2" class="form-control" placeholder="Segundo Apellido">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Correo</label>
+                        <label for="correo" class="form-label">Correo</label>
                     </div>
                     <div class="col-md-7">
                         <input type="mail" id="correo" class="form-control" placeholder="asociacionRunaBlanca@gmail.com">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Teléfono</label>
+                        <label for="tel" class="form-label">Teléfono</label>
                     </div>
                     <div class="col-md-7">
                         <input type="text" id="tel" class="form-control" placeholder="Teléfono">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Localidad</label>
+                        <label for="loca" class="form-label">Localidad</label>
                     </div>
                     <div class="col-md-7">
                         <input type="text" id="loca" class="form-control" placeholder="Localidad">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Fecha de nacimiento</label>
+                        <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
                     </div>
                     <div class="col-md-7">
                         <input type="date" id="fechaNac" class="form-control" placeholder="Fecha de nacimiento">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Contraseña</label>
+                        <label for="contra" class="form-label">Contraseña</label>
                     </div>
                     <div class="col-md-7">
                         <input type="password" id="contra" class="form-control" placeholder="Contraseña">
                     </div>
                     <div class="col-md-5 text-center">
-                        <label for="nombre" class="form-label">Permiso</label>
+                        <label for="permiso" class="form-label">Permiso</label>
                     </div>
                     <div class="col-md-7">
                         <select id="permiso" class="form-select ">

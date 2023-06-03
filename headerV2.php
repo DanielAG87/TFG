@@ -47,25 +47,27 @@
                             <a class="nav-link active" id="blanco" aria-current="page" href="inicio.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="inventario.php">Inventario</a>
+                            <a class="nav-link" id="blanco" href="torneos.php">Actividades</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="blanco" href="torneos.php">Torneos</a>
+                            <a class="nav-link" id="blanco" href="inventario.php">Inventario</a>
                         </li>
+                        
                         <?php
                         if ($_SESSION['permiso'] == "Si") { ?>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href="socios.php">Socios</a>
+                                <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
+                                
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
+                                <a class="nav-link" id="blanco" href="socios.php">Socios</a>
                             </li> <?php
                                 } else { ?>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href=""><del>Socios</del></a>
+                                <a class="nav-link" id="blanco" href=""><del>Contabilidad</del></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href=""><del>Contabilidad</del></a>
+                                <a class="nav-link" id="blanco" href=""><del>Socios</del></a>
                             </li>
                         <?php } ?>
 

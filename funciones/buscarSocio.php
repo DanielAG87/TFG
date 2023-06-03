@@ -95,9 +95,11 @@ function consulSocio()
                         </tr>
                 </table>
             </div>
-            <form method="post" action="socios.php">
-                <input class="btn btn-outline-primary" type="submit" name="vovler1" value="Volver" />
-            </form>
+            <div class="d-flex justify-content-center">
+                <form method="post" action="socios.php">
+                    <input class="btn btn-outline-primary" type="submit" name="vovler1" value="Quitar busqueda" />
+                </form>
+            </div>
 <?php }
     }
 

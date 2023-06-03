@@ -369,3 +369,6 @@ FROM torneos t JOIN socios s ON t.organizador1 = s.id_socio ORDER BY t.fecha;
 ALTER Table torneos ADD COLUMN cartel VARCHAR(50);
 
 UPDATE torneos SET coste_entrada = 0 WHERE id_torneo = 2;
+
+
+SELECT id_socio FROM socios where nombre = "Daniel" AND apellido1 = "Agustín";
