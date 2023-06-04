@@ -81,7 +81,7 @@ mysqli_close($con); ?>
                 <?php }
                 ?>
                 <span class="fs-5"><strong><?= $j['actividad'] ?></strong></span><br />
-                <span class="fs-5">Num Participantes: <?= $j['num_participantes'] ?></span><br />
+                <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
 
                 <?php 
                     if ($fechaCambiada <  $fechaActual) { ?>
@@ -92,7 +92,7 @@ mysqli_close($con); ?>
                     }
                     ?>
                 <span class="fs-5">Entrada: <?= $j['coste_entrada'] ?> Eurazos</span><br />
-                <span class="fs-5">Organizador <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
+                <span class="fs-5">Organización <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
                 <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
                 <span class="fs-5">Telefono: <?= $j['telefono'] ?></span>
             </div>

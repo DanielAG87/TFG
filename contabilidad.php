@@ -11,6 +11,7 @@ $cuentas = mysqli_query(
     JOIN socios s WHERE m.id_socio = s.id_socio;'
 ); ?>
 
+<h3 class="text-center h3 text-primary">Contabilidad</h3>
 
 <div class="container-fluid mb-3">
     <div class="row">

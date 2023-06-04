@@ -8,7 +8,9 @@ $socios = mysqli_query($con, 'SELECT * FROM socios');
 // desconectarBD($con);
 if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
-<h3 class="text-center h3">SOCIOS</h3>
+<!-- <h3 class="text-center h3">SOCIOS</h3> -->
+<h3 class="text-center h3 text-primary">Socios</h3>
+
 
     <div class="container-fluid mb-3" id="tablaPrincipal1">
         <div class="row">

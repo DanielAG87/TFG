@@ -372,3 +372,17 @@ UPDATE torneos SET coste_entrada = 0 WHERE id_torneo = 2;
 
 
 SELECT id_socio FROM socios where nombre = "Daniel" AND apellido1 = "Agustín";
+
+
+SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
+        FROM  juegos j
+        LEFT JOIN reserva r ON r.id_juego = j.id_juego;
+
+
+SELECT nombre, cambio_socio FROM juegos ORDER BY cambio_socio DESC LIMIT 10;
+
+ALTER Table inventario CHANGE juego utilidad VARCHAR(50) NOT null;
+
+
+
+SELECT i.*, s.nombre, s.apellido1 FROM inventario i JOIN socios s on i.comprador = s.id_socio;

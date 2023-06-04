@@ -71,7 +71,7 @@ function reservaJuegos()
                             </div>
                             <div class="modal-body mx-auto">
                                 <span>';
-        $socioUP = $cambioSocio + 1;
+        $socioUP = intval($cambioSocio + 1);
 
         $con->begin_transaction();
 
@@ -161,7 +161,7 @@ function reservaJuegos()
             $con,
             'SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
                 FROM  juegos j
-                LEFT JOIN reserva r ON r.id_juego = j.id_juego');
+                LEFT JOIN reserva r ON r.id_juego = j.id_juego ORDER BY j.nombre');
         
         
         

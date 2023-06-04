@@ -15,7 +15,7 @@ $juegos = mysqli_query(
     $con,
     'SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
         FROM  juegos j
-        LEFT JOIN reserva r ON r.id_juego = j.id_juego');
+        LEFT JOIN reserva r ON r.id_juego = j.id_juego ORDER BY j.nombre');
 
 
 
@@ -40,17 +40,17 @@ mysqli_close($con);
                 <span>Edad mínima:<?= $j[10] ?></span><br />
                 <?php
                 if ($j[12] == 1 && $j[0] == $_SESSION['id']) { ?> <!-- si está reservado -->
-                    <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'devolver', '<?= $j[12] ?>')" >Devolver</button>
+                    <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'devolver', '<?= $j[13] ?>')" >Devolver</button>
                 <?php
                 } 
                 elseif ($j[12] == 1 && $j[0] != $_SESSION['id']) { ?>
                    
-                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'solicitar', '<?= $j[12] ?>')">Solicitar</button>
+                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'solicitar', '<?= $j[13] ?>')">Solicitar</button>
 
                 <?php
                 }
                 elseif ($j[12] == 0){ ?>
-                     <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'reservar', '<?= $j[12] ?>')">Reservar</button>
+                     <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'reservar', '<?= $j[13] ?>')">Reservar</button>
 
                      <?php }
                 ?>
@@ -86,32 +86,3 @@ mysqli_close($con);
 
 <?php include "footer.php"; ?>
 
-
-
-
-
-
- <!-- Modal -->
- <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header ">
-                        <h5 class="modal-title mx-auto" id="exampleModalLabel">Título del modal</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body mx-auto">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
-                        </svg>
-                        <i class="bi bi-check-circle text-success display-3"></i>
-                        <input type="text" id="pruebaT" />
-                    </div>
-                    <div class="modal-footer mx-auto">
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="prueba()">Guardar cambios</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="author" content=" Daniel Agustín Arroyo ">
@@ -52,12 +53,12 @@
                         <li class="nav-item">
                             <a class="nav-link" id="blanco" href="inventario.php">Inventario</a>
                         </li>
-                        
+
                         <?php
                         if ($_SESSION['permiso'] == "Si") { ?>
                             <li class="nav-item">
                                 <a class="nav-link" id="blanco" href="contabilidad.php">Contabilidad</a>
-                                
+
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="blanco" href="socios.php">Socios</a>
@@ -75,9 +76,12 @@
 
                 </div>
             </div>
-            <form method="post" action="index.php">
-                <button type="submit" id="descon" name="descon" value="descon" class="btn btn-outline-warning">Desconectar</button>
-            </form>
+            <div class="d-flex justify-content-center">
+                <!-- <span class="mr-3" id="blanco"><?= $_SESSION['nombre'] ?></span> -->
+                <form method="post" action="index.php">
+                    <button type="submit" id="descon" name="descon" value="descon" class="btn btn-outline-warning ml-4">Desconectar</button>
+                </form>
+            </div>
 
         </nav>
     </div>
