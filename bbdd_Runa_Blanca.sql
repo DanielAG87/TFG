@@ -386,3 +386,5 @@ ALTER Table inventario CHANGE juego utilidad VARCHAR(50) NOT null;
 
 
 SELECT i.*, s.nombre, s.apellido1 FROM inventario i JOIN socios s on i.comprador = s.id_socio;
+
+ALTER TABLE socios AUTO_INCREMENT = 19;

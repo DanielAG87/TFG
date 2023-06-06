@@ -15,7 +15,7 @@ function actualizar()
     $tel = $_REQUEST['telSoci'];
     $loca = ucwords($_REQUEST['localidadSoci']);
     $fechaNac = $_REQUEST['fechaSoci'];
-    $contra = $_REQUEST['contraSoci'];
+    // $contra = $_REQUEST['contraSoci'];
     $permiso = ucwords($_REQUEST['premisoSoci']);
 
     $contador = 0;
@@ -83,12 +83,12 @@ function actualizar()
         $datosFaltantes .= 'Introduzca fecha de nacimiento <br />';
     }
     // control contraseña
-    if (!empty($contra)) {
-        $contador++;
-    } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca contraseña</p>";
-        $datosFaltantes .= 'Introduzca contraseña <br />';
-    }
+    // if (!empty($contra)) {
+    //     $contador++;
+    // } else {
+    //     // echo "<p class='text-danger font-weight-bold'>Introduzca contraseña</p>";
+    //     $datosFaltantes .= 'Introduzca contraseña <br />';
+    // }
     //control permiso
     if (empty($permiso) || ($permiso == "Si" || $permiso == "No")) {
         $contador++;
@@ -101,20 +101,20 @@ function actualizar()
 
 
     // si todo está correcto hacemos el insert.
-    if ($contador == 9) {
+    if ($contador == 8) {
 
        
 
-        $hash = sha1($contra);
+        // $hash = sha1($contra);
         $actualizarSocio = "UPDATE socios SET 
-                    nombre = ?, apellido1 = ?, apellido2 = ?, correo = ?, telefono = ?, localidad = ?, fecha_nacimiento = ?, contrasenia = ?, permiso = ? 
+                    nombre = ?, apellido1 = ?, apellido2 = ?, correo = ?, telefono = ?, localidad = ?, fecha_nacimiento = ?, permiso = ? 
                     WHERE id_socio = ?";
 
         $stmt = mysqli_stmt_init($con);
 
         if (mysqli_stmt_prepare($stmt, $actualizarSocio)) {
 
-            if (mysqli_stmt_bind_param($stmt, "sssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $hash, $permiso, $id)) {
+            if (mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $permiso, $id)) {
 
                 if (mysqli_stmt_execute($stmt)) {
                     // echo mysqli_affected_rows($con). " " . "Socio añadido"; ?>

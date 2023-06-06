@@ -1,3 +1,14 @@
+/* *{
+  font-family: "Viking";
+  font-size: 11px;
+} */
+#h1Login{
+  color: whitesmoke;
+  padding-top: 5px;
+  font-family: "Viking";
+  
+}
+
 /* region index */
 #loginIMG {
     width: 200px;
@@ -8,11 +19,11 @@
     background-color: #04448c;
 }
 
-#h1Login {
+/* #h1Login {
     color: whitesmoke;
     padding-bottom: 5px;
     font-family: "Viking";
-}
+} */
 
 #centrador {
     display: flex;
@@ -27,9 +38,38 @@
     
     
 }
+#spanNombre{
+  /* color: #ffc107; */
+  color: #a6a2a4;
+ 
+  margin-right: 20px;
+  font-size: 10px;
+}
 #blanco{
     color: white;
 }
+
+#agotado{
+  cursor: not-allowed;
+  color: white;
+  opacity: 0.5; 
+  transition: opacity 0.3s;
+}
+#agotado:hover {
+  opacity: 0; 
+}
+
+#solojefes{
+  cursor: not-allowed;
+  opacity: 0.5; 
+  transition: opacity 0.3s;
+  
+}
+#solojefes :hover {
+  cursor: not-allowed;
+}
+
+
 #azul{
     background-color: #04448c;
 }

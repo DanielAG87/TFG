@@ -25,7 +25,7 @@ $cuentas = mysqli_query(
                 </select>
                 <input type="text" id="buscador" class="form-control" name="buscador" placeholder="Introduce dato"/>
                 <button type="button" class="btn btn-outline-primary w-25" onclick="filtrar()">Filtrar</button>
-                <button type="button" class="btn btn-outline-primary w-25" onclick="">Quitar Filtros</button>
+                <button type="button" class="btn btn-outline-primary w-25" onclick="">Quitar Filtro</button>
             </div>
         </div>
         <div class="col-md-4 text-end pt-3">

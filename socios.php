@@ -263,7 +263,7 @@ include("footer.php"); ?>
             var telSoci = document.getElementById("telSoci").value;
             var localidadSoci = document.getElementById("localidadSoci").value;
             var fechaSoci = document.getElementById("fechaSoci").value;
-            var contraSoci = document.getElementById("contraSoci").value;
+            // var contraSoci = document.getElementById("contraSoci").value;
             var premisoSoci = document.getElementById("premisoSoci").value;
 
 
@@ -279,7 +279,7 @@ include("footer.php"); ?>
             };
             xhttp.open("POST", "funciones/actualizarSocio.php?idSocio=" + idSocio + "&nomSoci=" + nomSoci + "&ape1Soci=" + ape1Soci +
                 "&ape2Soci=" + ape2Soci + "&correoSoci=" + correoSoci + "&telSoci=" + telSoci + "&localidadSoci=" + localidadSoci +
-                "&fechaSoci=" + fechaSoci + "&contraSoci=" + contraSoci + "&premisoSoci=" + premisoSoci, true);
+                "&fechaSoci=" + fechaSoci + "&premisoSoci=" + premisoSoci, true);
             xhttp.send();
         }
 

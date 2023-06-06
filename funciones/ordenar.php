@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 include_once "../conectarBBDD.php";
 
 function ordenarTabla()
@@ -7,86 +7,97 @@ function ordenarTabla()
     $btn = $_REQUEST['btn'];
 
     if ($btn == "btnMoviA") {
+        //$_SESSION['btnMoviA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.id_movimiento;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.id_movimiento;'
         );
     }
     if ($btn == "btnMoviZ") {
+        //$_SESSION['btnMoviZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.id_movimiento DESC;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.id_movimiento DESC'
         );
     }
     if ($btn == "btnNombreA") {
+        $_SESSION['btnNombreA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre ;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY s.nombre'
         );
     }
     if ($btn == "btnNombreZ") {
+        $_SESSION['btnNombreZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.nombre DESC;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY s.nombre DESC;'
         );
     }
     if ($btn == "btnApeA") {
+        //$_SESSION['btnApeA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 ;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY s.apellido1 ;'
         );
     }
     if ($btn == "btnApeZ") {
+        //$_SESSION['btnApeZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY s.apellido1 DESC;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY s.apellido1 DESC;'
         );
     }
     if ($btn == "btnCantA") {
+        $_SESSION['btnCantA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.cantidad;'
         );
     }
     if ($btn == "btnCantZ") {
+        $_SESSION['btnCantZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.cantidad DESC;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.cantidad DESC;'
         );
     }
     if ($btn == "btnConceptoA") {
+        //$_SESSION['btnConceptoA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.concepto;'
         );
     }
     if ($btn == "btnConceptoZ") {
+        //$_SESSION['btnConceptoZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
                 FROM movimientos m 
-                JOIN socios s WHERE m.id_socio = s.id_socio ORDER BY m.concepto DESC;'
+                JOIN socios s ON m.id_socio = s.id_socio ORDER BY m.concepto DESC;'
         );
     }
     if ($btn == "btnFechaA") {
+        $_SESSION['btnFechaA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -95,6 +106,7 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnFechaZ") {
+        $_SESSION['btnFechaZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -103,6 +115,7 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnGastoA") {
+        //$_SESSION['btnGastoA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -111,6 +124,7 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnGastoZ") {
+        //$_SESSION['btnGastoZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 

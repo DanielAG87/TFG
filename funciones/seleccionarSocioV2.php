@@ -72,12 +72,12 @@ function caca()
                             <div class="col-md-7">
                                 <input class="form-control" type="date" id="fechaSoci" value="<?= $j[7] ?>" />
                             </div>
-                            <div class="col-md-5 text-center">
+                            <!-- <div class="col-md-5 text-center">
                                 <label for="contraSoci" class="form-label">Contraseña</label>
-                            </div>
-                            <div class="col-md-7">
-                                <input class="form-control" type="text" id="contraSoci" value="<?= $j[8] ?>" />
-                            </div>
+                            </div> -->
+                            <!-- <div class="col-md-7">
+                                <input class="form-control" type="text" id="contraSoci" value="" /> $j[8] 
+                            </div> -->
                             <div class="col-md-5 text-center">
                                 <label for="premisoSoci" class="form-label">Permiso</label>
                             </div>

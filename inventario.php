@@ -19,8 +19,16 @@ mysqli_close($con);
             <button type="submit" class="btn btn-outline-primary">Juegos</button>
         </form>
         <form method="post" action="almacen.php">
-            <button type="submit" class="btn btn-outline-primary">Almacén</button>
-        </form>
+            <?php 
+            if ($_SESSION['permiso'] == "Si") { 
+                echo    '<button type="submit" class="btn btn-outline-primary">Almacén</button>';
+                echo '</form>';
+            }
+            else{ ?>
+                <button type="button" id="solojefes" class="btn btn-outline-primary">Almacén</button> <?php
+            }
+            ?>
+        
     </div>
 </div>
 

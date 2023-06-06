@@ -10,9 +10,22 @@ function filtrarDatos(){
         $contener = '%' . $selInput . '%';
 
         try{
-        $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-        FROM movimientos m 
-        JOIN socios s  on m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
+            if (!empty($_SESSION['btnNombreA']) && $_SESSION['btnNombreA'] == 'btnNombreA' ) {
+                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                FROM movimientos m 
+                JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre DESC");
+            }
+            elseif (!empty($_SESSION['btnNombreZ']) && $_SESSION['btnNombreZ'] == 'btnNombreZ' ) {
+                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                FROM movimientos m 
+                JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre");
+            }
+            else{
+                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                FROM movimientos m 
+                JOIN socios s  ON m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
+            }
+        
         $filtrar->bind_param("s", $contener);
         $filtrar->execute();
         $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
@@ -20,6 +33,31 @@ function filtrarDatos(){
             echo "Error al filtrar: " . $e->getMessage();
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+    // if ($selBuscador == "Nombre" && $selInput != "") {
+    //     $contener = '%' . $selInput . '%';
+
+    //     try{
+    //     $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+    //     FROM movimientos m 
+    //     JOIN socios s  on m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
+    //     $filtrar->bind_param("s", $contener);
+    //     $filtrar->execute();
+    //     $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+    //     } catch (Exception $e) {
+    //         echo "Error al filtrar: " . $e->getMessage();
+    //     }
+    // }
 
     if ($selBuscador == "Cantidad" && $selInput != "") {
         try{

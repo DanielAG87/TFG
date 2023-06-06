@@ -36,7 +36,7 @@
 
 
                 <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    < <span>
+                    <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="white" class="bi bi-filter" viewBox="0 0 16 16">
                             <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z" />
                         </svg>
@@ -65,10 +65,10 @@
                             </li> <?php
                                 } else { ?>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href=""><del>Contabilidad</del></a>
+                                <a class="nav-link" id="agotado">Contabilidad</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="blanco" href=""><del>Socios</del></a>
+                                <a class="nav-link" id="agotado">Socios</a>
                             </li>
                         <?php } ?>
 
@@ -77,7 +77,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <!-- <span class="mr-3" id="blanco"><?= $_SESSION['nombre'] ?></span> -->
+                <span class="pr-3 mr-2" id="spanNombre">¡Bienvenido! <?= $_SESSION['nombre'] ?></span>
                 <form method="post" action="index.php">
                     <button type="submit" id="descon" name="descon" value="descon" class="btn btn-outline-warning ml-4">Desconectar</button>
                 </form>

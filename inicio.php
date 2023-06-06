@@ -75,7 +75,7 @@ $pase = false; ?>
             <p><strong>Domicilio:  <em>Calle de los músicos, 2 19180 Marchamalo, Guadalajara </em></strong></p>
             <p><strong>Correo:  <em>asociacionrunablanca@gmail.com</em></strong></p>
             <p><strong>CIF:  <em>82080366J </em></strong></p>
-            <p><strong>Número de cuenta: <em>ES53 1490 7600 1116 0001 4605</em></strong></p>
+            <p><strong>Número de cuenta: <em>ES22 3333 4444 5555 6666 9999</em></strong></p>
           </div>
         </div>
       </div>
