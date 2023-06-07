@@ -25,8 +25,9 @@ $torneos = mysqli_query(
 );
 
 mysqli_close($con); ?>
+<h3 class="text-center h3 text-primary vikingo">Actividades</h3>
 
-<h3 class="text-center">Próximo evento: <?= $proximaActividad ?></h3>
+<h4 class="text-center h4">Próximo evento: <?= $proximaActividad ?></h4>
 
 <!-- Contador regresivo -->
 <div id="bodyCrono" class="mb-3">

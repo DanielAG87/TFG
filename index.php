@@ -68,7 +68,7 @@ if (!empty($_REQUEST['descon']) || empty($_REQUEST) || empty($_SESSION)) {
 
     <body class="text-center" id="bodyLogin">
 
-        <div class="container-fluid pt-5">
+        <div class="container-fluid " id="login1">
             <h1 class="h1 pb-3 " id="h1Login">Asociación Runa Blanca</h1>
             <img id="loginIMG" src="./img/iconoRuna5.png" />
             <h4 class="h4" id="h1Login">Login</h4>

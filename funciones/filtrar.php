@@ -1,164 +1,139 @@
-<?php 
+<?php session_start();
 include_once "../conectarBBDD.php";
 
 function filtrarDatos(){
-    $selBuscador = $_REQUEST['selBuscador'];
-    $selInput =  $_REQUEST['selInput'];
+    $selOpcion = $_REQUEST['selOpcion'];
+    $selValor =  $_REQUEST['selValor'];
+    $selorden =  $_REQUEST['selorden'];
     $con = conectarBD();
+    $permiso = false;
+    $error = "";
 
-    if ($selBuscador == "Nombre" && $selInput != "") {
-        $contener = '%' . $selInput . '%';
+    if (!empty($selOpcion) && !empty($selValor) && !empty($selorden)) {
 
-        try{
-            if (!empty($_SESSION['btnNombreA']) && $_SESSION['btnNombreA'] == 'btnNombreA' ) {
-                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-                FROM movimientos m 
-                JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre DESC");
-            }
-            elseif (!empty($_SESSION['btnNombreZ']) && $_SESSION['btnNombreZ'] == 'btnNombreZ' ) {
-                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-                FROM movimientos m 
-                JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre");
-            }
-            else{
-                $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-                FROM movimientos m 
-                JOIN socios s  ON m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
-            }
-        
-        $filtrar->bind_param("s", $contener);
-        $filtrar->execute();
-        $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-        } catch (Exception $e) {
-            echo "Error al filtrar: " . $e->getMessage();
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-    // if ($selBuscador == "Nombre" && $selInput != "") {
-    //     $contener = '%' . $selInput . '%';
-
-    //     try{
-    //     $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-    //     FROM movimientos m 
-    //     JOIN socios s  on m.id_socio = s.id_socio WHERE s.nombre LIKE ?");
-    //     $filtrar->bind_param("s", $contener);
-    //     $filtrar->execute();
-    //     $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-    //     } catch (Exception $e) {
-    //         echo "Error al filtrar: " . $e->getMessage();
-    //     }
-    // }
-
-    if ($selBuscador == "Cantidad" && $selInput != "") {
-        try{
-        $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-        FROM movimientos m JOIN socios s on m.id_socio = s.id_socio WHERE m.cantidad = ?");
-        $filtrar->bind_param("i", $selInput);
-        $filtrar->execute();
-        $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-        } catch (Exception $e) {
-            echo "Error al filtrar: " . $e->getMessage();
-        }
-    }
-    if ($selBuscador == "Fecha" && $selInput != "") {
-        try{
-            $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
-            FROM movimientos m JOIN socios s on m.id_socio = s.id_socio  WHERE m.fecha_movimiento = ?");
-            $filtrar->bind_param("s", $selInput);
+        if ($selOpcion == "Cantidad" && $selValor != "") {
+            $cantidad = floatval($selValor);
+            try{
+                if ($selorden == 'Descendente') {
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                        FROM movimientos m JOIN socios s ON m.id_socio = s.id_socio WHERE m.cantidad = ? ORDER BY s.id_socio DESC");
+                }
+                else{
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m JOIN socios s on m.id_socio = s.id_socio WHERE m.cantidad = ? ORDER BY s.id_socio");
+                }
+            $filtrar->bind_param("i", $cantidad);
             $filtrar->execute();
             $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
-        } catch (Exception $e) {
-            echo "Error al filtrar: " . $e->getMessage();
+            $permiso = true;
+            } catch (Exception $e) {
+                echo "Error al filtrar: " . $e->getMessage();
+            }
         }
+
+
+        if ($selOpcion == "Fecha" && $selValor != "" && is_string($selValor)) {
+            $fechaFormateada = date("Y-m-d", strtotime($selValor));
+            try{
+                if ($selorden == 'Descendente') {
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m JOIN socios s on m.id_socio = s.id_socio  WHERE m.fecha_movimiento = ? ORDER BY s.id_socio DESC");
+                }
+                else{
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m JOIN socios s on m.id_socio = s.id_socio  WHERE m.fecha_movimiento = ?");
+                }
+                $filtrar->bind_param("s", $fechaFormateada);
+                $filtrar->execute();
+                $resultFiltrar = $filtrar->get_result();
+                if ($resultFiltrar->num_rows >= 1) {
+                    $permiso = true;
+                }
+                else{
+                    $error .= 'No hay nada';
+                }
+                
+            } catch (Exception $e) {
+                echo "Error al filtrar: " . $e->getMessage();
+            }
+        }
+        if ($selOpcion == "Nombre" && $selValor != "" && is_string($selValor)) {
+            $contener = '%' . $selValor . '%';
+    
+            try{
+                if ($selorden == 'Descendente') {
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m 
+                    JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre DESC");
+                }
+                else {
+                    $filtrar = $con->prepare("SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m 
+                    JOIN socios s ON m.id_socio = s.id_socio WHERE s.nombre LIKE ? ORDER BY s.nombre");
+                }
+            
+            $filtrar->bind_param("s", $contener);
+            $filtrar->execute();
+            $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+            $permiso = true;
+            } catch (Exception $e) {
+                echo "Error al filtrar: " . $e->getMessage();
+            }
+        }
+
+
     }
-?>
+    mysqli_close($con);
 
+    if ($permiso) { ?>
+        <div class="container-fluid" id="tablaFull">
 
+            <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
+                <tr>
+                    <th>
+                        <span class="sortable-header">ID Movimiento</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Nombre</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Primer Apellido</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Cantidad</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Concepto</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Fecha Movimiento</span>
+                    </th>
+                    <th>
+                        <span class="sortable-header">Tipo Gasto</span>
+                    </th>
+                </tr>
+                <tr>
+                    <?php
+                    while ($row = $resultFiltrar->fetch_assoc()) { 
+                        $fechaFormateada = date("d-m-Y", strtotime($row["fecha_movimiento"]));?>
+                        <td><?= $row["id_movimiento"] ?></td>
+                        <td><?= $row["nombre"] ?></td>
+                        <td><?= $row["apellido1"] ?></td>
+                        <td><?= $row["cantidad"] ?></td>
+                        <td><?= $row["concepto"] ?></td>
+                        <td><?= $fechaFormateada ?></td>
+                        <td><?= $row["tipo_gasto"] ?></td>
+                    </tr>
+                <?php } ?>
+                </table>
+            </div>
+            <?php
+    } 
+    else{
+        $error .="Error al insertar los datos";
+        echo $error;
+    }
+}
 
-    <div class="container-fluid" id="tablaFull">
-
-    <table class="table table-striped table-hover table-bordered text-center" id="tablaPrincipal">
-        <tr>
-            <th>
-                <span class="sortable-header">
-                    ID Movimiento
-                    <button style="border: none;" onclick="ordenar('btnMoviA')"><i class="bi bi-sort-numeric-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnMoviZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
-                </span>
-            </th>
-            <th>
-                <span class="sortable-header">
-                    Nombre
-                    <button style="border: none;" onclick="ordenar('btnNombreA')"><i class="bi bi-sort-alpha-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnNombreZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
-                </span>
-            </th>
-            <th>
-                <span class="sortable-header">
-                    Primer Apellido
-                    <button style="border: none;" onclick="ordenar('btnApeA')"><i class="bi bi-sort-alpha-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnApeZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
-                </span>
-            </th>
-            <th>
-                <span class="sortable-header">
-                    Cantidad
-                    <button style="border: none;" onclick="ordenar('btnCantA')"><i class="bi bi-sort-numeric-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnCantZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
-                </span>
-            </th>
-
-            <th>
-                <span class="sortable-header">
-                    Concepto
-                    <button style="border: none;" onclick="ordenar('btnConceptoA')"><i class="bi bi-sort-alpha-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnConceptoZ')"><i class="bi bi-sort-alpha-up-alt"></i></button>
-                </span>
-            </th>
-            <th>
-                <span class="sortable-header">
-                    Fecha Movimiento
-                    <button style="border: none;" onclick="ordenar('btnFechaA')"><i class="bi bi-sort-numeric-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnFechaZ')"><i class="bi bi-sort-numeric-up-alt"></i></button>
-                </span>
-            </th>
-            <th>
-                <span class="sortable-header">
-                    Tipo Gasto
-                    <button style="border: none;" onclick="ordenar('btnGastoA')" ><i class="bi bi-sort-alpha-down"></i></button> 
-                    <button style="border: none;" onclick="ordenar('btnGastoZ')" ><i class="bi bi-sort-alpha-up-alt"></i></button>
-                </span>
-            </th>
-        </tr>
-        <tr>
-            <?php $i = 0;
-            mysqli_close($con);
-
-            while ($row = $resultFiltrar->fetch_assoc()) { ?>
-                <td><?= $row["id_movimiento"] ?></td>
-                <td><?= $row["nombre"] ?></td>
-                <td><?= $row["apellido1"] ?></td>
-                <td><?= $row["cantidad"] ?></td>
-                <td><?= $row["concepto"] ?></td>
-                <td><?= $row["fecha_movimiento"] ?></td>
-                <td><?= $row["tipo_gasto"] ?></td>
-            </tr>
-           <?php } ?>
-       
-    <?php $i++;
-            } ?>
-    </table>
-</div>
-<?php
 
 filtrarDatos(); ?>

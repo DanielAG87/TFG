@@ -4,3 +4,10 @@ $(document).ready(function() {
 	});
 
 });
+
+
+
+
+function quitarFiltros(){
+    location.reload();
+}

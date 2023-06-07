@@ -12,7 +12,7 @@ $devolverJuegos = mysqli_fetch_all($juegos);
 mysqli_close($con);
 
 ?>
-<h3 class="text-center h3 text-primary">Inventario</h3>
+<h3 class="text-center h3 text-primary vikingo">Inventario</h3>
 <div class="container-fluid">
     <div class="d-flex justify-content-center mb-3">
         <form method="post" action="juegos.php">

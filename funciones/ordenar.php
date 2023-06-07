@@ -25,7 +25,7 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnNombreA") {
-        $_SESSION['btnNombreA'] = $btn;
+        
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -34,7 +34,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnNombreZ") {
-        $_SESSION['btnNombreZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -43,7 +42,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnApeA") {
-        //$_SESSION['btnApeA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -52,7 +50,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnApeZ") {
-        //$_SESSION['btnApeZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -79,7 +76,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnConceptoA") {
-        //$_SESSION['btnConceptoA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -88,7 +84,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnConceptoZ") {
-        //$_SESSION['btnConceptoZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -97,7 +92,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnFechaA") {
-        $_SESSION['btnFechaA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -115,7 +109,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnGastoA") {
-        //$_SESSION['btnGastoA'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -124,7 +117,6 @@ function ordenarTabla()
         );
     }
     if ($btn == "btnGastoZ") {
-        //$_SESSION['btnGastoZ'] = $btn;
         $orden = mysqli_query(
             $con,
             'SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
@@ -194,13 +186,14 @@ function ordenarTabla()
             </tr>
             <tr>
                 <?php $i = 0;
-                while ($row = mysqli_fetch_assoc($orden)) { ?>
+                while ($row = mysqli_fetch_assoc($orden)) { 
+                    $fechaFormateada = date("d-m-Y", strtotime($row["fecha_movimiento"]));?>
                     <td><?= $row["id_movimiento"] ?></td>
                     <td><?= $row["nombre"] ?></td>
                     <td><?= $row["apellido1"] ?></td>
                     <td><?= $row["cantidad"] ?></td>
                     <td><?= $row["concepto"] ?></td>
-                    <td><?= $row["fecha_movimiento"] ?></td>
+                    <td><?= $fechaFormateada ?></td>
                     <td><?= $row["tipo_gasto"] ?></td>
             </tr>
         <?php $i++;

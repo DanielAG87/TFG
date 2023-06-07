@@ -3,34 +3,23 @@ include "headerV2.php";
 include_once "conectarBBDD.php";
 
 $con = conectarBD();
-
-// $juegos = mysqli_query(
-//     $con,
-//     'SELECT nombre, min_jugadores, max_jugadores, mecanica, edad, reservado, ruta_foto, id_juego, cambio_socio
-//     FROM juegos order by nombre'
-// );
-
-
 $juegos = mysqli_query(
     $con,
     'SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
         FROM  juegos j
         LEFT JOIN reserva r ON r.id_juego = j.id_juego ORDER BY j.nombre');
 
-
-
 $devolverJuegos = mysqli_fetch_all($juegos);
 mysqli_close($con);
 
 ?>
-<div id="reserva"></div>
+<!-- <div id="reserva"></div> -->
 
 <div class="container-fluid" id="tablaJuegos">
 
     <div class="row">
         <?php
-        foreach ($devolverJuegos as $j) {
-        ?>
+        foreach ($devolverJuegos as $j) {?>
 
             <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3">
                 <span style="text-align: center;"><strong><?= $j[3] ?></strong></span><br />
@@ -65,13 +54,13 @@ mysqli_close($con);
 <script>
     function reservarJuego(idJuego, dispopnible, estado, camSocio) {
         $(document).ready(function() {
-            $("#tablaJuegos").hide();
+            // $("#tablaJuegos").hide();
             // $("#tablaPrincipal2").hide();
         });
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById('reserva').innerHTML = this.responseText;
+                document.getElementById('tablaJuegos').innerHTML = this.responseText;
                  
                 $(document).ready(function() {
                     $("#exampleModal").modal("show");

@@ -1,5 +1,7 @@
 <?php session_start();
+
 include "../conectarBBDD.php";
+
 function reservaJuegos()
 {
     $id_juego = $_REQUEST['idJuego'];
@@ -74,11 +76,12 @@ function reservaJuegos()
         $socioUP = intval($cambioSocio + 1);
 
         $con->begin_transaction();
+        
 
         try {
             // Consulta 1: Actualizar juego a reservado
-            $stmt1 = $con->prepare("UPDATE juegos SET reservado = 1, cambio_socio = ?  WHERE id_juego = ?");
-            $stmt1->bind_param("ii", $socioUP, $id_juego);
+            $stmt1 = $con->prepare("UPDATE juegos SET reservado = 1, cambio_socio = ? WHERE id_juego = ?");
+            $stmt1->bind_param("ii",$socioUP, $id_juego);
             $stmt1->execute();
             $stmt1->close();
 
@@ -167,10 +170,8 @@ function reservaJuegos()
         
         $devolverJuegos = mysqli_fetch_all($juegos);
         mysqli_close($con);
-
-
 ?>
-        <div id="reserva"></div>
+        <!-- <div id="reserva"></div> -->
 
         <div class="container-fluid">
 
@@ -186,31 +187,27 @@ function reservaJuegos()
                 <span>Edad mínima:<?= $j[10] ?></span><br />
                 <?php
                 if ($j[12] == 1 && $j[0] == $_SESSION['id']) { ?> <!-- si está reservado -->
-                    <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'devolver', '<?= $j[12] ?>')" >Devolver</button>
+                    <button class="btn btn-outline-primary" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'devolver', '<?= $j[13] ?>')" >Devolver</button>
                 <?php
                 } 
                 elseif ($j[12] == 1 && $j[0] != $_SESSION['id']) { ?>
                    
-                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'solicitar', '<?= $j[12] ?>')">Solicitar</button>
+                    <button class="btn btn-outline-danger" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'solicitar', '<?= $j[13] ?>')">Solicitar</button>
 
                 <?php
                 }
                 elseif ($j[12] == 0){ ?>
-                     <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[11] ?>', 'reservar', '<?= $j[12] ?>')">Reservar</button>
+                     <button class="btn btn-outline-success" onclick="reservarJuego('<?= $j[2] ?>', '<?= $j[12] ?>', 'reservar', '<?= $j[13] ?>')">Reservar</button>
 
-                     <?php }
-                ?>
+                     <?php } ?>
             </div>
 
                 <?php } ?>
 
             </div>
         </div>
-<?php
+        <?php
     }
-
-
-
 
     // <!-- Modal -->
     $modal .= '</span>
@@ -224,7 +221,6 @@ function reservaJuegos()
 </div>';
     echo $modal;
 }
-
 
 reservaJuegos(); ?>
 

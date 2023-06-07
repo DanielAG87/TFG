@@ -388,3 +388,12 @@ ALTER Table inventario CHANGE juego utilidad VARCHAR(50) NOT null;
 SELECT i.*, s.nombre, s.apellido1 FROM inventario i JOIN socios s on i.comprador = s.id_socio;
 
 ALTER TABLE socios AUTO_INCREMENT = 19;
+
+SELECT m.id_movimiento, s.nombre, s.apellido1, m.cantidad, m.concepto, m.fecha_movimiento, m.tipo_gasto 
+                    FROM movimientos m JOIN socios s on m.id_socio = s.id_socio WHERE m.cantidad = 10 ORDER BY id_movimiento ;
+
+
+
+SELECT r.id_socio as `socio reserva`, r.id_juego as `juego reservado`, j.*
+        FROM  juegos j
+        LEFT JOIN reserva r ON r.id_juego = j.id_juego ORDER BY j.nombre
