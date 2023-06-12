@@ -58,13 +58,13 @@ function nuevoMovimiento()
         $datosFaltantes .= 'Introduzca tipo movimiento <br />';
     }
     // control de la cantidad
-    if (!empty($cantidad) && is_numeric($cantidad)) {
+    if (!empty($cantidad) && is_numeric($cantidad) && $cantidad > 0) {
         $contador++;
     } else {
         // echo '<div class="container-fluid">';
         // echo    "<p class='text-danger font-weight-bold'>ntroduzca una cantidad</p>";
         // echo '</div>';
-        $datosFaltantes .= 'Introduzca una cantidad <br />';
+        $datosFaltantes .= 'Introduzca una cantidad apropiada <br />';
     }
 
     // control concepto

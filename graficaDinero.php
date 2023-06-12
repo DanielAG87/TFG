@@ -52,7 +52,7 @@ $saldo = $ingresoTotal - $gastoTotal;
     </form>
 </div>
 
-
+<?php include("footer.php"); ?>
 <!-- GRAFICA REDONDA -->
 
 <script>

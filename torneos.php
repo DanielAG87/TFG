@@ -54,7 +54,7 @@ mysqli_close($con); ?>
 </div>
 <!-- Fin contador regresivo -->
 <div class="d-flex justify-content-center mb-3">
-    <button type="button" class="btn btn-outline-primary" id="nTorneo2" data-bs-toggle="modal" data-bs-target="#nTorneo">Nuevo Torneo</button>
+    <button type="button" class="btn btn-outline-primary" id="nTorneo2" data-bs-toggle="modal" data-bs-target="#nTorneo">Nueva actividad</button>
 </div>
 
 
@@ -68,7 +68,7 @@ mysqli_close($con); ?>
         <?php
         $fechaActual = date('d-m-Y');
         foreach ($torneos as $j) {
-            $fechaCambiada = date('d/m/Y', strtotime($j['fecha']));
+            $fechaCambiada = date('d-m-Y', strtotime($j['fecha']));
         ?>
             <div class="col-sm-12 col-md-4 text-center mb-3"> 
                 <?php
@@ -85,7 +85,7 @@ mysqli_close($con); ?>
                 <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
 
                 <?php 
-                    if ($fechaCambiada <  $fechaActual) { ?>
+                    if ( strtotime($fechaCambiada) < strtotime($fechaActual)) { ?>
                         <span class="fs-5">Fecha: <strong style="color: red;">Finalizado</strong></span><br /> <?php
                     }
                     else{ ?>
@@ -110,7 +110,7 @@ mysqli_close($con); ?>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header ">
-                <h5 class="modal-title mx-auto" id="exampleModalLabel">Nuevo Torneo</h5>
+                <h5 class="modal-title mx-auto" id="exampleModalLabel">Nueva actividad</h5>
             </div>
             <div class="modal-body mx-auto">
                 <div class="row">

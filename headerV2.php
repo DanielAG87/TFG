@@ -10,14 +10,15 @@
     <meta name="date" content=" 20/04/2023">
     <meta name="TFG Daniel Agustín Arroyo " content="TFG 2023">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Asociación Runa Blanca</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="TFGcolor.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- uldimo -->
+    <link rel="icon" href="./img/RunaLogo.svg" type="image/x-icon">
     <!-- <script src="js.js"></script>  -->
 </head>
 
