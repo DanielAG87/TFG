@@ -3,7 +3,7 @@
 }
 
 
-.navbar, footer{
+/* .navbar, footer{ */
   /* font-family: "Viking"; */
    /* font-family: "Virgo Display"; */
     /* font-family: "PR Celtic Narrow"; */
@@ -11,7 +11,7 @@
   /* font-family: 'Comic Sans MS'; */
   /* font-family: 'Stonehenge'; */
   /* letter-spacing: 3px; */
-}
+/* } */
 .vikingo{
   font-family: "Viking";
   letter-spacing: 2px;
