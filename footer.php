@@ -27,9 +27,9 @@
                 <li class="nav-item"><a href="socios.php" class="nav-link px-2 text-white">Socios</a></li>
             </ul>
             <div class="text-center">
-                <span class="text-white">© 2023-2025 Asociación Runa Blanca</span>
-                <a class="text-muted" href="https://www.facebook.com/asociacionrunablanca"><i class="bi bi-facebook"></i></a>
-                <a class="text-muted" href="https://www.instagram.com/asociacion_runa_blanca/"><i class="bi bi-instagram"></i></a>
+                <span class="text-white" id="spanFooter">© 2023-2025 Asociación Runa Blanca</span>
+                <a class="text-muted" id="" href="https://www.facebook.com/asociacionrunablanca"><i class="bi bi-facebook iconoBlanco"></i></a>
+                <a class="text-muted" href="https://www.instagram.com/asociacion_runa_blanca/"><i class="bi bi-instagram iconoBlanco"></i></a>
             </div>
         </footer>
     </div>

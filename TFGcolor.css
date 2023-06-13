@@ -114,6 +114,13 @@ footer{
     color: white;
     /* margin-bottom: 0rem !important; */
 }
+#spanFooter{
+  padding-right: 20px;
+}
+.iconoBlanco{
+  color: white;
+  padding-right: 4px;
+}
 
 /* #descon{
   float: right;

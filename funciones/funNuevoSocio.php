@@ -193,27 +193,8 @@ function addNuevoSocio()
         </div>
     </div> <?php
 
-
-
-
-
-
-
-
-
-    $modal .= '             </span>
-                                </div>
-                                <div class="modal-footer mx-auto">
-                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>';
     echo $modal;
     
 }
-
-
 
 addNuevoSocio();

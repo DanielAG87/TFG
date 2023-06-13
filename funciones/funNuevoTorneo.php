@@ -14,7 +14,7 @@ function nuevoTorneillo()
     $fecha = $_REQUEST['fecha'];
     $entrada = ucwords($_REQUEST['entrada']);
     $cartel = $_REQUEST['cartel'];
-    
+
 
     $modal = '<div class="modal fade" id="modalNuevoTorneo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -59,7 +59,7 @@ function nuevoTorneillo()
     if (!empty($fecha) && strtotime($fecha) > strtotime($fecha_actual)) {
         $contador++;
     } else {
-        $datosFaltantes .= 'Introduzca fecha  <br />';
+        $datosFaltantes .= 'Introduzca fecha válida <br />';
     }
 
     // control entrada
@@ -73,13 +73,12 @@ function nuevoTorneillo()
     if (empty($cartel) || preg_match("/\.(jpg|jpeg|png|gif)$/i", $cartel)) {
         $path = '../img/torneos/*.jpg';
         $filenames = glob($path);
-    
-        for ($i=0; $i < count($filenames) ; $i++) { 
+
+        for ($i = 0; $i < count($filenames); $i++) {
             if ($filenames[$i] == "../img/torneos/" . $cartel) {
                 $cartel = "./img/torneos/" . $cartel;
                 break;
-            }
-            else{
+            } else {
                 $cartel = "";
             }
         }
@@ -89,45 +88,53 @@ function nuevoTorneillo()
     }
     // si todo está correcto hacemos el insert.
     if ($contador == 7) {
-        $id= mysqli_query($con, "SELECT id_socio FROM socios where nombre = '{$nombre}' AND apellido1 = '{$ape1}'");
-        $row = mysqli_fetch_assoc($id);
-        $idFulano = $row['id_socio'];
+        $id = mysqli_query($con, "SELECT id_socio FROM socios where nombre = '{$nombre}' AND apellido1 = '{$ape1}'");
+        $socioExiste = mysqli_num_rows($id);
+        if ($socioExiste == 1) {
+            $row = mysqli_fetch_assoc($id);
+            $idFulano = $row['id_socio'];
 
-        $nuevoTorneo = "INSERT INTO torneos (organizador1, actividad, num_participantes, fecha, coste_entrada, cartel) 
+            $nuevoTorneo = "INSERT INTO torneos (organizador1, actividad, num_participantes, fecha, coste_entrada, cartel) 
                         VALUES (?, ?, ?, ?, ?, ?)";
 
-        $stmt = mysqli_stmt_init($con);
+            $stmt = mysqli_stmt_init($con);
 
-        if (mysqli_stmt_prepare($stmt, $nuevoTorneo)) {
+            if (mysqli_stmt_prepare($stmt, $nuevoTorneo)) {
 
-            if (mysqli_stmt_bind_param($stmt, "isisis", $idFulano, $actividad, $participantes, $fecha, $entrada, $cartel)) {
+                if (mysqli_stmt_bind_param($stmt, "isisis", $idFulano, $actividad, $participantes, $fecha, $entrada, $cartel)) {
 
-                if (mysqli_stmt_execute($stmt)) {
-                    $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
+                    if (mysqli_stmt_execute($stmt)) {
+                        $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
                                     class="bi bi-check-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                     <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
                                 </svg> ';
-                    $modal .= 'Actividad añadida';
-
-                } else {
-                    $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                        $modal .= 'Actividad añadida';
+                    } else {
+                        $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                                 </svg> ';
-                    $modal .= 'Fallo al añadir actividad';
+                        $modal .= 'Fallo al añadir actividad';
+                    }
                 }
+            } else {
+                $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                    </svg> ';
+                $modal .= 'No se ha podido completar la accion, Prueba más tarde';
             }
-        } else {
+            mysqli_stmt_close($stmt);
+        }
+        else{
             $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
                     </svg> ';
-                    $modal .= 'No se ha podido completar la accion, Prueba más tarde';
+                $modal .= 'El socio no existe';
         }
-        mysqli_stmt_close($stmt);
-    }
-    else{
+    } else {
         $modal .= '<strong style="color:red;">Faltan datos: </strong><br /> ' . $datosFaltantes;
     }
 
@@ -158,27 +165,25 @@ function nuevoTorneillo()
             <?php
             $fechaActual = date('d-m-Y');
             foreach ($torneos as $j) {
-                $fechaCambiada =date('d/m/Y', strtotime($j['fecha']));
+                $fechaCambiada = date('d/m/Y', strtotime($j['fecha']));
             ?>
                 <div class="col-sm-12 col-md-4 text-center mb-3">
                     <?php
-                if (empty($j['cartel'])) { ?>
-                    <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="./img/torneos/noIMG.png"/><br />
-                <?php } 
-                else{ ?>
-                    <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
-                <?php }
-                ?>
+                    if (empty($j['cartel'])) { ?>
+                        <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="./img/torneos/noIMG.png" /><br />
+                    <?php } else { ?>
+                        <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
+                    <?php }
+                    ?>
                     <span class="fs-5"><strong><?= $j['actividad'] ?></strong></span><br />
-                    <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br /> 
-                    <?php 
+                    <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
+                    <?php
                     if ($fechaCambiada <  $fechaActual) { ?>
                         <span class="fs-5">Fecha: <strong style="color: red;">Finalizado</strong></span><br /> <?php
-                    }
-                    else{ ?>
+                                                                                                            } else { ?>
                         <span class="fs-5">Fecha: <?= $fechaCambiada ?></span><br /> <?php
-                    }
-                    ?>
+                                                                                                            }
+                                                                                        ?>
                     <span class="fs-5">Entrada: <?= $j['coste_entrada'] ?> Eurazos</span><br />
                     <span class="fs-5">Organización <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
                     <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
@@ -190,8 +195,8 @@ function nuevoTorneillo()
         </div>
     </div>
 
-<?php      
-    
+<?php
+
 }
 
 
