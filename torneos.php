@@ -85,7 +85,7 @@ mysqli_close($con); ?>
                 <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
 
                 <?php 
-                    if ( strtotime($fechaCambiada) < strtotime($fechaActual)) { ?>
+                    if (strtotime($fechaCambiada) < strtotime($fechaActual)) { ?>
                         <span class="fs-5">Fecha: <strong style="color: red;">Finalizado</strong></span><br /> <?php
                     }
                     else{ ?>

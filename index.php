@@ -57,6 +57,7 @@ if (!empty($_REQUEST['descon']) || empty($_REQUEST) || empty($_SESSION)) {
         <title>Runa Blanca</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="TFGcolor.css" />
+        <link rel="icon" href="./img/RunaLogo.svg" type="image/x-icon">
         <style>
             #h1Login {
                 color: whitesmoke;
