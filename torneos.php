@@ -70,15 +70,16 @@ mysqli_close($con); ?>
         foreach ($torneos as $j) {
             $fechaCambiada = date('d-m-Y', strtotime($j['fecha']));
         ?>
-            <div class="col-sm-12 col-md-4 text-center mb-3"> 
+        <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center mb-3"> 
                 <?php
                 if (empty($j['cartel'])) { ?>
                     
-                    <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content;" src="./img/torneos/noIMG.png"/><br />
+                    <img style="width: 320px; height: 400px; max-width:max-content; max-height:max-content;" src="./img/torneos/noIMG.png"/><br />
                     
                 <?php } 
                 else{ ?>
-                    <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
+                    <img style="width: 320px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
                 <?php }
                 ?>
                 <span class="fs-5"><strong><?= $j['actividad'] ?></strong></span><br />
@@ -97,7 +98,7 @@ mysqli_close($con); ?>
                 <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
                 <span class="fs-5">Telefono: <?= $j['telefono'] ?></span>
             </div>
-            <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
+            
         <?php } ?>
 
     </div>

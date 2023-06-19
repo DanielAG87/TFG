@@ -100,7 +100,6 @@
     align-items: center;
 }
 
-
 .imagenCabecera{
     width: 50px ;
     height: 50px ;
@@ -129,7 +128,7 @@ footer{
 /* region contabilidad */
 #btnContabilidad{
   height: 40px;
-  width: 200px;
+  width: 170px;
 }
 .spacer {
   width: 40px; /* Ajusta el ancho del espacio según tus necesidades */
@@ -159,8 +158,14 @@ footer{
 
 /* Mapa y datos aso */
 #datoAso{
-  height: 350px;
-  font-size: 1.1em;
+  /* height: 350px; */
+  max-height: max-content;
+  /* font-size: 1.1em; */
+  font-size: 120%;
+
+}
+.datoAso2{
+  height: 365px;
 }
 
 #mapaDatos{
@@ -188,7 +193,7 @@ footer{
     align-content: space-between;
 }
   #sectionCrono {
-    width: 557px;
+    width: auto;
     /* min-height: 100vh; */
     display: flex;
     align-items: end;
@@ -231,5 +236,15 @@ footer{
     color: #dff0ed;
     font-size: 1.5rem;
     font-weight: 400;
+    width: 130px;
   }
 /* Fin region cronometro */
+
+
+/* region gráfica */
+#grafica{
+  width: auto;
+  max-height: 464px;
+}
+
+/* fin region gráfica */

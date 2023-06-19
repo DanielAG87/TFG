@@ -26,11 +26,11 @@ $saldo = $ingresoTotal - $gastoTotal;
 <div class="row">
     <div class="col-md-6 d-flex align-items-center justify-content-center">
 
-        <div style="width: 800px;">
+        <div style="width: -webkit-fill-available;">
             <canvas id="grafica"></canvas>
         </div>
     </div>
-    <div class="col-md-4 d-flex align-items-center justify-content-center">
+    <div class="col-sm-2 col-md-4 d-flex align-items-center justify-content-center">
         <div>
 
             <h4>Ingresos: <span style="color: green;"><?= $ingresoTotal ?></span> €</h4><br>

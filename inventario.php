@@ -19,16 +19,13 @@ mysqli_close($con);
             <button type="submit" class="btn btn-outline-primary">Juegos</button>
         </form>
         <form method="post" action="almacen.php">
-            <?php 
-            if ($_SESSION['permiso'] == "Si") { 
+            <?php
+            if ($_SESSION['permiso'] == "Si") {
                 echo    '<button type="submit" class="btn btn-outline-primary">Almacén</button>';
                 echo '</form>';
-            }
-            else{ ?>
+            } else { ?>
                 <button type="button" id="solojefes" class="btn btn-outline-primary">Almacén</button> <?php
-            }
-            ?>
-        
+                                                                                                    } ?>
     </div>
 </div>
 
@@ -36,10 +33,14 @@ mysqli_close($con);
 <div class="container-fluid">
     <!-- <h1 class="text-center">Juegos más reservados</h1> -->
     <h2 class="text-center">Top 10 reservas</h2>
-
-    <div class="d-flex justify-content-center">
-        <div style="width: 700px;">
-            <canvas id="grafica"></canvas>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="d-flex justify-content-center">
+                <div style="width: -webkit-fill-available;">
+                    <canvas id="grafica"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -81,6 +82,7 @@ mysqli_close($con);
             ]
         },
         options: {
+            responsive: true,
             scales: {
                 yAxes: [{
                     ticks: {
