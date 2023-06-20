@@ -50,7 +50,7 @@ $pase = false; ?>
 <!-- Fin Carousel -->
 
 
-<div class="container-fluid" id="mapaDatos">
+<div class="container-fluid pt-6" id="mapaDatos">
   <div class="row align-items-center">
     <div class="col-md-6">
       <div class="d-flex justify-content-center">
@@ -58,10 +58,12 @@ $pase = false; ?>
       </div>
     </div>
 
-    <div class="col-md-6 p-md-3">
-      <div class="row align-items-center">
-        <div class="col-md-12" id="datoAso">
-          <h3 class="text-center"><u>Junta Directiva</u></h3><br />
+    
+
+    <div class="col-md-6 p-md-3 pt-5">
+      <div class="row "> <!-- align-items-center -->
+        <div class="col-md-6 pb-5" id="datoAso">
+          <h3 class=""><u>Junta Directiva</u></h3><br />
           <p><strong>Presidente / Caudillo: <em>Julio Cesar de Roma</em></strong></p>
           <p><strong>Vicepresidente: <em>Rubén Gómez Martínez</em></strong></p>
           <p><strong>Secretario: <em>Sofía López González</em></strong></p>
@@ -70,8 +72,8 @@ $pase = false; ?>
           <p><strong>Vocal: <em>María Socorro Juarez Perez</em></strong></p>
           <p><strong>Vocal: <em>Natalia Ruíz García</em></strong></p>
         </div>
-        <div class="col-md-12 datoAso2" id="datoAso">
-          <h3 class="text-center"><u>Datos Asociación</u></h3><br />
+        <div class="col-md-6 datoAso2" id="datoAso">
+          <h3 class=""><u>Datos Asociación</u></h3><br />
           <p><strong>Domicilio: <em>Calle de los músicos, 2 19180 Marchamalo, Guadalajara </em></strong></p>
           <p><strong>Correo: <em>runablanca@gmail.com</em></strong></p>
           <p><strong>CIF: <em>82080366J </em></strong></p>
@@ -79,8 +81,6 @@ $pase = false; ?>
         </div>
       </div>
     </div>
-
-
   </div>
 </div>
 
