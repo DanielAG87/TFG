@@ -3,25 +3,25 @@ include "headerV2.php";
 include_once "conectarBBDD.php";
 
 
-$con = conectarBD();
+// $con = conectarBD();
 
-$ingresos = mysqli_query($con, 'SELECT SUM(cantidad) as  ingresos From movimientos WHERE tipo_gasto = "ingreso";');
-$gastos = mysqli_query($con, 'SELECT SUM(cantidad) as gastos From movimientos WHERE tipo_gasto = "gasto";');
-$donaciones = mysqli_query($con, 'SELECT COUNT(id_movimiento) as donaciones from movimientos where tipo_gasto = "donacion";');
+// $ingresos = mysqli_query($con, 'SELECT SUM(cantidad) as  ingresos From movimientos WHERE tipo_gasto = "ingreso";');
+// $gastos = mysqli_query($con, 'SELECT SUM(cantidad) as gastos From movimientos WHERE tipo_gasto = "gasto";');
+// $donaciones = mysqli_query($con, 'SELECT COUNT(id_movimiento) as donaciones from movimientos where tipo_gasto = "donacion";');
 
 
-mysqli_close($con);
-// ingresos
-$resultadoIngreso = mysqli_fetch_assoc($ingresos);
-$ingresoTotal = round($resultadoIngreso['ingresos'], 2);
-//gastos
-$resultadoGasto = mysqli_fetch_assoc($gastos);
-$gastoTotal = round($resultadoGasto['gastos'], 2);
-//donaciones
-$resultadoDonacion = mysqli_fetch_assoc($donaciones);
-$donacionesTotales = $resultadoDonacion['donaciones'];
+// mysqli_close($con);
+// // ingresos
+// $resultadoIngreso = mysqli_fetch_assoc($ingresos);
+// $ingresoTotal = round($resultadoIngreso['ingresos'], 2);
+// //gastos
+// $resultadoGasto = mysqli_fetch_assoc($gastos);
+// $gastoTotal = round($resultadoGasto['gastos'], 2);
+// //donaciones
+// $resultadoDonacion = mysqli_fetch_assoc($donaciones);
+// $donacionesTotales = $resultadoDonacion['donaciones'];
 
-$saldo = $ingresoTotal - $gastoTotal;
+// $saldo = $ingresoTotal - $gastoTotal;
 
 ?>
 

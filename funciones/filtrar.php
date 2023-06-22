@@ -12,7 +12,7 @@ function filtrarDatos()
 
     if (!empty($selOpcion) && !empty($selValor) && !empty($selorden)) {
 
-        if ($selOpcion == "Cantidad" && $selValor != "") {
+        if ($selOpcion == "Cantidad" && $selValor != "" && is_numeric($selOpcion)) {
             $cantidad = floatval($selValor);
             try {
                 if ($selorden == 'Descendente') {
@@ -54,7 +54,7 @@ function filtrarDatos()
                 echo "Error al filtrar: " . $e->getMessage();
             }
         }
-        if ($selOpcion == "Nombre" && $selValor != "" && is_string($selValor)) {
+        if ($selOpcion == "Nombre" && $selValor != "" && !is_numeric($selValor)) {
             $contener = '%' . $selValor . '%';
 
             try {

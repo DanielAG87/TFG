@@ -63,7 +63,7 @@ function nuevoTorneillo()
     }
 
     // control entrada
-    if (!empty($entrada) &&  is_numeric($entrada)) {
+    if (!empty($entrada) &&  is_numeric($entrada) || $entrada == 0) {
         $contador++;
     } else {
         $datosFaltantes .= 'Introduzca entrada <br />';
@@ -84,7 +84,9 @@ function nuevoTorneillo()
         }
         $contador++;
     } else {
-        $datosFaltantes .= 'Cartel erroneo <br />';
+        $cartel = "";
+        $contador++;
+        // $datosFaltantes .= 'Cartel erroneo <br />';
     }
     // si todo está correcto hacemos el insert.
     if ($contador == 7) {
@@ -141,7 +143,7 @@ function nuevoTorneillo()
     $modal .= '             </span>
                                 </div>
                                 <div class="modal-footer mx-auto">
-                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="reload()">Cerrar</button>
                                     
                                 </div>
                             </div>
@@ -159,41 +161,47 @@ function nuevoTorneillo()
     mysqli_close($con); ?>
 
 
-    <div class="container-fluid" id="tablaTorneo">
+<div class="container-fluid" id="tablaTorneo">
 
-        <div class="row">
+<div class="row">
+    <?php
+    $fechaActual = date('d-m-Y');
+    foreach ($torneos as $j) {
+        $fechaCambiada = date('d-m-Y', strtotime($j['fecha']));
+    ?>
+    <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center mb-3"> 
             <?php
-            $fechaActual = date('d-m-Y');
-            foreach ($torneos as $j) {
-                $fechaCambiada = date('d/m/Y', strtotime($j['fecha']));
+            if (empty($j['cartel'])) { ?>
+                
+                <img style="width: 320px; height: 400px; max-width:max-content; max-height:max-content;" src="./img/torneos/noIMG.png"/><br />
+                
+            <?php } 
+            else{ ?>
+                <img style="width: 320px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
+            <?php }
             ?>
-                <div class="col-sm-12 col-md-4 text-center mb-3">
-                    <?php
-                    if (empty($j['cartel'])) { ?>
-                        <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="./img/torneos/noIMG.png" /><br />
-                    <?php } else { ?>
-                        <img style="width: 400px; height: 400px; max-width:max-content; max-height:max-content" src="<?= $j['cartel'] ?>" /><br />
-                    <?php }
-                    ?>
-                    <span class="fs-5"><strong><?= $j['actividad'] ?></strong></span><br />
-                    <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
-                    <?php
-                    if ($fechaCambiada <  $fechaActual) { ?>
-                        <span class="fs-5">Fecha: <strong style="color: red;">Finalizado</strong></span><br /> <?php
-                                                                                                            } else { ?>
-                        <span class="fs-5">Fecha: <?= $fechaCambiada ?></span><br /> <?php
-                                                                                                            }
-                                                                                        ?>
-                    <span class="fs-5">Entrada: <?= $j['coste_entrada'] ?> Eurazos</span><br />
-                    <span class="fs-5">Organización <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
-                    <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
-                    <span class="fs-5">Telefono: <?= $j['telefono'] ?></span>
-                </div>
-                <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
-            <?php } ?>
+            <span class="fs-5"><strong><?= $j['actividad'] ?></strong></span><br />
+            <span class="fs-5">Nº Participantes: <?= $j['num_participantes'] ?></span><br />
 
+            <?php 
+                if (strtotime($fechaCambiada) < strtotime($fechaActual)) { ?>
+                    <span class="fs-5">Fecha: <strong style="color: red;">Finalizado</strong></span><br /> <?php
+                }
+                else{ ?>
+                    <span class="fs-5">Fecha: <?= $fechaCambiada ?></span><br /> <?php
+                }
+                ?>
+            <span class="fs-5">Entrada: <?= $j['coste_entrada'] ?> Eurazos</span><br />
+            <span class="fs-5">Organización <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
+            <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
+            <span class="fs-5">Telefono: <?= $j['telefono'] ?></span>
         </div>
-    </div>
+        
+    <?php } ?>
+
+</div>
+</div>
 
 <?php
 

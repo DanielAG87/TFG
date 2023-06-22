@@ -8,8 +8,8 @@ $socios = mysqli_query($con, 'SELECT * FROM socios');
 // desconectarBD($con);
 if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
-<!-- <h3 class="text-center h3">SOCIOS</h3> -->
-<h3 class="text-center h3 text-primary vikingo">Socios</h3>
+    <!-- <h3 class="text-center h3">SOCIOS</h3> -->
+    <h3 class="text-center h3 text-primary vikingo">Socios</h3>
 
 
     <div class="container-fluid mb-3" id="tablaPrincipal1">
@@ -18,8 +18,8 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
                 <div class="d-flex justify-content-center">
                     <input type="text" id="nomBusqueda" class="form-control" placeholder="Nombre" />
                     <input type="text" id="apeBusqueda" class="form-control" placeholder="Apellido" />
-                    <button class="btn btn-outline-primary" type="button" name="modBuscarSocio" id="modBuscarSocio" onclick="buscarSocio()" >Buscar socio</button>
-                </div> 
+                    <button class="btn btn-outline-primary busSocio" type="button" name="modBuscarSocio" id="modBuscarSocio" onclick="buscarSocio()">Buscar socio</button>
+                </div>
 
             </div>
             <div class="col-md-4 d-flex align-items-center justify-content-center">
@@ -29,12 +29,9 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
     </div>
 
     <div id="resulBusqueda"></div> <br>
-    <!-- <div id="resulBorrar"></div> -->
-    <!-- <div id="result"></div> -->
     <div id="funBorrar"></div><br>
 
     <div class="container-fluid" id="tablaPrincipal2">
-        <!-- <form method="get" action="socios.php"> -->
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered text-center">
                 <tr>
@@ -52,7 +49,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
                 </tr>
                 <tr>
-                    <?php //$i = 0;
+                    <?php
                     while ($row = mysqli_fetch_assoc($socios)) { ?>
                         <td><?= $row['id_socio'] ?></td>
                         <td><?= $row["nombre"] ?></td>
@@ -68,12 +65,13 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
                             <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
                         </td>
                 </tr>
-            <?php //$i++;
+            <?php
                     } ?>
             </table>
         </div>
     </div>
 <?php }
+mysqli_close($con);
 
 include("footer.php"); ?>
 
@@ -154,166 +152,159 @@ include("footer.php"); ?>
             </div>
         </div>
     </div>
-</div> 
+</div>
 <!-- fin Modal -->
 
 
-    <script>
-        function addSocio() {
+<script>
+    function addSocio() {
 
-            var nombre = document.getElementById("nombre").value;
-            var ape1 = document.getElementById("ape1").value;
-            var ape2 = document.getElementById("ape2").value;
-            var correo = document.getElementById("correo").value;
-            var tel = document.getElementById("tel").value;
-            var loca = document.getElementById("loca").value;
-            var fechaNac = document.getElementById("fechaNac").value;
-            var contra = document.getElementById("contra").value;
-            var permiso = document.getElementById("permiso").value;
-
-
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('funBorrar').innerHTML = this.responseText;
-                    $(document).ready(function() {
-                        $("#tablaPrincipal2").hide();
-                        $("#modalNuevoSocio").modal("show");
-                    });
-                }
-            };
-            xhttp.open("POST", "funciones/funNuevoSocio.php?nombre=" + nombre + "&ape1=" + ape1 + "&ape2=" + ape2 + "&correo=" + correo + "&tel=" + tel +
-                "&loca=" + loca + "&fechaNac=" + fechaNac + "&contra=" + contra + "&permiso=" + permiso, true);
-            xhttp.send();
-        }
-
-        // codigo para limpiar los campos de los imput 
-        // $(document).ready(function() {
-        //     $(document).ready(function() {
-        //         $("#limpiar, #nuevoSocio2").click(function() {
-        //             $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
-        //             $("#permiso").prop("selectedIndex", 0);
-
-        //         });
-        //     });
-        // });
-        $(document).ready(function() {
-            $("#limpiar, #nuevoSocio2").click(function() {
-                $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
-                $("#permiso").prop("selectedIndex", 0);
-            });
-        });
+        var nombre = document.getElementById("nombre").value;
+        var ape1 = document.getElementById("ape1").value;
+        var ape2 = document.getElementById("ape2").value;
+        var correo = document.getElementById("correo").value;
+        var tel = document.getElementById("tel").value;
+        var loca = document.getElementById("loca").value;
+        var fechaNac = document.getElementById("fechaNac").value;
+        var contra = document.getElementById("contra").value;
+        var permiso = document.getElementById("permiso").value;
 
 
-        // funcion para la busqueda de los socios
-        function buscarSocio() {
-            var nombreSel = document.getElementById("nomBusqueda").value;
-            var apellidoSel = document.getElementById("apeBusqueda").value;
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('resulBusqueda').innerHTML = this.responseText;
-                    $(document).ready(function() {
-                        $("#modalBuscarSocio").modal("show");
-                    });
-                    $("#modBuscarSocio").click(function() {
-                        $("#nomBusqueda, #apeBusqueda").val("");
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('funBorrar').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#tablaPrincipal2").hide();
+                    $("#modalNuevoSocio").modal("show");
                 });
-                }
-            };
-            xhttp.open("GET", "funciones/buscarSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true);
-            xhttp.send();
-        }
+            }
+        };
+        xhttp.open("POST", "funciones/funNuevoSocio.php?nombre=" + nombre + "&ape1=" + ape1 + "&ape2=" + ape2 + "&correo=" + correo + "&tel=" + tel +
+            "&loca=" + loca + "&fechaNac=" + fechaNac + "&contra=" + contra + "&permiso=" + permiso, true);
+        xhttp.send();
+    }
 
 
-
-
-        // funcion para la modificacion o eliminacion de los socios 
-
-        function selSocio(idSocio) {
-            // var idSocio = document.getElementById("pruSocio").value;
-            $(document).ready(function() {
-                // $("#tablaPrincipal1").hide();
-                // $("#tablaPrincipal2").hide();
-            });
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('resulBusqueda').innerHTML = this.responseText;
-                    $(document).ready(function() {
-                        $("#actualizarSocio").modal("show");
-                    });
-                }
-            };
-            xhttp.open("POST", "funciones/seleccionarSocioV2.php?idSocio=" + idSocio, true);
-            xhttp.send();
-        }
-
-
-
-        function actualizar() {
-            var idSocio = document.getElementById("idSoci1").value;
-            var nomSoci = document.getElementById("nomSoci").value;
-            var ape1Soci = document.getElementById("ape1Soci").value;
-            var ape2Soci = document.getElementById("ape2Soci").value;
-            var correoSoci = document.getElementById("correoSoci").value;
-            var telSoci = document.getElementById("telSoci").value;
-            var localidadSoci = document.getElementById("localidadSoci").value;
-            var fechaSoci = document.getElementById("fechaSoci").value;
-            // var contraSoci = document.getElementById("contraSoci").value;
-            var premisoSoci = document.getElementById("premisoSoci").value;
-
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('funBorrar').innerHTML = this.responseText;
-                    $(document).ready(function() {
-                        $("#tablaPrincipal2").hide();
-                        $("#modalActualizarSocio").modal("show");
-                    });
-                }
-            };
-            xhttp.open("POST", "funciones/actualizarSocio.php?idSocio=" + idSocio + "&nomSoci=" + nomSoci + "&ape1Soci=" + ape1Soci +
-                "&ape2Soci=" + ape2Soci + "&correoSoci=" + correoSoci + "&telSoci=" + telSoci + "&localidadSoci=" + localidadSoci +
-                "&fechaSoci=" + fechaSoci + "&premisoSoci=" + premisoSoci, true);
-            xhttp.send();
-        }
-
-        function borrar() {
-            var idSocio = document.getElementById("idSoci1").value;
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('funBorrar').innerHTML = this.responseText;
-                    $(document).ready(function() {
-                        $("#tablaPrincipal2").hide();
-                        $("#modalBorrarSocio").modal("show");
-                    });
-                   
-                    
-                }
-            };
-            xhttp.open("POST", "funciones/borrar.php?idSocio=" + idSocio, true);
-            xhttp.send();
-        }
-    </script>
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-    <script src="./js.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#btnTabla").click(function() {
-                $('#tablaPrincipal').hide();
-            });
-
+    $(document).ready(function() {
+        $("#limpiar, #nuevoSocio2").click(function() {
+            $("#nombre, #ape1, #ape2, #correo, #tel, #loca, #fechaNac, #contra").val("");
+            $("#permiso").prop("selectedIndex", 0);
         });
-    </script>
+    });
+
+ $(document).ready(function() {
+            $(".busSocio").click(function() {
+                $("#nomBusqueda, #apeBusqueda").val("");
+            });
+        });
+
+    // funcion para la busqueda de los socios
+    function buscarSocio() {
+        var nombreSel = document.getElementById("nomBusqueda").value;
+        var apellidoSel = document.getElementById("apeBusqueda").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('resulBusqueda').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#modalBuscarSocio").modal("show");
+                });
+            }
+        };
+        xhttp.open("GET", "funciones/buscarSocio.php?nombreSel=" + nombreSel + "&apellidoSel=" + apellidoSel, true);
+        xhttp.send();
+    }
+
+
+
+
+    // funcion para la modificacion o eliminacion de los socios 
+
+    function selSocio(idSocio) {
+        // var idSocio = document.getElementById("pruSocio").value;
+        $(document).ready(function() {
+            // $("#tablaPrincipal1").hide();
+            // $("#tablaPrincipal2").hide();
+        });
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('resulBusqueda').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#actualizarSocio").modal("show");
+                });
+            }
+        };
+        xhttp.open("POST", "funciones/seleccionarSocioV2.php?idSocio=" + idSocio, true);
+        xhttp.send();
+    }
+
+
+
+    function actualizar() {
+        var idSocio = document.getElementById("idSoci1").value;
+        var nomSoci = document.getElementById("nomSoci").value;
+        var ape1Soci = document.getElementById("ape1Soci").value;
+        var ape2Soci = document.getElementById("ape2Soci").value;
+        var correoSoci = document.getElementById("correoSoci").value;
+        var telSoci = document.getElementById("telSoci").value;
+        var localidadSoci = document.getElementById("localidadSoci").value;
+        var fechaSoci = document.getElementById("fechaSoci").value;
+        // var contraSoci = document.getElementById("contraSoci").value;
+        var premisoSoci = document.getElementById("premisoSoci").value;
+
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('funBorrar').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#tablaPrincipal2").hide();
+                    $("#modalActualizarSocio").modal("show");
+                });
+            }
+        };
+        xhttp.open("POST", "funciones/actualizarSocio.php?idSocio=" + idSocio + "&nomSoci=" + nomSoci + "&ape1Soci=" + ape1Soci +
+            "&ape2Soci=" + ape2Soci + "&correoSoci=" + correoSoci + "&telSoci=" + telSoci + "&localidadSoci=" + localidadSoci +
+            "&fechaSoci=" + fechaSoci + "&premisoSoci=" + premisoSoci, true);
+        xhttp.send();
+    }
+
+    function borrar() {
+        var idSocio = document.getElementById("idSoci1").value;
+
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('funBorrar').innerHTML = this.responseText;
+                $(document).ready(function() {
+                    $("#tablaPrincipal2").hide();
+                    $("#modalBorrarSocio").modal("show");
+                });
+
+
+            }
+        };
+        xhttp.open("POST", "funciones/borrar.php?idSocio=" + idSocio, true);
+        xhttp.send();
+    }
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script src="./js.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#btnTabla").click(function() {
+            $('#tablaPrincipal').hide();
+        });
+
+    });
+</script>

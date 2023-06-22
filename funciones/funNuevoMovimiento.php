@@ -32,9 +32,6 @@ function nuevoMovimiento()
     if (!empty($nombre) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $nombre)) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>Introduzca nombre</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca nombre <br />';
     }
 
@@ -42,9 +39,6 @@ function nuevoMovimiento()
     if (!empty($ape1) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape1)) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>Introduzca primer apellido</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca primer apellido <br />';
     }
 
@@ -52,18 +46,12 @@ function nuevoMovimiento()
     if (!empty($tipoMovimiento && $tipoMovimiento != "selecciona una opción")) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>Introduzca tipo movimiento</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca tipo movimiento <br />';
     }
     // control de la cantidad
     if (!empty($cantidad) && is_numeric($cantidad) && $cantidad > 0) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>ntroduzca una cantidad</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca una cantidad apropiada <br />';
     }
 
@@ -71,20 +59,14 @@ function nuevoMovimiento()
     if (!empty($concepto)) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>Introduzca un concepto</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca un concepto <br />';
     }
 
     // control de la fecha introducida
     $fecha_actual = date("Y-m-d");
-    if (!empty($fecha) && strtotime($fecha) < strtotime($fecha_actual)) {
+    if (!empty($fecha) && strtotime($fecha) <= strtotime($fecha_actual)) {
         $contador++;
     } else {
-        // echo '<div class="container-fluid">';
-        // echo    "<p class='text-danger font-weight-bold'>Introduzca la fecha válida</p>";
-        // echo '</div>';
         $datosFaltantes .= 'Introduzca una fecha válida <br />';
     }
 
@@ -109,9 +91,7 @@ function nuevoMovimiento()
 
                     if (mysqli_stmt_execute($stmt)) {
 
-                        // echo '<div class="container-fluid">
-                        //             <p class="text-success font-weight-bold">Movimiento realizado</p>
-                        //         </div>';
+                        
                         $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
                             class="bi bi-check-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -120,7 +100,6 @@ function nuevoMovimiento()
                         $modal .= 'Movimiento realizado';
 
                     } else {
-                        // echo "No se ha podido hacer el movimiento";
                         $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                         <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
@@ -130,7 +109,6 @@ function nuevoMovimiento()
                     mysqli_stmt_close($stmt);
                 }
             } else {
-                // echo "No se ha podido completar la accion, Prueba más tarde";
                 $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                 <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
@@ -138,7 +116,6 @@ function nuevoMovimiento()
                 $modal .= 'No se ha podido completar la accion, Prueba más tarde';
             }
         } else {
-            // echo "El usuario no existe";
             $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                             <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>

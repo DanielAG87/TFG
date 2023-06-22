@@ -36,42 +36,36 @@ function actualizar()
     if (!empty($nombre) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $nombre)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca nombre</p>";
         $datosFaltantes .= 'Introduzca nombre <br />';
     }
     // control del primer apellido
     if (!empty($ape1) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape1)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca Primer apellido</p>";
         $datosFaltantes .= 'Introduzca primer apellido <br />';
     }
     //control apellido2
     if (!empty($ape2) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $ape2)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca Segundo apellido</p>";
         $datosFaltantes .= 'Introduzca segundo apellido <br />';
     }
     //control correo
     if (!empty($correo) && filter_var($correo, FILTER_VALIDATE_EMAIL)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>ntroduzca correo</p>";
         $datosFaltantes .= 'Introduzca correo <br />';
     }
     //control telefono
     if (!empty($tel) && preg_match('/^(?:\+34|0034)?[6789]\d{8}$/', $tel)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca teléfono</p>";
         $datosFaltantes .= 'Introduzca teléfono <br />';
     }
     // control localidad
     if (!empty($loca) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $loca)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca localidad</p>";
         $datosFaltantes .= 'Introduzca localidad <br />';
     }
     // control de fecha
@@ -79,21 +73,13 @@ function actualizar()
     if (!empty($fechaNac) && strtotime($fechaNac) < strtotime($fecha_actual)) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Introduzca fecha de nacimiento</p>";
         $datosFaltantes .= 'Introduzca fecha de nacimiento <br />';
     }
-    // control contraseña
-    // if (!empty($contra)) {
-    //     $contador++;
-    // } else {
-    //     // echo "<p class='text-danger font-weight-bold'>Introduzca contraseña</p>";
-    //     $datosFaltantes .= 'Introduzca contraseña <br />';
-    // }
+ 
     //control permiso
     if (empty($permiso) || ($permiso == "Si" || $permiso == "No")) {
         $contador++;
     } else {
-        // echo "<p class='text-danger font-weight-bold'>Permiso invalido</p>";
         $datosFaltantes .= 'Introduzca permiso <br />';
     }
 
@@ -116,12 +102,8 @@ function actualizar()
 
             if (mysqli_stmt_bind_param($stmt, "ssssssssi", $nombre, $ape1, $ape2, $correo, $tel, $loca, $fechaNac, $permiso, $id)) {
 
-                if (mysqli_stmt_execute($stmt)) {
-                    // echo mysqli_affected_rows($con). " " . "Socio añadido"; ?>
+                if (mysqli_stmt_execute($stmt)) { ?>
                 <?php
-                    // echo '<div class="container-fluid">
-                    //             <p class="text-success font-weight-bold">Socio Actualizado</p>
-                    //         </div>';
                     $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
                     class="bi bi-check-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -129,7 +111,6 @@ function actualizar()
                     </svg> ';
                     $modal .= 'Socio actualizado';
                 } else {
-                    // echo "Error de introducción";
                     $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
@@ -139,7 +120,6 @@ function actualizar()
                 mysqli_stmt_close($stmt);
             }
         } else {
-            // echo "No se ha podido completar la accion, Prueba más tarde";
             $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>

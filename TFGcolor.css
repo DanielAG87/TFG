@@ -2,16 +2,6 @@
   padding-top: 80px;
 }
 
-
-/* .navbar, footer{ */
-  /* font-family: "Viking"; */
-   /* font-family: "Virgo Display"; */
-    /* font-family: "PR Celtic Narrow"; */
-  /* font-size: 14px; */
-  /* font-family: 'Comic Sans MS'; */
-  /* font-family: 'Stonehenge'; */
-  /* letter-spacing: 3px; */
-/* } */
 .vikingo{
   font-family: "Viking";
   letter-spacing: 2px;
@@ -24,6 +14,7 @@
   
 }
 
+
 /* region index */
 #loginIMG {
     width: 200px;
@@ -34,20 +25,14 @@
     background-color: #04448c;
 }
 
-/* #h1Login {
-    color: whitesmoke;
-    padding-bottom: 5px;
-    font-family: "Viking"; 
-    font-family: "Virgo Display";
-    font-family: "PR Celtic Narrow"; 
-
-} */
-
 #centrador {
     display: flex;
     justify-content: center;
 }
 /* fin region index */
+
+
+
 
 .navbar {
     margin: 0 auto;
@@ -105,6 +90,10 @@
     height: 50px ;
 }
 
+
+
+
+/* Region footer */
 footer{
     /* position: absolute; */
     bottom: 0;
@@ -120,10 +109,11 @@ footer{
   color: white;
   padding-right: 4px;
 }
+/* fin region footer */
 
-/* #descon{
-  float: right;
-} */
+
+
+
 
 /* region contabilidad */
 #btnContabilidad{
@@ -133,8 +123,9 @@ footer{
 .spacer {
   width: 40px; /* Ajusta el ancho del espacio según tus necesidades */
 }
-
 /* fin region contabilidad */
+
+
 
 /* region Carousel */
 .carousel-inner img {
@@ -154,6 +145,10 @@ footer{
   width: 100%;
 }
 /* fin region Carousel */
+
+
+
+
 
 
 /* Mapa y datos aso */
@@ -177,6 +172,10 @@ footer{
 
 }
 /* fin Mapa y datos aso */
+
+
+
+
 
 
 
@@ -248,3 +247,5 @@ footer{
 }
 
 /* fin region gráfica */
+
+

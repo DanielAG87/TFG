@@ -94,7 +94,7 @@ mysqli_close($con); ?>
                     }
                     ?>
                 <span class="fs-5">Entrada: <?= $j['coste_entrada'] ?> Eurazos</span><br />
-                <span class="fs-5">Organización <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
+                <span class="fs-5">Organizador: <?= $j['nombre'] . " " . $j['apellido1'] ?></span><br />
                 <span class="fs-5">Inscripción: <?= $j['correo'] ?></span><br />
                 <span class="fs-5">Telefono: <?= $j['telefono'] ?></span>
             </div>
@@ -230,7 +230,7 @@ mysqli_close($con); ?>
 <script>
     // limpiar campos
     $(document).ready(function() {
-        $("#limpiar, #nuevoSocio2").click(function() {
+        $("#limpiar, #nTorneo2").click(function() {
             $("#nombre, #ape1, #actividad, #participantes, #fecha, #entrada, #cartel").val("");
         });
     });
@@ -254,10 +254,16 @@ mysqli_close($con); ?>
                     // $("#tablaTorneo").hide();
                     $("#modalNuevoTorneo").modal("show");
                 });
+                
             }
         };
         xhttp.open("POST", "funciones/funNuevoTorneo.php?nombre=" + nombre + "&ape1=" + ape1 + "&actividad=" + actividad + 
             "&participantes=" + participantes + "&fecha=" + fecha + "&entrada=" + entrada + "&cartel=" + cartel , true);
         xhttp.send();
+    }
+
+
+    function reload(){
+        location.reload();
     }
 </script>

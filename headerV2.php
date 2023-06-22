@@ -19,7 +19,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> <!-- uldimo -->
     <link rel="icon" href="./img/RunaLogo.svg" type="image/x-icon">
-    <!-- <script src="js.js"></script>  -->
 </head>
 
 <div id="azul" class="mb-3">
@@ -86,3 +85,5 @@
         </div>
     </div>
 </div>
+<body>
+    <div class="content">

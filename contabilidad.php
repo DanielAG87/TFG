@@ -162,7 +162,7 @@ $cuentas = mysqli_query(
                     <div class="modal-footer mx-auto">
                         <button type="button" id="formSocio" onclick="filtrar()" class="btn btn-outline-primary" data-bs-dismiss="modal">Aplicar filtro</button>
                         <!-- <button type="submit" id="limpiar" class="btn btn-outline-success">Limpiar campos</button> -->
-                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" id="cancelModal" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -177,6 +177,10 @@ $cuentas = mysqli_query(
         $(document).ready(function() {
             $("#tablaFull").hide();
         });
+        $("#formSocio, #cancelModal").click(function() {
+                $("#valor").val("");
+                $("#orden, #selectOpcion").prop("selectedIndex", 0);
+            });
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
