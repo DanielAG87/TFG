@@ -12,14 +12,4 @@ function conectarBD(){
     else{
         return $conexion;
     }
-}
-
-
-// function desconectarBD(){}
-//     $cerraBD = mysqli_close($con);
-//     if (!$cerraBD) {
-//         echo 'No se puede cerrar la conexión';
-//     }
-//     else{
-//         return $cerraBD;
-//     }
+} ?>

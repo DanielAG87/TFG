@@ -37,26 +37,17 @@ $pdf->SetY(50); // Ajusta la posición vertical del contenido debajo del encabez
 
 
 while ($row = mysqli_fetch_assoc($dineroPDF)) {
-    $fechaFormateada = date("d-m-Y", strtotime($row["fecha_movimiento"])); 
-    // $row["id_movimiento"] ;
-    // $row["nombre"] ;
-    // $row["apellido1"] ;
-    // $row["cantidad"] ;
-    // $row["concepto"]; 
-    // $fechaFormateada ;
-    // $row["tipo_gasto"]; 
+    $fechaFormateada = date("d-m-Y", strtotime($row["fecha_movimiento"]));  
     $pdf->SetFont('Helvetica', '', 12, 'ISO-8859-1');
-    // $pdf->Cell(0, 10, 'Nombre: ' . $row["nombre"]  . " " . "Apellido: " . $row["apellido1"], 0, 1);
+
     $pdf->Cell(0, 10, utf8_decode('Fecha: ' . $fechaFormateada  . ", " . "concepto: " . $row["concepto"] . ", " . "cantidad: " . $row["cantidad"] . ", " . "Socio: " . $row["nombre"]  . " " . $row["apellido1"]) , 0, 1);
 
-    // $pdf->Cell(0, 10, utf8_decode('Imprimiendo línea ñumero: ') . $row["nombre"]  . ' ' . 'lo tiene paco', 0, 1);
 
     if ($pdf->GetY() >= 250) {
         $pdf->AddPage(); // Agrega una nueva página si el contenido se desborda
-        // $pdf->SetFont('Arial', '', 10, 'ISO-8859-1');
+
         $pdf->SetFont('Helvetica', '', 12, 'ISO-8859-1');
         $pdf->SetY(40); // Ajusta la posición vertical del contenido debajo del encabezado en la nueva página
     }
 }
-$pdf->Output('Movimientos.pdf', 'D');
-?>
+$pdf->Output('Movimientos.pdf', 'D'); ?>

@@ -14,7 +14,8 @@ function consulSocio()
                             </div>
                             <div class="modal-body mx-auto">
                                 <span>';
-
+    
+    // dependiendo de lo que esté relleno se hace la busqueda
     if (!empty($_REQUEST['nombreSel']) && !empty($_REQUEST['apellidoSel'])) {
         $nombre = ucwords($_REQUEST['nombreSel']);
         $apellido = ucwords($_REQUEST['apellidoSel']);
@@ -56,7 +57,7 @@ function consulSocio()
             $modal .= 'Socio no encontrado';
             $comprobarModal = true;
         } else { ?>
-            <div class="container-fluid ml-5">
+            <div class="container-fluid ml-5"> <!-- mostramos la tabla -->
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped border-primary">
                         <tr>
@@ -87,7 +88,7 @@ function consulSocio()
                                 <td><?php echo $j[9] ?></td>
 
                                 <td>
-                                    <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $j[0] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                                    <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $j[0] ?>');" />
                                 </td>
                             <?php } ?>
                             </tr>

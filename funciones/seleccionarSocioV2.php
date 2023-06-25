@@ -17,7 +17,6 @@ function caca()
             <div class="modal-content">
                 <div class="modal-header ">
                     <h5 class="modal-title mx-auto" id="exampleModalLabel">Datos Socio/a</h5>
-                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 <div class="modal-body mx-auto">
 
@@ -72,12 +71,6 @@ function caca()
                             <div class="col-md-7">
                                 <input class="form-control" type="date" id="fechaSoci" value="<?= $j[7] ?>" />
                             </div>
-                            <!-- <div class="col-md-5 text-center">
-                                <label for="contraSoci" class="form-label">Contraseña</label>
-                            </div> -->
-                            <!-- <div class="col-md-7">
-                                <input class="form-control" type="text" id="contraSoci" value="" /> $j[8] 
-                            </div> -->
                             <div class="col-md-5 text-center">
                                 <label for="premisoSoci" class="form-label">Permiso</label>
                             </div>
@@ -93,10 +86,6 @@ function caca()
                         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" onclick="actualizar()">Actualizar</button>
                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="borrar()">Borrar</button>
                         <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-                        <!-- <form method="post" action="socios.php" class="btn-group">
-                            <input type="submit" class="btn btn-outline-primary" name="vovler1" value="Volver" data-bs-dismiss="modal">
-                        </form> -->
-
                     </div>
                 </div>
             </div>

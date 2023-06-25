@@ -17,7 +17,6 @@ mysqli_close($con);
 <h3 class="text-center h3 text-primary">Almacén</h3>
 
 <div class="container-fluid" id="tablaPrincipal2">
-        <!-- <form method="get" action="socios.php"> -->
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered border-primary text-center">
                 <tr>
@@ -29,7 +28,6 @@ mysqli_close($con);
                     <th>Comprador</th>
                     <th>Observaciones</th>
                     <th>Medidas</th>
-                    
                 </tr>
                 <tr>
                     <?php

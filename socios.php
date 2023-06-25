@@ -5,10 +5,9 @@ include_once "conectarBBDD.php";
 $con = conectarBD();
 
 $socios = mysqli_query($con, 'SELECT * FROM socios');
-// desconectarBD($con);
+
 if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
 
-    <!-- <h3 class="text-center h3">SOCIOS</h3> -->
     <h3 class="text-center h3 text-primary vikingo">Socios</h3>
 
 
@@ -62,7 +61,7 @@ if (empty($_REQUEST) || !empty($_REQUEST['vovler1'])) { ?>
                         <td><?= $row["contrasenia"] ?></td>
                         <td><?= $row["permiso"] ?></td>
                         <td>
-                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); " /> <!-- window.scrollTo({ top: 0, behavior: 'smooth' }); -->
                         </td>
                 </tr>
             <?php
@@ -224,12 +223,6 @@ include("footer.php"); ?>
     // funcion para la modificacion o eliminacion de los socios 
 
     function selSocio(idSocio) {
-        // var idSocio = document.getElementById("pruSocio").value;
-        $(document).ready(function() {
-            // $("#tablaPrincipal1").hide();
-            // $("#tablaPrincipal2").hide();
-        });
-
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -295,10 +288,7 @@ include("footer.php"); ?>
 </script>
 
 
-
-
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
-<script src="./js.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {

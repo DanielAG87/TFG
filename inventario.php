@@ -31,7 +31,6 @@ mysqli_close($con);
 
 
 <div class="container-fluid">
-    <!-- <h1 class="text-center">Juegos más reservados</h1> -->
     <h2 class="text-center">Top 10 reservas</h2>
     <div class="row">
         <div class="col-md-2"></div>

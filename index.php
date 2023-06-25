@@ -17,9 +17,9 @@ if (!empty($_REQUEST['bLogin']) && !empty($_REQUEST['correo']) && !empty($_REQUE
             $filtrar = $con->prepare("SELECT * FROM socios  WHERE correo = ? AND contrasenia = ?");
             $filtrar->bind_param("ss", $correo, $contra);
             $filtrar->execute();
-            $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+            $resultFiltrar = $filtrar->get_result(); 
         } catch (Exception $e) {
-            echo "Error : " . $e->getMessage(); // poner modal
+            echo "Error : " . $e->getMessage();
         }
 
         mysqli_close($con);
@@ -87,7 +87,6 @@ if (!empty($_REQUEST['descon']) || empty($_REQUEST) || empty($_SESSION)) {
                     </div>
                 </div><br>
 
-                <!-- <button class="btn btn-outline-dark" type="submit" id="bLogin">Entrar</button> -->
                 <input type="submit" value="Entrar" class="btn btn-outline-warning" id="bLogin" name="bLogin" />
             </form><br>
             <p id="h1Login">Si no tiene acceso, póngase en contacto con el administrador</p>

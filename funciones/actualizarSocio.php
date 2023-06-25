@@ -77,11 +77,12 @@ function actualizar()
     }
  
     //control permiso
-    if (empty($permiso) || ($permiso == "Si" || $permiso == "No")) {
+    if (!empty($permiso)) {
+        if ($permiso == "Selecciona una opción" || $permiso != "Si") {
+            $permiso = "No";
+        }
         $contador++;
-    } else {
-        $datosFaltantes .= 'Introduzca permiso <br />';
-    }
+    } 
 
 
 
@@ -135,7 +136,7 @@ function actualizar()
     $socios = mysqli_query($con, 'SELECT * FROM socios'); ?>
 
     <div class="container-fluid" id="tablaPrincipal3">
-
+    <!-- mostrar la tabla -->
         <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered text-center">
                 <tr>
@@ -166,7 +167,7 @@ function actualizar()
                         <td><?= $row["contrasenia"] ?></td>
                         <td><?= $row["permiso"] ?></td>
                         <td>
-                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                            <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); " /> <!-- window.scrollTo({ top: 0, behavior: 'smooth' }); -->
                         </td>
                 </tr>
             <?php } ?>

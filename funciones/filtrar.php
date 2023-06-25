@@ -70,7 +70,7 @@ function filtrarDatos()
 
                 $filtrar->bind_param("s", $contener);
                 $filtrar->execute();
-                $resultFiltrar = $filtrar->get_result(); // Obtener el resultado de la consulta
+                $resultFiltrar = $filtrar->get_result();
                 $permiso = true;
             } catch (Exception $e) {
                 echo "Error al filtrar: " . $e->getMessage();

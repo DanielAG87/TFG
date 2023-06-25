@@ -19,7 +19,6 @@ function borrar(){
     if(mysqli_query($con, $borrarSocio)) {
         $afectadas = mysqli_affected_rows($con);
         if ($afectadas != 0) {
-            // echo "<strong>Socio Borrado</strong>";
             $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="green"
             class="bi bi-check-circle" viewBox="0 0 16 16">
             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -31,7 +30,7 @@ function borrar(){
             $socios = mysqli_query($con, 'SELECT * FROM socios'); ?>
             
             <div class="container-fluid" id="tablaPrincipal3">
-            
+            <!-- mostrar la tabla -->
             <div class="table-responsive">
                 <table class="table table-striped table-hover table-bordered text-center">
                     <tr>
@@ -62,7 +61,7 @@ function borrar(){
                             <td><?= $row["contrasenia"] ?></td>
                             <td><?= $row["permiso"] ?></td>
                             <td>
-                                <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>'); window.scrollTo({ top: 0, behavior: 'smooth' });" />
+                                <input type="submit" class="btn btn-outline-primary" name="selec" value="Seleccionar" onclick="selSocio('<?= $row['id_socio'] ?>');" />
                             </td>
                     </tr>
                 <?php 
@@ -73,7 +72,6 @@ function borrar(){
 
         } 
         else {
-            // echo "<strong>Error al borrar socio</strong>";
             $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
@@ -82,7 +80,6 @@ function borrar(){
         }
     } 
     else {
-        // echo "<strong>Error en la consulta</strong>";
         $modal .= '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>

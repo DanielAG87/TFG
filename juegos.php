@@ -10,10 +10,8 @@ $juegos = mysqli_query(
         LEFT JOIN reserva r ON r.id_juego = j.id_juego ORDER BY j.nombre');
 
 $devolverJuegos = mysqli_fetch_all($juegos);
-mysqli_close($con);
+mysqli_close($con); ?>
 
-?>
-<!-- <div id="reserva"></div> -->
 
 <div class="container-fluid" id="tablaJuegos">
 
@@ -53,10 +51,6 @@ mysqli_close($con);
 
 <script>
     function reservarJuego(idJuego, dispopnible, estado, camSocio) {
-        $(document).ready(function() {
-            // $("#tablaJuegos").hide();
-            // $("#tablaPrincipal2").hide();
-        });
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {

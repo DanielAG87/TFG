@@ -70,7 +70,6 @@ mysqli_close($con); ?>
         foreach ($torneos as $j) {
             $fechaCambiada = date('d-m-Y', strtotime($j['fecha']));
         ?>
-        <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
             <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center mb-3"> 
                 <?php
                 if (empty($j['cartel'])) { ?>
@@ -175,7 +174,6 @@ mysqli_close($con); ?>
 
 <script>
     var fechaContador = "<?php echo $fechaModificada ?>";
-    // document.write(fechaContador);
 
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -183,26 +181,24 @@ mysqli_close($con); ?>
         // VARIABLES
         //===
         const DATE_TARGET = new Date(fechaContador + ' ' + '10:00 AM');
-        // DOM for render
+        // DOM 
         const SPAN_dias = document.querySelector('p#dias');
         const SPAN_horas = document.querySelector('p#horas');
         const SPAN_minutos = document.querySelector('p#minutos');
         const SPAN_segundos = document.querySelector('p#segundos');
-        // Millisegundos for the calculations
+        // Milisegundos para los calculos
         const MILLIsegundos_OF_A_SECOND = 1000;
         const MILLIsegundos_OF_A_MINUTE = MILLIsegundos_OF_A_SECOND * 60;
         const MILLIsegundos_OF_A_HOUR = MILLIsegundos_OF_A_MINUTE * 60;
         const MILLIsegundos_OF_A_DAY = MILLIsegundos_OF_A_HOUR * 24
 
         //===
-        // FUNCTIONS
+        // FUNCIONES
         //===
 
-        /**
-         * Method that updates the countdown and the sample
-         */
+        
         function updateCountdown() {
-            // Calcs
+            // Calcular
             const NOW = new Date()
             const DURATION = DATE_TARGET - NOW;
             const REMAINING_dias = Math.floor(DURATION / MILLIsegundos_OF_A_DAY);
@@ -218,10 +214,10 @@ mysqli_close($con); ?>
         }
 
         //===
-        // INIT
+        // Iniciar
         //===
         updateCountdown();
-        // Refresh every second
+        // refrescar cada segundo
         setInterval(updateCountdown, MILLIsegundos_OF_A_SECOND);
     });
 </script>
@@ -251,7 +247,6 @@ mysqli_close($con); ?>
             if (this.readyState == 4 && this.status == 200) {
                 document.getElementById('tablaTorneo').innerHTML = this.responseText;
                 $(document).ready(function() {
-                    // $("#tablaTorneo").hide();
                     $("#modalNuevoTorneo").modal("show");
                 });
                 

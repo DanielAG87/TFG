@@ -35,7 +35,6 @@ $saldo = $ingresoTotal - $gastoTotal;
 
             <h4>Ingresos: <span style="color: green;"><?= $ingresoTotal ?></span> €</h4><br>
             <h4>Gastos: <span style="color: red;"><?= $gastoTotal ?></span> €</h4><br>
-            <!-- <h4>Donaciones: <span style="color: blue;"> <?= $donacionesTotales ?></span></h4><br> -->
             <h3>Saldo actual: <strong> <?php
                                         if ($saldo < 0) {
                                             echo '<span style="color: red;">' . $saldo . '</span>';

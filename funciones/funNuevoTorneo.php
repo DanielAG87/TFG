@@ -27,7 +27,7 @@ function nuevoTorneillo()
 
     $contador = 0;
     $datosFaltantes = "";
-    // coontrolamos el nombre
+    // controlamos el nombre
     if (!empty($nombre) && preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]{1,20}$/u', $nombre)) {
         $contador++;
     } else {
@@ -55,6 +55,7 @@ function nuevoTorneillo()
         $datosFaltantes .= 'Introduzca participantes <br />';
     }
 
+    //control fecha
     $fecha_actual = date("Y-m-d");
     if (!empty($fecha) && strtotime($fecha) > strtotime($fecha_actual)) {
         $contador++;
@@ -86,7 +87,6 @@ function nuevoTorneillo()
     } else {
         $cartel = "";
         $contador++;
-        // $datosFaltantes .= 'Cartel erroneo <br />';
     }
     // si todo está correcto hacemos el insert.
     if ($contador == 7) {
@@ -167,9 +167,8 @@ function nuevoTorneillo()
     <?php
     $fechaActual = date('d-m-Y');
     foreach ($torneos as $j) {
-        $fechaCambiada = date('d-m-Y', strtotime($j['fecha']));
-    ?>
-    <!-- <div class=" col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 col-xxl-2 text-center mb-3"> -->
+        $fechaCambiada = date('d-m-Y', strtotime($j['fecha'])); ?>
+
         <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center mb-3"> 
             <?php
             if (empty($j['cartel'])) { ?>
@@ -200,7 +199,7 @@ function nuevoTorneillo()
         
     <?php } ?>
 
-</div>
+    </div>
 </div>
 
 <?php
